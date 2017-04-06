@@ -1,6 +1,8 @@
 from ah_system import model_ah
+from collections import OrderedDict
+import time
 
-debug = False
+debug = True
 
 # the reaction equations
 # rho is not used in the simpler equations, but they must all have the same
@@ -33,29 +35,35 @@ def meinhardt2_i(oldA, oldI, p, rho):
     dI = rho * aStar2 - p['nu'] * oldI + p['remi'];
     return dI
 
-size = 1000
-time_steps = 3000
+size = 2000
+time_steps = 2500
 
-params = {
-    'innita':2,
-    'inniti':2,
-    'dt':0.5,
-    'dx':0.4,
-    'diffa':0.1,
-    'diffi':0.0,
-    'proda':6,
-    'prodi':4,
-    'rema':0.02,
-    'remi':0.0075,
-    'sdens':0.015,
-    'rho_0':0.02,
-    'rho_var':0.14,
-    'k':0.0004,
-    'mu':0.05,
-    'nu':0.03
-}
+params = OrderedDict([
+    ('innita',2),
+    ('inniti',2),
+    ('dt',0.5),
+    ('dx',0.4),
+    ('diffa',0.1),
+    ('diffi',0.0),
+    ('proda',6),
+    ('prodi',4),
+    ('rema',0.02),
+    ('remi',0.0075),
+    ('sdens',0.015),
+    ('rho_0',0.02),
+    ('rho_var',0.14),
+    ('k',0.0004),
+    ('mu',0.05),
+    ('nu',0.03)
+])
 
+if debug:
+    start = time.time()
 try:
     model_ah(meinhardt2_a, meinhardt2_i, params, size, time_steps, debug)
 except ValueError as e:
     print("ERROR: ", e)
+
+if debug:
+    end = time.time()
+    print('time: ', end-start)

@@ -62,21 +62,29 @@ def model_ah(activator_f, inhibitor_f, p, size, timesteps, debug=False):
 
         fig, axes = plt.subplots(1, 2)
         axes[0].set_title('Activator levels')
+        axes[0].get_xaxis().set_visible(False)
+        axes[0].get_yaxis().set_visible(False)
         im1 = axes[0].imshow(activ, interpolation='none', cmap='YlOrBr')
         axes[1].set_title('Inhibitor levels')
+        axes[1].get_xaxis().set_visible(False)
+        axes[1].get_yaxis().set_visible(False)
         im2 = axes[1].imshow(inhib, interpolation='none', cmap='YlOrBr')
 
-        if debug:
-            plt.show()
-        else:
-            # save the result in a folder named after the function
-            funcdir = activator_f.__name__[:-2]
-            # the filename is the parameters used
-            filename = ''
-            for k,v in p.items():
-                filename = filename + k + str(v) + '_'
-            filename = filename[:-1] + '.png'
-            filepath = os.path.join('..','images',funcdir,filename)
-            plt.savefig(filepath, bbox_inches='tight')
+        # save the result in a folder named after the function
+        funcdir = activator_f.__name__[:-2]
+        # the filename is the parameters used
+        filename = ''
+
+        for k,v in p.items():
+            filename = filename + k + str(v) + '_'
+
+        filename = filename[:-1] + '.eps'
+        dirpath = os.path.join('..','images',funcdir)
+
+        if not os.path.exists(dirpath):
+            os.makedirs(dirpath)
+
+        filepath = os.path.join(dirpath, filename)
+        plt.savefig(filepath, bbox_inches='tight')
 
         return True
