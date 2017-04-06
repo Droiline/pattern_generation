@@ -1,0 +1,82 @@
+import numpy as np
+from mpl_toolkits.mplot3d import axes3d
+import matplotlib.pyplot as plt
+import matplotlib
+import sys
+import os
+
+def model_ah(activator_f, inhibitor_f, p, size, timesteps, debug=False):
+    #create the model space
+    activ = [[0]*size for _ in range(timesteps)]
+    inhib = [[0]*size for _ in range(timesteps)]
+    working_row = [[0,0]]*size
+    rho = p['rho_0'] + np.random.rand(size)*p['rho_var']
+
+    stability = (p['dx']*p['dx']) / (2*p['dt'])
+
+    if debug:
+        print("diffusion rates should be <= ", stability)
+        print("Diffa: ", p['diffa'])
+        print("Diffi: ", p['diffi'])
+
+    if p['diffa'] >= stability or p['diffi'] >= stability:
+        raise ValueError("System is unstable")
+        return False
+    else:
+        #set initial values
+        activ[0] = [p['innita']] * size
+        inhib[0] = [p['inniti']] * size
+        activ[0][int(size/2)] = p['innita'] + 1
+        activ[0][int(size/2)+1] = p['innita'] + 1
+        inhib[0][int(size/2)] = p['inniti'] + 1
+        inhib[0][int(size/2)+1] = p['inniti'] + 1
+
+        #start iterating from after initial conditions
+        for t in range(1,timesteps):
+            for c in range(size):
+                #deal with edge cases using the neutral flow method
+                if c == 0:
+                    old_activ_l = activ[t-1][c]
+                    old_inhib_l = inhib[t-1][c]
+                else:
+                    old_activ_l = activ[t-1][c-1]
+                    old_inhib_l = inhib[t-1][c-1]
+
+                if c == size-1:
+                    old_activ_r = activ[t-1][c]
+                    old_inhib_r = inhib[t-1][c]
+                else:
+                    old_activ_r = activ[t-1][c+1]
+                    old_inhib_r = inhib[t-1][c+1]
+
+                #find the change in activator and inhibitor due to diffusion
+                diffused_a = p['diffa'] * ((old_activ_l + old_activ_r - 2*activ[t-1][c]) / (p['dx']*p['dx']))
+                diffused_i = p['diffi'] * ((old_inhib_l + old_inhib_r - 2*inhib[t-1][c]) / (p['dx']*p['dx']))
+
+                #find the change in activator and inhibitor due to reaction
+                reacted_a = activator_f(activ[t-1][c], inhib[t-1][c], p, rho[c])
+                reacted_i = inhibitor_f(activ[t-1][c], inhib[t-1][c], p, rho[c])
+                #find new activator value
+                activ[t][c] = activ[t-1][c] + p['dt'] * (diffused_a + reacted_a)
+                inhib[t][c] = inhib[t-1][c] + p['dt'] * (diffused_i + reacted_i)
+
+        fig, axes = plt.subplots(1, 2)
+        axes[0].set_title('Activator levels')
+        im1 = axes[0].imshow(activ, interpolation='none', cmap='YlOrBr')
+        axes[1].set_title('Inhibitor levels')
+        im2 = axes[1].imshow(inhib, interpolation='none', cmap='YlOrBr')
+
+        if debug:
+            plt.show()
+        else:
+            # save the result in a folder named after the function
+            funcdir = activator_f.__name__[:-2]
+            # the filename is the parameters used
+            filename = ''
+            for k,v in p.items():
+                filename = filename + k + str(v) + '_'
+            filename = filename[:-1] + '.png'
+            filepath = os.path.join('..','images',funcdir,filename)
+            plt.savefig(filepath, bbox_inches='tight')
+
+        return True

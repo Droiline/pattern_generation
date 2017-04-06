@@ -1,0 +1,29 @@
+\begin{thebibliography}{1}
+
+\bibitem{gameoflife}
+Martin Gardner.
+\newblock Mathematical games.
+\newblock {\em Scientific American}, 1970.
+\newblock The game was designed by John Horton Conway.
+
+\bibitem{arsmith}
+Alvy Ray~Smith III.
+\newblock Cellular automata complexity trade-offs.
+\newblock {\em Information and Control}, pages 446--482, 1971.
+
+\bibitem{seashells}
+Hans Meinhardt.
+\newblock {\em The Algorithmic Beauty of Sea Shells}.
+\newblock Springer, 3rd edition, 2003.
+
+\bibitem{tessellation}
+H.~Yamada and S.~Amoroso.
+\newblock Tessellation automata.
+\newblock {\em Information and Control}.
+
+\bibitem{turingmorph}
+A M Turing.
+\newblock The Chemical Basis of Morphogenesis.
+\newblock {\em Philosophical Transactions of the Royal Society of London. Series B, Biological Sciences}, pages 37--72, 1952.
+
+\end{thebibliography}
