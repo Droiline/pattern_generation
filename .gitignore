@@ -1,0 +1,8 @@
+*.aux
+*.log
+*.tex.backup
+*.toc
+*~
+
+images/meinhardt_img
+images/meinhardt2
