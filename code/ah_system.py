@@ -20,7 +20,7 @@ def model_ah(activator_f, inhibitor_f, p, size, timesteps, debug=False):
         print("Diffi: ", p['diffi'])
 
     if p['diffa'] >= stability or p['diffi'] >= stability:
-        raise ValueError("System is unstable")
+        raise ValueError("System is unstable, diffusion rates should be less than " + str(stability))
         return False
     else:
         #set initial values
