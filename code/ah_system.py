@@ -5,12 +5,13 @@ import matplotlib
 import sys
 import os
 
-def model_ah(activator_f, inhibitor_f, p, size, timesteps, debug=False):
+def model_ah(reaction_f, p, size, timesteps, debug=False):
     #create the model space
     activ = [[0]*size for _ in range(timesteps)]
     inhib = [[0]*size for _ in range(timesteps)]
     working_row = [[0,0]]*size
-    rho = p['rho_0'] + np.random.rand(size)*p['rho_var']
+    if ('rho_0' in p):
+        rho = p['rho_0'] + np.random.rand(size)*p['rho_var']
 
     stability = (p['dx']*p['dx']) / (2*p['dt'])
 
@@ -54,12 +55,15 @@ def model_ah(activator_f, inhibitor_f, p, size, timesteps, debug=False):
                 diffused_i = p['diffi'] * ((old_inhib_l + old_inhib_r - 2*inhib[t-1][c]) / (p['dx']*p['dx']))
 
                 #find the change in activator and inhibitor due to reaction
-                reacted_a = activator_f(activ[t-1][c], inhib[t-1][c], p, rho[c])
-                reacted_i = inhibitor_f(activ[t-1][c], inhib[t-1][c], p, rho[c])
+                if 'rho_0' in p:
+                    p['rho'] = rho[c]
+                reacted_a = reaction_f[0](activ[t-1][c], inhib[t-1][c], p)
+                reacted_i = reaction_f[1](activ[t-1][c], inhib[t-1][c], p)
                 #find new activator value
                 activ[t][c] = activ[t-1][c] + p['dt'] * (diffused_a + reacted_a)
                 inhib[t][c] = inhib[t-1][c] + p['dt'] * (diffused_i + reacted_i)
 
+        plt.close('all')
         fig, axes = plt.subplots(1, 2)
         axes[0].set_title('Activator levels')
         axes[0].get_xaxis().set_visible(False)
@@ -71,7 +75,7 @@ def model_ah(activator_f, inhibitor_f, p, size, timesteps, debug=False):
         im2 = axes[1].imshow(inhib, interpolation='none', cmap='YlOrBr')
 
         # save the result in a folder named after the function
-        funcdir = activator_f.__name__[:-2]
+        funcdir = reaction_f[0].__name__[:-2]
         # the filename is the parameters used
         filename = ''
 

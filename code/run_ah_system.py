@@ -5,37 +5,98 @@ import itertools as it
 import numpy as np
 
 debug = False
+full_run = False
+test_key = 'rmeinhardt2'
 
 # the reaction equations
-# rho is not used in the simpler equations, but they must all have the same
-# parameter set for this to work.
-def meinhardt_chap2_a(oldA, oldI, p, rho=0):
+def meinhardt_chap2_a(oldA, oldI, p):
     dA = p['sdens'] * (((oldA * oldA) / oldI) + p['proda']) - p['rema'] * oldA
     return dA
 
-def meinhardt_chap2_i(oldA, oldI, p, rho=0):
+def meinhardt_chap2_i(oldA, oldI, p):
     dI = p['sdens'] * oldA * oldA - p['remi'] * oldI + p['prodi']
     return dI
 
-def rmeinhardt1_a(oldA, oldI, p, rho):
+def rmeinhardt1_a(oldA, oldI, p):
     aStar2 = ((oldA*oldA)/(1 + p['k'] * oldA*oldA)) + p['rema']
-    dA = (rho * oldI * aStar2) - p['mu'] * oldA
+    dA = (['rho'] * oldI * aStar2) - p['mu'] * oldA
     return dA
 
-def rmeinhardt1_i(oldA, oldI, p, rho):
+def rmeinhardt1_i(oldA, oldI, p):
     aStar2 = ((oldA*oldA)/(1 + p['k'] * oldA*oldA)) + p['rema']
-    dI = p['sdens'] - rho * oldI * aStar2 - p['nu'] * oldI
+    dI = p['sdens'] - ['rho'] * oldI * aStar2 - p['nu'] * oldI
     return dI
 
-def rmeinhardt2_a(oldA, oldI, p, rho):
+def rmeinhardt2_a(oldA, oldI, p):
     aStar2 = (oldA*oldA)/(1 + p['k'] * oldA*oldA)
-    dA = (rho * (aStar2 + p['rho_0']))/oldI - p['mu'] * oldA
+    dA = (p['rho'] * (aStar2 + p['rho_0']))/oldI - p['mu'] * oldA
     return dA
 
-def rmeinhardt2_i(oldA, oldI, p, rho):
+def rmeinhardt2_i(oldA, oldI, p):
     aStar2 = (oldA*oldA)/(1 + p['k'] * oldA*oldA);
-    dI = rho * aStar2 - p['nu'] * oldI + p['remi'];
+    dI = p['rho'] * aStar2 - p['nu'] * oldI + p['remi'];
     return dI
+
+if test_key is 'meinhardt_chap2':
+    # values to be explored for each parameter
+    param_ranges = OrderedDict([
+        ('dt',[1]),
+        ('dx',[1]),
+        ('innita',np.arange(1,10,2)),
+        ('inniti',np.arange(1,10,2)),
+        ('diffa',np.arange(0,1,0.1)),
+        ('diffi',np.arange(0,1,0.1)),
+        ('proda',np.arange(1, 10, 1)),
+        ('prodi',np.arange(1, 10, 1)),
+        ('rema',np.arange(0.01,0.1,0.01)),
+        ('remi',np.arange(0.01,0.1,0.01)),
+        ('sdens',np.arange(0.01,0.1,0.01))
+    ])
+    reaction_f = (meinhardt_chap2_a, meinhardt_chap2_i)
+elif test_key is 'rmeinhardt1':
+    # values to be explored for each parameter
+    param_ranges = OrderedDict([
+        ('dt',[1]),
+        ('dx',[1]),
+        ('innita',np.arange(1,10,2)),
+        ('inniti',np.arange(1,10,2)),
+        ('diffa',np.arange(0,1,0.1)),
+        ('diffi',np.arange(0,1,0.1)),
+        ('proda',np.arange(1, 10, 1)),
+        ('prodi',np.arange(1, 10, 1)),
+        ('rema',np.arange(0.01,0.1,0.01)),
+        ('remi',np.arange(0.01,0.1,0.01)),
+        ('sdens',np.arange(0.01,0.1,0.01)),
+        ('rho_0',np.arange(0.01,0.1,0.01)),
+        ('rho_var',np.arange(0.1,0.2,0.01)),
+        ('rho',[0]), # empty, will be populated in model function.
+        ('k',np.arange(0.0001,0.001,0.0001)),
+        ('mu',np.arange(0.01,0.1,0.01)),
+        ('nu',np.arange(0.01,0.1,0.01))
+    ])
+    reaction_f = (rmeinhardt1_a,rmeinhardt1_i)
+else:
+    # values to be explored for each parameter
+    param_ranges = OrderedDict([
+        ('dt',[1]),
+        ('dx',[1]),
+        ('innita',np.arange(1,10,2)),
+        ('inniti',np.arange(1,10,2)),
+        ('diffa',np.arange(0,1,0.1)),
+        ('diffi',np.arange(0,1,0.1)),
+        ('proda',np.arange(1, 10, 1)),
+        ('prodi',np.arange(1, 10, 1)),
+        ('rema',np.arange(0.01,0.1,0.01)),
+        ('remi',np.arange(0.01,0.1,0.01)),
+        ('sdens',np.arange(0.01,0.1,0.01)),
+        ('rho_0',np.arange(0.01,0.1,0.01)),
+        ('rho_var',np.arange(0.1,0.2,0.01)),
+        ('rho',[0]), # empty, will be populated in model function.
+        ('k',np.arange(0.0001,0.001,0.0001)),
+        ('mu',np.arange(0.01,0.1,0.01)),
+        ('nu',np.arange(0.01,0.1,0.01))
+    ])
+    reaction_f = (rmeinhardt2_a,rmeinhardt2_i)
 
 # in theory this generator will take a list of lists of possible
 # parameter values and yield every possible combination of params.
@@ -55,58 +116,52 @@ def product(param_list, param_set):
         else:
             yield param_set
 
-size = 2000
-time_steps = 2500
-
-#['dt','dx','innita','inniti','diffa','diffi','proda','prodi',
-#    'rema','remi','sdens','rho_0','rho_var','k','mu','nu']
-# values to be explored for each parameter, declared as a
-# dictionary for clarity's sake
-param_ranges = OrderedDict([
-    ('dt',[1]),
-    ('dx',[1]),
-    ('innita',np.arange(1,10,2)),
-    ('inniti',np.arange(1,10,2)),
-    ('diffa',np.arange(0,1,0.1)),
-    ('diffi',np.arange(0,1,0.1)),
-    ('proda',np.arange(1, 10, 1)),
-    ('prodi',np.arange(1, 10, 1)),
-    ('rema',np.arange(0.01,0.1,0.01)),
-    ('remi',np.arange(0.01,0.1,0.01)),
-    ('sdens',np.arange(0.01,0.1,0.01)),
-    ('rho_0',np.arange(0.01,0.1,0.01)),
-    ('rho_var',np.arange(0.1,0.2,0.01)),
-    ('k',np.arange(0.0001,0.001,0.0001)),
-    ('mu',np.arange(0.01,0.1,0.01)),
-    ('nu',np.arange(0.01,0.1,0.01))
-])
-
-# list all parameter combinations
-# this didn't work: python replied 'Killed', wasn't beefy enough
-# going to try using many loops instead.
-#param_sets = list(it.product(*param_ranges.values()))
-
-empty_p = OrderedDict(zip(param_ranges.keys(),[0]*len(param_ranges.keys())))
-
-if debug:
-    start = time.time()
-
-for params in product(list(param_ranges.items()), empty_p):
+def set_steps(diffa, diffi):
     # an attempt at automatically setting the correct dx and dt
     # depending on the diffusion rates.
     # if we fix dx = 1 then dt < 1/2*diff
-    diff = max(params['diffa'], params['diffi']) if max(params['diffa'], params['diffi']) > 0 else 1
-    params['dt'] = 0.9 * (1/(2*diff))
+    dx = 1
+    diff = max(diffa, diffi) if max(diffa, diffi) > 0 else 1
+    stable = 0.9 * (1/(2*diff))
+    dt = stable if stable < 1 else 1
+
     # alternativeley, if we fix dx = dt then dt > 2 * diff
+    return dx, dt
+
+size = 2000
+time_steps = 2500
+
+# list all parameter combinations
+#param_sets = list(it.product(*param_ranges.values()))
+# this didn't work: python replied 'Killed', wasn't beefy enough
+# going to try using many loops instead.
+# no, many loops is ugly. recursion?
+# recursive generator works nicely.
+
+empty_p = OrderedDict(zip(param_ranges.keys(),[0]*len(param_ranges.keys())))
+
+start = time.time()
+
+if full_run:
+    for params in product(list(param_ranges.items()), empty_p):
+        params['dx'], params['dt'] = set_steps(params['diffa'],params['diffi'])
+
+        try:
+            model_ah(reaction_f, params, size, time_steps, debug)
+        except ValueError as e:
+            print("ERROR: ", e)
+else:
+    params = [2,2,1,1,0.1,0,6,4,0.02,0.0075,0.015,0.02,0.14,0,0.0004,0.05,0.03]
+    params = OrderedDict(zip(param_ranges.keys(),params))
+    params['dx'], params['dt'] = set_steps(params['diffa'],params['diffi'])
 
     try:
-        model_ah(rmeinhardt2_a, rmeinhardt2_i, params, size, time_steps, debug)
+        model_ah(reaction_f, params, size, time_steps, debug)
     except ValueError as e:
         print("ERROR: ", e)
 
-if debug:
-    end = time.time()
-    print('time: ', end-start)
+end = time.time()
+print('time: ', end-start)
 
 #params = OrderedDict([
 #    ('innita',2),
