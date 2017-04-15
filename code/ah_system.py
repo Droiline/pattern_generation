@@ -10,8 +10,7 @@ def model_ah(reaction_f, p, size, timesteps, debug=False):
     activ = [[0]*size for _ in range(timesteps)]
     inhib = [[0]*size for _ in range(timesteps)]
     working_row = [[0,0]]*size
-    if ('rho_0' in p):
-        rho = p['rho_0'] + np.random.rand(size)*p['rho_var']
+    sdens = p['sdens_0'] + np.random.rand(size)*p['sdens_var']
 
     stability = (p['dx']*p['dx']) / (2*p['dt'])
 
@@ -27,10 +26,10 @@ def model_ah(reaction_f, p, size, timesteps, debug=False):
         #set initial values
         activ[0] = [p['innita']] * size
         inhib[0] = [p['inniti']] * size
-        activ[0][int(size/2)] = p['innita'] + 1
-        activ[0][int(size/2)+1] = p['innita'] + 1
-        inhib[0][int(size/2)] = p['inniti'] + 1
-        inhib[0][int(size/2)+1] = p['inniti'] + 1
+#        activ[0][int(size/2)] = p['innita'] + 1
+#        activ[0][int(size/2)+1] = p['innita'] + 1
+#        inhib[0][int(size/2)] = p['inniti'] + 1
+#        inhib[0][int(size/2)+1] = p['inniti'] + 1
 
         #start iterating from after initial conditions
         for t in range(1,timesteps):
@@ -55,8 +54,7 @@ def model_ah(reaction_f, p, size, timesteps, debug=False):
                 diffused_i = p['diffi'] * ((old_inhib_l + old_inhib_r - 2*inhib[t-1][c]) / (p['dx']*p['dx']))
 
                 #find the change in activator and inhibitor due to reaction
-                if 'rho_0' in p:
-                    p['rho'] = rho[c]
+                p['sdens'] = sdens[c]
                 reacted_a = reaction_f[0](activ[t-1][c], inhib[t-1][c], p)
                 reacted_i = reaction_f[1](activ[t-1][c], inhib[t-1][c], p)
                 #find new activator value
@@ -78,7 +76,7 @@ def model_ah(reaction_f, p, size, timesteps, debug=False):
         funcdir = reaction_f[0].__name__[:-2]
         # the filename is the parameters used
         filename = ''
-
+        p.pop('sdens') # sdens is random, so not needed.
         for k,v in p.items():
             filename = filename + k + str(v) + '_'
 

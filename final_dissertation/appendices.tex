@@ -1,0 +1,16 @@
+\chapter{Appendices}
+\section{Appendix A}
+This is the Python generator function used to iterate over every combination of a set of a set of parameters.
+\begin{lstlisting}
+ def product(param_list, param_set):
+    for val in param_list[0][1]:
+        # set the value of the first parameter
+        param_set[param_list[0][0]] = val
+        # if this isn't the last parameter, recurse
+        if len(param_list) is not 1:
+            for prod in product(param_list[1:], param_set):
+                yield prod
+        # else we have a complete parameter set and can yield it
+        else:
+            yield param_set
+\end{lstlisting}
