@@ -1,3 +1,21 @@
+KT = 455  'Number of displays
+'          it*ip = number of iterations in total
+KP = 12   'number of iterations between the displays ( = lines on the screen)
+dx = 1    'width of a cell in pixel;   with kp=6 ; kx=315 and dx=2 =>
+kx = 630  'Number of cells               simulation in a smaller field
+kx = 630  'number of cells
+DA = .015 'Diffusion of the activator
+RA = .1   'Decay rate of the inhibitor
+BA = .1   'Basic production of the activator
+SA = .25  'Saturation of the autocatalysis
+DB = 0    'Diffusion of the inhibitor
+RB = .014 'Decay rate of the inhibitor
+SB = .1   'Michaelis-Menten constant of the inhibition
+RC = .1   'Decay rate of the hormone
+
+GA = 'Initial conditions'
+KR = '% fluctuation in cells if initial condisions are random' - sdens_var
+
 This file contains a list of all prerecorded parameter sets used in
 the simulations. If called for the first time (selected by the para-
 meter KE), the corresponding code for the equation is listed too.
@@ -1378,7 +1396,7 @@ CASE 91 '---  CLITHON
      a(1, i) = olddecaydiffA + aq
      a(2, i) = olddecaydiffB - aq + bb
      cqf = C ^ 2
-     REM a(9,i) = 1 ñ random fluctuations (given by KR in %)
+     REM a(9,i) = 1 \F1 random fluctuations (given by KR in %)
      cq = rc * a(9, i) * (cqf / (1! + sc * cqf) + bc * a)
      a(3, i) = olddecaydiffC + cq / (D + cd * b + se * e)
      a(4, i) = olddecaydiffD + cq + bd * a(8, i)

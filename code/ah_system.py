@@ -43,6 +43,8 @@ def ah_model(reaction_f, p, size, timesteps, debug=False):
     stability = (p['dx']*p['dx']) / (2*p['dt'])
 
     if debug:
+        print('dt: ', p['dt'])
+        print('dx: ', p['dx'])
         print("diffusion rates should be <= ", stability)
         print("Diffa: ", p['diffa'])
         print("Diffi: ", p['diffi'])
@@ -95,17 +97,19 @@ def ah2_model(reaction_f, p, size, timesteps, debug=False):
     inhib = [[0]*size for _ in range(timesteps)]
     inhib2 = [[0]*size for _ in range(timesteps)]
     working_row = [[0,0,0]]*size
-    sdens = p['sdens_0'] + np.random.rand(size)*p['sdens_var']
+    sdens = p['sdens_0'] + 2*p['sdens_var']*(np.random.rand(size)-0.5)
 
     stability = (p['dx']*p['dx']) / (2*p['dt'])
 
     if debug:
+        print('dt: ', p['dt'])
+        print('dx: ', p['dx'])
         print("diffusion rates should be <= ", stability)
         print("Diffa: ", p['diffa'])
         print("Diffi: ", p['diffi'])
         print("Diffi2: ", p['diffi2'])
 
-    if (p['diffa'] or p['diffi'] or p['diffi2']) >= stability:
+    if p['diffa'] > stability or p['diffi'] > stability or p['diffi2'] > stability:
         raise ValueError("System is unstable, diffusion rates are " +
             str(p['diffa']) + ", " + str(p['diffi']) +
             " and " + str(p['diffi2']) +

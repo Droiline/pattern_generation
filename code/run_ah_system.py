@@ -5,8 +5,8 @@ import time
 import itertools as it
 import numpy as np
 
-debug = False
-test_key = 'meinhardt5_3'
+debug = True
+test_key = 'meinhardt5_2'
 full_run = True
 size = 500
 time_steps = 700
@@ -31,23 +31,20 @@ def product(param_list, param_set):
         else:
             yield param_set
 
-def set_steps(diffs):
+def set_steps(diffs, set_dt=0):
     # an attempt at automatically setting the correct dx and dt
     # depending on the diffusion rates.
-    # if we fix dx = 1 then dt < 1/2*diff
-#    dx = 1
-#    diff = max(diffa, diffi) if max(diffa, diffi) > 0 else 1
-#    stable = 0.9 * (1/(2*diff))
-#    dt = stable if stable < 10 else 10
-
-    # alternatively, if we fix dx = dt then dt > 2 * diff
-    diff = max(diffs) if max(diffs) > 0 else 1
-    stable = 1.1 * 2 * diff
-    dx = stable
-    dt = stable
+    diff = max(diffs)
+    # if we fix dt to some value then dx >= sqrt(2*diff*dt)
+    if set_dt is not 0:
+        dt = set_dt
+        dx = np.sqrt(2 * dt * diff)
+    # alternatively, if we fix dt = dx then dx >= 2 * diff
+    else:
+        stable = 2 * diff
+        dx = stable
+        dt = stable
     return dx, dt
-
-runs = 0
 
 # list all parameter combinations
 #param_sets = list(it.product(*param_ranges.values()))
@@ -60,16 +57,17 @@ empty_p = OrderedDict(zip(param_ranges.keys(),[0]*len(param_ranges.keys())))
 
 start = time.time()
 
+runs = 0
 for params in product(list(param_ranges.items()), empty_p):
     try:
         runs = runs + 1
         if model_type is 'basic':
-            if ('dx' or 'dt') not in param_ranges:
-                params['dx'], params['dt'] = set_steps(params['diffa'],params['diffi'])
+            if 'dx' not in param_ranges:
+                params['dx'], params['dt'] = set_steps([params['diffa'],params['diffi']], params['dt'])
             ah_model(reaction_f, params, size, time_steps, debug)
         elif model_type is 'duali':
-            if ('dx' or 'dt') not in param_ranges:
-                params['dx'], params['dt'] = set_steps([params['diffa'],params['diffi'],params['diffi2']])
+            if 'dx' not in param_ranges:
+                params['dx'], params['dt'] = set_steps([params['diffa'],params['diffi'],params['diffi2']], params['dt'])
             ah2_model(reaction_f, params, size, time_steps, debug)
         else:
             raise ValueError("Invalid model_type")

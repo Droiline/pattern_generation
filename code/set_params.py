@@ -8,6 +8,7 @@ def set_params(test_key, full_run=True):
         reaction_f = (eq.meinhardt2_1_a, eq.meinhardt2_1_i)
         # values to be explored for each parameter
         param_ranges = OrderedDict([
+            ('dt',[0]), # setting dt to 0 will
             ('innita',np.arange(1,10,2)),
             ('inniti',np.arange(1,10,2)),
             ('diffa',np.arange(0.01,2,0.2)),
@@ -25,6 +26,7 @@ def set_params(test_key, full_run=True):
         # values to be explored for each parameter
         if full_run:
             param_ranges = OrderedDict([
+                ('dt',[0]),
                 ('innita',[1]),
                 ('inniti',[1]),
                 ('diffa',[0.002]),
@@ -40,6 +42,7 @@ def set_params(test_key, full_run=True):
             ])
         else:
             param_ranges = OrderedDict([
+                ('dt',[0]),
                 ('innita',[2]),
                 ('inniti',[2]),
                 ('diffa',[0.002]),
@@ -58,6 +61,7 @@ def set_params(test_key, full_run=True):
         # values to be explored for each parameter
         if full_run:
             param_ranges = OrderedDict([
+                ('dt',[0]),
                 ('innita',[0.1]),
                 ('inniti',[0.1]),
                 ('diffa',[0.1]),
@@ -73,6 +77,7 @@ def set_params(test_key, full_run=True):
             ])
         else:
             param_ranges = OrderedDict([
+                ('dt',[0]),
                 ('innita',[2]),
                 ('inniti',[2]),
                 ('diffa',[0.1]),
@@ -86,17 +91,37 @@ def set_params(test_key, full_run=True):
                 ('sdens',[0]), # empty, will be populated in model function.
                 ('sata',[0.0004])
             ])
-    elif test_key is 'meinhardt5_3':
-        reaction_f = (eq.meinhardt5_3_a, eq.meinhardt5_3_i, eq.meinhardt5_3_i2)
+    elif test_key is 'meinhardt5_2':
+        reaction_f = (eq.meinhardt5_2_a, eq.meinhardt5_2_i, eq.meinhardt5_2_i2)
         model_type = 'duali'
         # values to be explored for each parameter
         if full_run:
             param_ranges = OrderedDict([
-                ('dx', [0.3]),
-                ('dt', [3]),
-                ('innita',[0.01,0.1,1,10]),
-                ('inniti',[0.01,0.1,1]),
-                ('inniti2',[0.01,0.1,1]),
+                ('dt',[4]),
+                ('dx',[3]),
+                ('innita',[1]),
+                ('inniti',[1]),
+                ('inniti2',[1]),
+                ('diffa',[0.005]),
+                ('diffi',[0]),
+                ('diffi2',[0.3]),
+                ('proda',[0]),
+                ('prodi',[0.01]),
+                ('prodi2',[0.02]),
+                ('rema',[0.03]),
+                ('remi',[0]),
+                ('remi2',[0]),
+                ('sdens_0', [0.05]),
+                ('sdens_var', [0]),
+                ('sdens', [0]),
+                ('sata',[0.05])
+            ])
+        else:
+            param_ranges = OrderedDict([
+                ('dt', [9]),
+                ('innita',[1]),
+                ('inniti',[1]),
+                ('inniti2',[1]),
                 ('diffa',[0.01]),
                 ('diffi',[0.006]),
                 ('diffi2',[0.4]),
@@ -107,34 +132,19 @@ def set_params(test_key, full_run=True):
                 ('remi',[0.002]),
                 ('remi2',[0.01]),
                 ('sdens_0', [0.008]),
-                ('sdens_var', [0,0.00015]),
+                ('sdens_var', [0]),
                 ('sdens', [0])
             ])
-        else:
-            param_ranges = OrderedDict([
-                ('innita',[0.1]),
-                ('inniti',[0.1]),
-                ('inniti2',[0.1]),
-                ('diffa',[0.01]),
-                ('diffi',[0.006]),
-                ('diffi2',[0.4]),
-                ('proda',[0.05]),
-                ('prodi',[0]),
-                ('prodi2',[0]),
-                ('rema',[0.02]),
-                ('remi',[0.002]),
-                ('remi2',[0.01])
-            ])
-    elif test_key is 'meinhardt5_4':
-        reaction_f = (eq.meinhardt5_4_a, eq.meinhardt5_4_i, eq.meinhardt5_4_i2)
+    elif test_key is 'meinhardt5_3':
+        reaction_f = (eq.meinhardt5_3_a, eq.meinhardt5_3_i, eq.meinhardt5_3_i2)
         model_type = 'duali'
         # values to be explored for each parameter
         if full_run:
             param_ranges = OrderedDict([
-                ('dx',[3])
-                ('innita',[0.1]),
-                ('inniti',[0.1]),
-                ('inniti2',[0.1]),
+                ('dt', [9]),
+                ('innita',[1]),
+                ('inniti',[1]),
+                ('inniti2',[1]),
                 ('diffa',[0.01]),
                 ('diffi',[0.006]),
                 ('diffi2',[0.4]),
@@ -144,15 +154,57 @@ def set_params(test_key, full_run=True):
                 ('rema',[0.02]),
                 ('remi',[0.002]),
                 ('remi2',[0.01]),
-                ('sdens_0',[0.05]),
-                ('sdens_var',[0.015]),
-                ('sdens',[0]), # empty, will be populated in model function.
-                ('sata',[0.0004]),
-                ('sati', [0.0004]),
-                ('sati2',[0.0004])
+                ('sdens_0', [0.008]),
+                ('sdens_var', [0.05]),
+                ('sdens', [0])
             ])
         else:
             param_ranges = OrderedDict([
+                ('dt', [9]),
+                ('innita',[1]),
+                ('inniti',[1]),
+                ('inniti2',[1]),
+                ('diffa',[0.01]),
+                ('diffi',[0.006]),
+                ('diffi2',[0.4]),
+                ('proda',[0.05]),
+                ('prodi',[0]),
+                ('prodi2',[0]),
+                ('rema',[0.02]),
+                ('remi',[0.002]),
+                ('remi2',[0.01]),
+                ('sdens_0', [0.008]),
+                ('sdens_var', [0]),
+                ('sdens', [0])
+            ])
+    elif test_key is 'meinhardt5_4':
+        reaction_f = (eq.meinhardt5_4_a, eq.meinhardt5_4_i, eq.meinhardt5_4_i2)
+        model_type = 'duali'
+        # values to be explored for each parameter
+        if full_run:
+            param_ranges = OrderedDict([
+                ('dt',[6]),
+                ('innita',[1]),
+                ('inniti',[1]),
+                ('inniti2',[1]),
+                ('diffa',[0.01]),
+                ('diffi',[0.005]),
+                ('diffi2',[0.4]),
+                ('proda',[0.08]),
+                ('prodi',[0]),
+                ('prodi2',[0]),
+                ('rema',[0.01]),
+                ('remi',[0.0015]),
+                ('remi2',[0.015]),
+                ('sdens_0',[0.05]),
+                ('sdens_var',[0]),
+                ('sdens',[0]), # empty, will be populated in model function.
+                ('sati', [0.1]),
+                ('sati2',[1])
+            ])
+        else:
+            param_ranges = OrderedDict([
+                ('dt',[0]),
                 ('innita',[0.1]),
                 ('inniti',[0.1]),
                 ('inniti2',[0.1]),

@@ -30,6 +30,22 @@ def meinhardt_paper2_i(oldA, oldI, p):
     return dI
 
 # a dual inhibitor system
+def meinhardt5_2_a(oldA, oldI, oldI2, p):
+    aStar2 = (oldA*oldA + p['proda']) / (1 + p['sata'])
+    dA = p['sdens']*aStar2*(oldI+oldI2) - p['rema']*oldA
+    return dA
+
+def meinhardt5_2_i(oldA, oldI, oldI2, p):
+    aStar2 = (oldA*oldA + p['proda']) / (1 + p['sata'])
+    dI = p['prodi'] - p['sdens']*oldI*aStar2 - p['remi']*oldI
+    return dI
+
+def meinhardt5_2_i2(oldA, oldI, oldI2, p):
+    aStar2 = (oldA*oldA + p['proda']) / (1 + p['sata'])
+    dI2 = p['prodi2'] - p['sdens']*oldI2*aStar2 - p['remi2']*oldI2
+    return dI2
+
+# a dual inhibitor system
 def meinhardt5_3_a(oldA, oldI, oldI2, p):
     dA = (p['sdens']/oldI2) * (oldA*oldA/oldI + p['proda']) - p['rema']*oldA
     return dA
