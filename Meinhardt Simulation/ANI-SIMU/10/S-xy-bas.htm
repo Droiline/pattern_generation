@@ -1,0 +1,395 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Hans Meinhardt">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (Win98; I) [Netscape]">
+   <title>source-sp-bas</title>
+</head>
+<body>
+
+<center><font face="Arial,Helvetica"><font size=+3>The source file XY.BAS</font></font></center>
+
+<p><font face="Arial,Helvetica"><a href="../../Shellsim.htm">'(Back to
+the index page)</a></font>
+<p><tt>'Program for the simulation of pattern formation in two-dimensional
+fields</tt>
+<br><tt>' (c) by Hans Meinhardt, 1995, 1997</tt><tt></tt>
+<p><tt>'-----------------------------------------------------------------------</tt>
+<br><tt>' A word of precaution...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&sup3;</tt>
+<br><tt>'&nbsp; The software was written with care but the customer knows
+that</tt>
+<br><tt>'&nbsp; software cannot be produced without errors. Springer-Verlag
+and the</tt>
+<br><tt>'&nbsp; author disclaim any liability for software errors or their</tt>
+<br><tt>'&nbsp; consequences.</tt>
+<br><tt>'</tt>
+<br><tt>'&nbsp; All user rights to the software are held exclusively by
+the author.</tt>
+<br><tt>'&nbsp; Springer-Verlag does not author data and programs but makes
+them</tt>
+<br><tt>'&nbsp; available. Any commercial use or distribution independently
+of the</tt>
+<br><tt>'&nbsp; book is not permitted</tt>
+<br><tt>'-----------------------------------------------------------------------</tt><tt></tt>
+<p><tt>' This version is appropriate for the compilation with POWER-BASIC;</tt>
+<br><tt>' use XYMS.BAS for MS - BASIC</tt><tt></tt>
+<p><tt>$ERROR ALL ON '&nbsp;&nbsp;&nbsp; de-activate for MS-BASIC!</tt>
+<br><tt>DEFINT H-N</tt>
+<br><tt>DECLARE SUB cmessage (itype%, iline%, irow%, ilettercol%, iletterback%,
+ibackcol%, text$, resp$)</tt>
+<br><tt>DECLARE SUB message (itype%, iline%, text$)</tt>
+<br><tt>DECLARE SUB init (ihp%, igraph%, ivorcol%, ibackcol%, ivgashift%)</tt>
+<br><tt>DECLARE SUB switchscreen (inz%, iactive%, ibackcol%)</tt>
+<br><tt>DECLARE SUB gmanage (wasnun$)</tt>
+<br><tt>DECLARE SUB paramenu ()</tt>
+<br><tt>DECLARE SUB manipulation (mwasnun$, iinsert)</tt>
+<br><tt>DECLARE SUB manipulate ()</tt>
+<br><tt>DECLARE SUB showdisplay (ax!(), iwas%, kdisplay%, displaywas$)</tt>
+<br><tt>DECLARE SUB inip (igraph%, ivorcol%, ibackcol%, ivgashift%)</tt>
+<br><tt>'$INCLUDE: 'scommon.bi'</tt>
+<br><tt>imxl = 36: ilm = 9: imx = 36: imy = 36</tt>
+<br><tt>'-----------------------------for Power-Basic----------------</tt>
+<br><tt>pbilm = 9: pbimx = 82: pbimy = 82</tt>
+<br><tt>$INCLUDE "sub-util\plibxy.inc" '&nbsp;&nbsp; de-activate this for
+MS-BASIC!</tt>
+<br><tt>DIM ax(ilm, imx, imy) 'for very large arrays, this statement must
+be de-activated...</tt>
+<br><tt>''$INCLUDE "dimhuge.inc" ' ...and this must activated, becomes
+slower</tt>
+<br><tt>imxl = imx: imyl = imy</tt>
+<br><tt>programname$ = "XY"</tt>
+<br><tt>pdir$ = "PXY\"</tt>
+<br><tt>basfilename$ = "XY.BAS"</tt>
+<br><tt>DIM parnam$(75), flv(60), inv(15)' to store parameters</tt>
+<br><tt>DIM label$(10)</tt>
+<br><tt>DIM asu(ilm), u(ilm, imx), al(imy), difa(ilm), afc(ilm)</tt>
+<br><tt>DIM kax(9), KX(9), kay(9), ky(9), xa(9), fa(9), am(9)</tt>
+<br><tt>DIM ya(9), f1(9), icol(9), ityp(9), iwi(9)</tt>
+<br><tt>DIM tv$(9), afa(9), itot&amp;(9), s$(150)</tt>
+<br><tt>DIM a(1, 1), B(1, 1), C(1, 1), D(1, 1), sa(1, 1)</tt>
+<br><tt>DIM mempos(imx), icolm(9), ibm(16), a2(9), ansp(9)</tt>
+<br><tt>msiluetmax = 500</tt>
+<br><tt>DIM msiluet(msiluetmax)</tt>
+<br><tt>ihp = 1</tt>
+<br><tt>diffmax = .2 'Maximum numerical constant for diffusion</tt>
+<br><tt>CLS : RANDOMIZE TIMER</tt><tt></tt>
+<p><tt>'--- set parameter and check screen</tt>
+<br><tt>parameter:</tt>
+<br><tt>CALL paramenu</tt><tt></tt>
+<p><tt>Mainstart:</tt>
+<br><tt>mess$ = ""</tt>
+<br><tt>SELECT CASE PCONTROL$</tt>
+<br><tt>CASE "D" 'To display a single figure</tt>
+<br><tt>iinit = 1:</tt>
+<br><tt>&nbsp;&nbsp; CALL init(ihp, igraph, ivorcol, ibackcol, ivgashift)</tt>
+<br><tt>IF ipcontrol = 0 THEN</tt>
+<br><tt>&nbsp; CALL showdisplay(ax(), iinit, KD, displaywas$)</tt>
+<br><tt>&nbsp; ELSE</tt>
+<br><tt>&nbsp; CALL showdisplay(ax(), iinit, ipcontrol, displaywastmp$)</tt>
+<br><tt>&nbsp; END IF</tt>
+<br><tt>IF igraph = 9 THEN CALL switchscreen(2, iactive, ibackcol)</tt>
+<br><tt>GOTO EndSimulation</tt><tt></tt>
+<p><tt>CASE "M"</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; iinsert = 0</tt>
+<br><tt>&nbsp;CALL manipulation(pcontrol2$, iinsert)</tt>
+<br><tt>&nbsp;GOTO makedraw</tt><tt></tt>
+<p><tt>CASE "S", "N", "C", "I", "II"</tt>
+<br><tt>ON ERROR GOTO erroverflow</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; icount = 0</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; igrowth = 1</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF PCONTROL$ = "N" GOTO screeninit</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF PCONTROL$ = "C" GOTO continue</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; itot&amp; = 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+' will start right after end select</tt>
+<br><tt>&nbsp;&nbsp; CASE ELSE</tt>
+<br><tt>CALL cmessage(6, -1, 1, 15, 4, ibackcol, "Kein legaler Befehl,
+ggf. F1 benutzen", "ok")</tt>
+<br><tt>END SELECT</tt><tt></tt>
+<p><tt>'--- This is the start where you enter with pcontrol$="S"</tt><tt></tt>
+<p><tt>js = KX: jy = ky: kax = 1: kay = 1</tt>
+<br><tt>FOR il = 0 TO ilm: kax(il) = 1: KX(il) = js: kay(il) = 1: ky(il)
+= jy: NEXT</tt>
+<br><tt>fran = KR: fran = fran / 100: fran5 = .5 * fran</tt>
+<br><tt>sra = ra: IF ca > 0 THEN sra = ca</tt>
+<br><tt>IF PCONTROL$ &lt;> "II" THEN</tt>
+<br><tt>&nbsp;FOR iy = 1 TO imy</tt>
+<br><tt>&nbsp;FOR ix = 1 TO imx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'source density
+=random fluctuation</tt>
+<br><tt>&nbsp;ax(0, ix, iy) = sra * (1! + RND * fran - fran5)</tt>
+<br><tt>&nbsp;ax(9, ix, iy) = 1! + RND * fran - fran5</tt>
+<br><tt>&nbsp;NEXT ix: NEXT iy</tt>
+<br><tt>END IF</tt><tt></tt>
+<p><tt>FOR iy = 1 TO jy</tt>
+<br><tt>FOR ix = 1 TO js&nbsp;&nbsp;&nbsp;&nbsp; 'set all cell to initial
+condtions</tt>
+<br><tt>&nbsp;ax(1, ix, iy) = gA</tt>
+<br><tt>&nbsp;ax(2, ix, iy) = gB</tt>
+<br><tt>&nbsp;IF ilm >= 3 THEN ax(3, ix, iy) = gC</tt>
+<br><tt>&nbsp;IF ilm >= 4 THEN ax(4, ix, iy) = gD</tt>
+<br><tt>&nbsp;IF ilm >= 5 THEN ax(5, ix, iy) = ge</tt>
+<br><tt>&nbsp;IF ilm >= 6 THEN ax(6, ix, iy) = gf</tt>
+<br><tt>&nbsp;IF ilm >= 7 THEN ax(7, ix, iy) = gg</tt>
+<br><tt>&nbsp;IF ilm >= 8 THEN ax(8, ix, iy) = gH</tt>
+<br><tt>&nbsp;NEXT ix: NEXT iy</tt>
+<br><tt>jxx = (js + 1) / 2</tt>
+<br><tt>jyy = (jy + 1) / 2</tt>
+<br><tt>SELECT CASE KI</tt>
+<br><tt>&nbsp;&nbsp; CASE 1</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ax(1, jxx, jyy) = aA</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ax(3, jxx, jyy) = aC</tt>
+<br><tt>&nbsp;&nbsp; CASE 2</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ax(0, jxx, jyy) = aA * ax(0, jxx,
+jyy)</tt>
+<br><tt>&nbsp;&nbsp; CASE 3</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ax(1, jxx - 2, jyy - 2) = aA</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ax(4, jxx - 2, jyy - 2) = aD</tt>
+<br><tt>&nbsp;&nbsp; CASE 12&nbsp; 'for Hydra hypostome and tentakles</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FOR ix = 1 TO js</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FOR iy = 1 TO jy</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ax(3, ix, iy) = gC * EXP(-aC * (jxx
+- ix) ^ 2) * EXP(-aC * (jyy - iy) ^ 2)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NEXT iy: NEXT ix</tt>
+<br><tt>&nbsp;&nbsp; CASE 13 ' fr Notochord</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; FOR iy = k2 TO ky: ax(1, jxx, iy) = aa:
+NEXT</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; ax(3, jxx, ky) = ac</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; ax(3, jxx, 1) = ad</tt><tt></tt>
+<p><tt>CASE 14:&nbsp; 'for insertion of new maxima during growth</tt>
+<br><tt>&nbsp;&nbsp; ax(1, 3, 3) = aA</tt>
+<br><tt>&nbsp;&nbsp; ax(1, js - 2, 3) = aA</tt>
+<br><tt>&nbsp;&nbsp; ax(1, js - 2, ky(1) - 2) = aA</tt>
+<br><tt>&nbsp;&nbsp; ax(1, 3, ky(1) - 2) = aA</tt><tt></tt>
+<p><tt>&nbsp;&nbsp; CASE 21</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ax(4, 3, 3) = aD</tt>
+<br><tt>END SELECT</tt>
+<br><tt>screeninit:</tt>
+<br><tt>CALL init(ihp, igraph, ivorcol, ibackcol, ivgashift)</tt>
+<br><tt>refresh:</tt>
+<br><tt>CALL showdisplay(ax(), 1, KD, displaywas$)</tt>
+<br><tt>IF label$(0) > "" THEN CALL cmessage(5, -1, 1, 15, 4, ibackcol,
+label$(0), "")</tt><tt></tt>
+<p><tt>IF igraph = 9 THEN CALL switchscreen(2, iactive, ibackcol)</tt>
+<br><tt>'--- Here you will enter with pcontrol$= "C"</tt>
+<br><tt>continue:</tt>
+<br><tt>IF icount >= KT OR PCONTROL$ = "D" OR PCONTROL$ = "I" OR PCONTROL$
+= "II" GOTO EndSimulation</tt>
+<br><tt>dra = 1 - ra - 4 * DA: drb = 1 - rB - 4 * DB</tt>
+<br><tt>drc = 1 - rc - 4 * DC: drd = 1 - rd - 4 * DD</tt>
+<br><tt>dre = 1 - re - 4 * DE: drf = 1 - rf - 4 * DF</tt>
+<br><tt>drg = 1 - rg - 4 * DG: drh = 1 - rH - 4 * DH</tt>
+<br><tt>IF KG > 0 THEN 'growth by insertion of additional cells</tt>
+<br><tt>&nbsp;igrowth = igrowth + 1</tt>
+<br><tt>&nbsp;IF igrowth > KG THEN</tt>
+<br><tt>&nbsp;&nbsp; igrowth = 1</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; SELECT CASE K1</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; CASE 0:</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; kinsert = js</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; CASE 1: kinsert = kax ' foot in hydra</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; CASE 2: kinsert = (js + 1) / 2</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; CASE 3</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF js &lt; 3 THEN</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kinsert = 1</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; ELSE</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kinsert = js - 2&nbsp;&nbsp;
+'sub-hypostome</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; END IF</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; CASE 4: kinsert = js: iyinsert = jy</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; CASE 5:</tt>
+<br><tt>&nbsp;kinsert = (js + 1) / 2</tt>
+<br><tt>&nbsp;iyinsert = (kay(1) + ky(1)) / 2</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; CASE ELSE:</tt>
+<br><tt>CALL cmessage(6, -1, 1, 15, 4, ibackcol, "K1=Mode of growth, 0-5",
+"OK")</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; END SELECT</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CALL manipulation("GX", kinsert)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF K1 > 3 THEN CALL manipulation("GY",
+iyinsert)</tt>
+<br><tt>&nbsp; END IF</tt>
+<br><tt>END IF</tt>
+<br><tt>&nbsp; FOR iprint = 1 TO KP '-- SECOND LOOP: kp iterations until
+next plot ------</tt>
+<br><tt>&nbsp; ' Boundary conditions: impermeable; this is achieved by</tt>
+<br><tt>&nbsp; ' giving the cells kax - 1 and js+1 the same values as cells
+kax resp.js</tt>
+<br><tt>&nbsp; ' virtual left border cells:</tt>
+<br><tt>&nbsp;&nbsp; nx = js + 1</tt>
+<br><tt>&nbsp;&nbsp; ny = jy + 1</tt>
+<br><tt>ixleft = 1</tt>
+<br><tt>ixright = js</tt><tt></tt>
+<p><tt>'boundary conditions</tt>
+<br><tt>SELECT CASE K3</tt>
+<br><tt>CASE 0, 1 'normal impermeable</tt>
+<br><tt>&nbsp;&nbsp; FOR il = 1 TO KN</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR ix = kax TO js</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ax(il, ix, ny) = ax(il, ix, jy)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u(il, ix) = ax(il, ix, 1): NEXT
+ix: NEXT il</tt>
+<br><tt>CASE 2, 3, 4'Cylinder, wrapped around the y-axis</tt>
+<br><tt>&nbsp;&nbsp; FOR il = 1 TO KN</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR ix = kax TO js</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ax(il, ix, ny) = ax(il, ix, 1)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u(il, ix) = ax(il, ix, jy): NEXT
+ix: NEXT il</tt>
+<br><tt>END SELECT</tt>
+<br><tt>&nbsp;&nbsp; FOR il = 1 TO KN&nbsp; 'boundary along y-axis</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR iy = 1 TO jy</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; ax(il, nx, iy) = ax(il, ixright, iy)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; NEXT iy: NEXT il</tt>
+<br><tt>&nbsp; '------ THIRD LOOP: cells kax...js get new values --------------</tt><tt></tt>
+<p><tt>SELECT CASE KE'EQUATIONS 'selection of the equation according to
+ke</tt><tt></tt>
+<p><tt>CASE 21 ' Activator-inhibitor system, sa=saturation</tt>
+<br><tt>FOR iy = kay TO jy: GOSUB StoreLeftCell</tt>
+<br><tt>FOR ix = 1 TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;aq = s * (a * a + ba)</tt>
+<br><tt>&nbsp;ax(1, ix, iy) = olddecaydiffA + aq / B</tt>
+<br><tt>&nbsp;ax(2, ix, iy) = olddecaydiffB + aq</tt>
+<br><tt>NEXT: NEXT</tt><tt></tt>
+<p><tt>CASE 23 ' Activator-inhibitor system, sa=saturation</tt>
+<br><tt>'bb is Michaelis-Menten constant</tt>
+<br><tt>FOR iy = kay TO jy: GOSUB StoreLeftCell</tt>
+<br><tt>FOR ix = 1 TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;ax(1, ix, iy) = olddecaydiffA + s * (a * a / ((sb + B) *
+(1 + sa * a * a)) + ba)</tt>
+<br><tt>&nbsp;ax(2, ix, iy) = olddecaydiffB + s * a * a + bb</tt>
+<br><tt>&nbsp;NEXT: NEXT</tt><tt></tt>
+<p><tt>CASE 24 ' activator-depleted substance</tt>
+<br><tt>FOR iy = kay TO jy: GOSUB StoreLeftCell</tt>
+<br><tt>FOR ix = 1 TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;aq = s * B * (a * a + ba)</tt>
+<br><tt>&nbsp;ax(1, ix, iy) = olddecaydiffA + aq / (1 + sa * a * a)</tt>
+<br><tt>&nbsp;ax(2, ix, iy) = olddecaydiffB + bb - aq</tt>
+<br><tt>&nbsp;IF ax(2, ix, iy) &lt; 0 THEN ax(2, ix, iy) = 0</tt>
+<br><tt>&nbsp;NEXT: NEXT</tt><tt></tt>
+<p><tt>CASE 28 ' Inhibition if an inhibition</tt>
+<br><tt>FOR iy = kay TO jy: GOSUB StoreLeftCell</tt>
+<br><tt>FOR ix = 1 TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;ax(1, ix, iy) = olddecaydiffA + s / (sa + C * C) + ba</tt>
+<br><tt>&nbsp;ax(2, ix, iy) = olddecaydiffB + rB * a</tt>
+<br><tt>&nbsp;ax(3, ix, iy) = olddecaydiffC + rc / (sc + a * a / (sb +
+B * B))</tt>
+<br><tt>&nbsp;NEXT: NEXT</tt><tt></tt>
+<p><tt>CASE 122 'LI Net-like structure&nbsp;&nbsp;&nbsp; (a,b) Activator-inhibitor</tt>
+<br><tt>FOR iy = kay TO jy: GOSUB StoreLeftCell&nbsp;&nbsp; '(c) substrate
+(d) differentiation</tt>
+<br><tt>FOR ix = 1 TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;aq = s * C * a * a</tt>
+<br><tt>&nbsp;dq = D * D</tt>
+<br><tt>&nbsp;ax(1, ix, iy) = olddecaydiffA + aq / B + ba * D</tt>
+<br><tt>&nbsp;ax(2, ix, iy) = olddecaydiffB + aq + bb * D</tt>
+<br><tt>&nbsp;ax(3, ix, iy) = olddecaydiffC + bc - cC * C * D</tt>
+<br><tt>&nbsp;ax(4, ix, iy) = olddecaydiffD + rd * dq / (1 + sd * dq) +
+bd * a</tt>
+<br><tt>&nbsp;NEXT: NEXT</tt><tt></tt>
+<p><tt>CASE 126 'Hydra head (a, b); source density (c), tentacles (d, e)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' Foot (f,g)</tt>
+<br><tt>FOR iy = kay TO jy: GOSUB StoreLeftCell</tt>
+<br><tt>FOR ix = 1 TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;aq = C * s * (a * a + ba)</tt>
+<br><tt>&nbsp;ax(1, ix, iy) = olddecaydiffA + aq / B</tt>
+<br><tt>&nbsp;ax(2, ix, iy) = olddecaydiffB + aq</tt>
+<br><tt>&nbsp;'Quelldichte</tt>
+<br><tt>&nbsp;ax(3, ix, iy) = olddecaydiffC + rc * a + bc - sc * C * f</tt>
+<br><tt>&nbsp;'Tentakeln</tt>
+<br><tt>&nbsp;dfq = D * D + bd</tt>
+<br><tt>&nbsp;dq = rd * C * ax(9, ix, iy) * dfq / (1 + sd * dfq) / (1 +
+cE * a)</tt>
+<br><tt>&nbsp;ax(4, ix, iy) = olddecaydiffD + dq / e</tt>
+<br><tt>&nbsp;ax(5, ix, iy) = olddecaydiffE + dq + be</tt>
+<br><tt>&nbsp;NEXT: NEXT</tt><tt></tt>
+<p><tt>CASE 132 ' elongation of a stripe by a moving spot</tt>
+<br><tt>FOR iy = kay TO jy: GOSUB StoreLeftCell</tt>
+<br><tt>FOR ix = 1 TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;aq = s * (a * a + ba * c)</tt>
+<br><tt>&nbsp;ax(1, ix, iy) = olddecaydiffA + aq / B / (1 + sa * a * a)</tt>
+<br><tt>&nbsp;ax(2, ix, iy) = olddecaydiffB + s * a * a + bb</tt>
+<br><tt>&nbsp;cq = e * ax(9, ix, iy) * (c * c + bc * a)</tt>
+<br><tt>&nbsp;ax(3, ix, iy) = olddecaydiffC + rc * e * c * c / d</tt>
+<br><tt>&nbsp;ax(4, ix, iy) = olddecaydiffD + rd * cq + bd</tt>
+<br><tt>&nbsp;ax(5, ix, iy) = olddecaydiffE + be - se * e * a</tt>
+<br><tt>&nbsp;NEXT: NEXT</tt><tt></tt>
+<p><tt>CASE 202 'closed loops by patch (ab) and stripe system (c,d)</tt>
+<br><tt>&nbsp; FOR iy = kay TO jy: GOSUB StoreLeftCell</tt>
+<br><tt>&nbsp; FOR ix = 1 TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;aq = s * B * (a * a + ba)</tt>
+<br><tt>&nbsp;ax(1, ix, iy) = olddecaydiffA + aq / (1 + sa * a * a)</tt>
+<br><tt>&nbsp;ax(2, ix, iy) = olddecaydiffB + bb - aq</tt>
+<br><tt>&nbsp;cq = rc * B ^ 2 * ax(9, ix, iy)&nbsp; * (c * c + bc) / (d
+* (1 + sc * c * c))</tt>
+<br><tt>&nbsp;ax(3, ix, iy) = olddecaydiffC + cq</tt>
+<br><tt>&nbsp;ax(4, ix, iy) = olddecaydiffD + rc * c * c</tt>
+<br><tt>&nbsp;NEXT: NEXT</tt>
+<br><tt></tt>&nbsp;<tt></tt>
+<p><tt>CASE ELSE</tt>
+<br><tt>IF igraph = 9 THEN CALL switchscreen(3, iactive, ibackcol)</tt>
+<br><tt>CALL cmessage(6, -1, 1, 15, 4, ibackcol, "No equation of this type,
+illegal KE ", "OK")</tt>
+<br><tt>GOTO parameter</tt>
+<br><tt>END SELECT 'ke</tt>
+<br><tt>'-------------- End of equations ---------------------------------------------</tt>
+<br><tt>IF INKEY$ = CHR$(27) GOTO makedraw</tt>
+<br><tt>itot&amp; = itot&amp; + 1</tt>
+<br><tt>NEXT iprint</tt>
+<br><tt>icount = icount + 1</tt>
+<br><tt>GOTO refresh</tt><tt></tt>
+<p><tt>erroverflow:</tt>
+<br><tt>CALL switchscreen(3, iactive, ibackcol)</tt>
+<br><tt>mess$ = "Error, presumable an overflow, num. instability, zero-division"</tt>
+<br><tt>CALL cmessage(6, -1, 1, 15, 4, ibackcol, mess$, "OK")</tt>
+<br><tt>RESUME parameter</tt><tt></tt>
+<p><tt>makedraw:</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CALL showdisplay(ax(), 1, KD, displaywas$)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CALL switchscreen(2, iactive, ibackcol)</tt><tt></tt>
+<p><tt>EndSimulation:</tt>
+<br><tt>iparam = 2: ipcontrol = 0</tt>
+<br><tt>CALL switchscreen(3, iactive, ibackcol)</tt>
+<br><tt>GOTO parameter</tt><tt></tt>
+<p><tt>END&nbsp; '==================&nbsp; End of Main-program&nbsp; ==========</tt><tt></tt>
+<p><tt>StoreLeftCell:&nbsp; ' concentration in the left cell is stored
+in al...</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; al = ax(1, ixleft, iy): bl = ax(2, ixleft, iy)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; cl = ax(3, ixleft, iy): dl = ax(4, ixleft, iy)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; IF KN > 4 THEN el = ax(5, ixleft, iy): fl =
+ax(6, ixleft, iy):</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; gl = ax(7, ixleft, iy):&nbsp;&nbsp; zhl = ax(8,
+ixleft, iy)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; RETURN</tt><tt></tt>
+<p><tt>olddecay:</tt>
+<br><tt>&nbsp;&nbsp; a = ax(1, ix, iy): B = ax(2, ix, iy): s = ax(0, ix,
+iy)</tt>
+<br><tt>&nbsp; olddecaydiffA = dra * a + DA * (u(1, ix) + ax(1, ix, iy
++ 1) + al + ax(1, ix + 1, iy))</tt>
+<br><tt>&nbsp; olddecaydiffB = drb * B + DB * (u(2, ix) + ax(2, ix, iy
++ 1) + bl + ax(2, ix + 1, iy))</tt>
+<br><tt>&nbsp; al = a: bl = B: u(1, ix) = a: u(2, ix) = B</tt>
+<br><tt>&nbsp;&nbsp; IF KN > 2 THEN</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; C = ax(3, ix, iy): D = ax(4, ix, iy)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; olddecaydiffC = drc * C + DC * (u(3, ix)
++ ax(3, ix, iy + 1) + cl + ax(3, ix + 1, iy))</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; olddecaydiffD = drd * D + DD * (u(4, ix)
++ ax(4, ix, iy + 1) + dl + ax(4, ix + 1, iy))</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; cl = C: dl = D: u(3, ix) = C: u(4, ix)
+= D</tt>
+<br><tt>&nbsp;&nbsp; IF KN > 4 THEN</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; e = ax(5, ix, iy): f = ax(6, ix, iy):
+g = ax(7, ix, iy): zh = ax(8, ix, iy)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; olddecaydiffE = dre * e + DE * (u(5, ix)
++ ax(5, ix, iy + 1) + el + ax(5, ix + 1, iy))</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; olddecaydiffF = drf * f + DF * (u(6, ix)
++ ax(6, ix, iy + 1) + fl + ax(6, ix + 1, iy))</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; olddecaydiffG = drg * g + DG * (u(7, ix)
++ ax(7, ix, iy + 1) + gl + ax(7, ix + 1, iy))</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; olddecaydiffH = drh * zh + DH * (u(8,
+ix) + ax(8, ix, iy + 1) + zhl + ax(8, ix + 1, iy))</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; el = e: fl = f: gl = g: zhl = h</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; u(5, ix) = e: u(6, ix) = f: u(7, ix) =
+g: u(8, ix) = g</tt>
+<br><tt>&nbsp;&nbsp; END IF</tt>
+<br><tt>&nbsp;&nbsp; END IF</tt>
+<br><tt>&nbsp;RETURN</tt>
+<br><tt></tt>&nbsp;
+<br><tt></tt>&nbsp;
+</body>
+</html>

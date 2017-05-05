@@ -1,0 +1,29 @@
+Program SP: types of XT-plots that can be selected by KD
+KD=1   three-dimensional XT-Plot, past in the foreground
+KD=2   three-dimensional XT-Plot, past in the background
+KD=3   single curves [line width via IWI, colours via ICOL]
+KD=4   schematic plot with symbols °°±±²²Û and absolute concentrations
+KD=5   same as 4, with print on lpt1:
+KD=6   false color (use only with plot of a single array, e.g., DW -> a
+       or at shifted positions (different x- coordinates);
+       a lower threshold can be selected by krot>1 (keep it < 5)
+KD=7   false color, landscape orientation
+KD=8   false color + plot of stable prepattern [array a(8,ix)]
+KD=9   pixels proportional to concentration (standard for shells)
+KD=10  as 9,  landscape - orientation
+KD=11  as 9, + stable pattern [array a(8,ix)]
+KD=12  as 9; a schematic printout on HP-printer is possible
+       (NEC printer is no longer supported)
+KD=13  as 9 + schematic print on HP or NEC-Printer; array A and C
+       are plotted above thresholds
+KD=14  plot line by line with a single threshold
+KD=15  circular plot ("Nautilus")
+KD=16  Plot around a circular arrangement of cells (Fig. 12.9)
+KD=17  Plot in different brownish colors (works only in MS-Basic)
+KD=19  or 18: filled curves, otherwise similar to KD=3 type
+       type 18 or 19 should be preferentially used in the EGA-modus
+KD=20  plot of concentrations in a single (or the left-most cell
+       as function of time (use with KY=1, see GT32)
+KD=21  for display of gene activities in a single cell
+KD=22  t-axis bottom-up, for phyllotaxis
+KD=23  Two plots of KD=3 type side by side, to demonstrate regeneration

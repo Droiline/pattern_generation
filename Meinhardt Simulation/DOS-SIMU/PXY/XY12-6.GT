@@ -1,0 +1,38 @@
+Shift of tentacles in a two-dimensional field during regeneration
+igtdelay
+1
+vga
+#
+As a remainder: After removal of the head and the tentacles of a hydra
+at a near-head position, first a new tentacle signal is generated at the
+tip (highest source density). Later, after regeneration of the head,
+the tentacles become shifted to a more lateral position.
+#
+In the first simulation the source density (green, bottom) is high enough to
+trigger tentacle activation (center) directly. After reaching a certain
+level, the later formed head signal (blue, top) displaces the tentacle signal.
+This leads to a split into several maxima that surround the head signal.
+#
+The simulated process takes place in reality at the cone-shaped tip of a
+regenerating gastric column of a hydra. In the simulation, this cone is
+spread to a plane (compare with the simulation in a linear array of
+cells, see GUIDED TOUR in Program SP; GT12-6b).
+r12-6
+ blue: primary head signal; red: tentacle signal; green source density
+s
++
+#
+After head removal at a more basal position, the source density is too low
+to trigger the tentacle signals directly. First the head signal is formed
+that causes an increase in the source density. When a sufficientlevel is
+reached, the tentacle signals are triggered directly at the final positions.
+gc
+.5
+s
++
+#
+Thus, the model describes the experimental observations of Bode et al., 1988
+and of Technau and Holstein, 1995.
+
+EOF-GT
+

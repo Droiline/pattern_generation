@@ -1,0 +1,77 @@
+Pace-maker region and global perturbation
+&
+1,1,6,1
+In this GUIDED TOUR, travelling waves form at a pace-maker region. It takes
+a while until the total field is brought under the control of a somewhat
+faster oscillating region. Later, a perturbation will be introduced and
+the pattern regulation can be observed.
+&
+1,1,6,0
+A pace-maker region (stripe initiation) will be formed at the left side
+
+r38
+-
+s
+&
+0,1,6,1
+After a perturbation spontaneous trigger can occur
+
+k3
+80
+n
+20
+70
+.15
++
+#
+Conclusion: due to the long non-activated period, cells become more
+excitable. Spontaneous trigger events may lead to two diverging waves.
+
+&
+1,1,6,1
+In the following example, a perturbation takes place in an area that
+includes the annihilation zone. A new zone forms at a shifted position.
+Travelling waves start from two pace-maker regions
+
+r38
+-
+ki
+11
+ky
+120
+s
+ms
+&
+1,1,6,0
+Formation of a new annihilation zone (tips) at a shifted position
+
+k3
+80
+ba
+.0082
+n
+20
+75
+.15
++
+&
+1,1,6,0
+With a lower basic activator production (BA), waves can still be produced at
+the pace-maker region and propagate but a spontaneous trigger is no
+longer possible.
+
+mr
+ba
+.0075
+n
+20
+75
+.15
+#
+.
+Note in addition to the shifted annihilation zone the acceleration of the
+waves (bending of the first lines moving into the gap). Due to the absence
+of activation for a longer period, the cells become more excitable.
+EOF-GT
+
+

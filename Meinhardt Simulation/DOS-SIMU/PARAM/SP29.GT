@@ -1,0 +1,158 @@
+Activated regions have properties of an organizing region
+r29c
+kr=0
+i
+#
+Activator-inhibitor maxima as ORGANIZING REGIONS: the first simulation shows
+that no pattern will be formed if all cells are absolutely identical and have
+the same initial concentration. A stable equilibrium between the activator
+(green) and the inhibitor (red) is obtained.
+kt=70
+fdelay
+.5
+ No pattern formation takes place if all cells are absolutely identical
+c
++
+#
+A small local perturbation is sufficient to initiate pattern formation.
+Note that the resulting maximum does not form at the position of the
+perturbation. With the parameter used, only a marginal maximum and thus
+only graded distributions are possible.
+kt=210
+ma
+1
+4
+4
+1.1
++
+ Pattern formation after a local perturbation
+n
++
+r29c
+i
+#
+In the subsequent simulation, minute random differences in the source density
+(blue squares), i.e., in the ability to perform the autocatalysis are assumed.
+Since the range of the activator is comparable with the field size, this
+initiates the formation of a single maximum at a marginal position.
+c
++
+#
+For pattern formation a minimum size of the field is required. During growth,
+a maximum emerges at one end of the field if the critical size is exceeded.
+It can remain  stable there upon further growth. Its position (left or right)
+is random, its shape is reproducible. It has many properties of an organizer.
+r29a
+ Formation of a polar pattern during growth
+i
+<1
+s
+kg=0
+kt=40
+c
++
+kd=23
+ke=211
+kp=10
+kt=250
+d
+#
+Now, the field has been divided into two fragments. In the non-activated half,
+the inhibitor concentration declines since the influx of the inhibitor from
+activated half is interrupted. This allows a new trigger of the autocatalysis
+
+ Pattern regulation after fragmentation
+c
++
+#
+Conclusion: The activator-inhibitor model offers an explanation for pattern
+formation from initially homogeneous situations and for pattern regulation
+as observed, e.g., after fragmentation of a sea urchin embryo or a hydra
+
+r29c
+ky=17
+dx=36
+ Role of asymmetries
+kr=15
+ab=-.03
+ca=.0025
+i
+#
+Any asymmetry in the source density, i.e. in the ability of the cells to
+produce the activator and inhibitor, accelerates pattern formation and
+leads to a reproducible orientation. Very important is that the resulting
+pattern is to a large degree independent of the initiating asymmetry:
+c
+ca
+0
+<2
+ A substantially higher source density  leads to a similar pattern...
+i
++
+c
++
+#
+In the subsequent simulations it will be shown that implantation of partially
+activated cells at larger distances can trigger a new full maximum, i.e.,
+a secondary organizing region. The implantation of the same material closer
+to the existing organizer may fail to do so.
+r29b
+  ... first the generation of an A-I pattern in an extended field ...
+s
+#
+A local artificial increase of the activator concentration is introduced.
+(In experiments, this is achieved, e.g., by an implantation of a piece from
+the organizer region:
+
+kt=100
+kp=30
+ A distant activator elevation triggers a new maximum
+ms
+ma
+1
+19
+20
+9
++
+c
++
+-
+mr
+ma
+1
+16
+17
+9
+ms
+#
+In the next simulation the elevation of activator concentration is introduced
+at a shorter distance: the inhibitor emanating from the primary activator
+maximum suppresses the formation of a secondary organizing region...
+
+c
++
+#
+However, if the original maximum (= organizer) is removed, the same
+perturbation can trigger a new organizing region at the position of the
+perturbation...
+
+mr
+d
++  .... first again the perturbation...
+mc
+
+7
+
++ ..... and removal of the existing maximum.....
+kt
+210
+ After removal of the existing maximum: new trigger
+c
++
+#
+Conclusion: A maximum of an activator-inhibitor system has essential
+regulatory properties of organizer regions as they are experimentally
+observed.
+
+EOF-GT
+

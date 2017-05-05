@@ -1,0 +1,52 @@
+Waves in cell of different oscillation frequency
+&
+1,1,6,1
+A region of higher substrate production acts as pace-maker region. Waves
+that travel into a region of lower substrate production may terminate.
+
+r43
+  Termination of travelling waves
+s
++
+#
+At higher saturation (SA), the activation period is longer. More time is
+available to infect neighbouring cells. Slower waves (steeper lines) are
+possible.
+
+ Higher saturation allows slower waves to propagate
+sa
+4.0
+s
++
+#
+Diffusion of the substrate can lead to the coexistence of stable and
+periodic activations. Stable activations occur preferentially in a
+region where neighbouring cells show pronounced differences in the
+oscillation frequency
+db
+.015
+s
++
+#
+Higher diffusion rates of the activator and the substrate can cause
+bifurcating pigmentation lines
+
+ Formation of forked pigmentation lines
+da
+.03
+db
+.15
+bb
+.03
+s
++
+#
+A lower substrate production causes more terminating lines and incomplete
+forks
+
+ Terminating lines and incomplete forks
+bb
+.02
+s
+EOF-GT
+

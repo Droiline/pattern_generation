@@ -1,0 +1,60 @@
+Traveling waves without a pace maker region
+&
+1,1,6,1
+With two antagonists, one with a long range and a short time constant and
+another that is relatively stable and that doesn't diffuse, a synchronous
+oscillation becomes instable. Neighbouring regions start to oscillate with
+opposite phase. On the shells, this leads to a chessboard-like pattern.
+r56
+ Chessboard-like pattern due to oscillations out of phase
+kd= 9
+kt=455
+x
+g100
+s
+<2
+n
++
+<3
+#
+A bright-dark pattern periodic along both the time AND the space axis
+results. With a somewhat higher production rate of a substrate, the pattern
+changes to oblique lines. This is also a periodic pattern along both axes.
+
+bb
+.006
+ Transition to oblique lines
+n
+<3
+ ... Same situation continued....
+n
++
+&
+0,1,6,1
+Either the starting or the annihilation (V-shaped) regions of the waves
+can be shifted against each other - a trace of the chess-chessboard patterns
+
+#
+After a perturbation (abrupt temporary lowering of the activator
+concentration), a transient pattern reminiscent to the chessboard is
+formed. Again, initiation or annihilation may occur out of phase.
+
+k3
+120
+k4
+6
+dz
+.15
+n
++
+ ... Same situation continued....
+k3
+0
+n
++
+#
+Conclusion: an autocatalytic reaction that is compensated by the action
+of two antagonists can lead to travelling waves without a pace-maker. In
+another range of parameters groups of cells can oscillate out of phase.
+In both cases a pattern in time and a pattern in space is superimposed.
+EOF-GT

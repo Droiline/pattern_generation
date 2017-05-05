@@ -1,0 +1,66 @@
+Four structures that locally exclude but on long range help each other
+#
+In this simulation it shall be shown that tissue polarity can result from
+the activation of several activator-inhibitor systems. By mutual long-range
+help and local exclusion, the activations occur in a reproducible spatial
+sequence. Here four such systems are used: top: activators, below: Inhibitors
+r12-6f
+i
+<2
+ A small asymmetry is sufficient to initiate the generation of the sequence
+c
+ Such a system shows a good size regulation of its parts during growth
+c
+kt=10
+kg=0
+c
++
+#
+After removal of a portion of the field, the corresponding inhibitor
+concentrations decline. Since each system has an activating influence on
+those responsible for the neighbouring structures, the removed elements
+are rebuild in the correct order.
+mc
+s
+1
+6
++ Situation after removal of the left half of the field
+kt
+240
+kp
+20
+c
+#
+ ... all structures are present again. The sequence of the structures
+once remained (blue and green, 1 and 2) was guiding the sequence in
+which the regeneration took place (first 123, later 1234). In this way,
+the polarity was preserved.
+mr
++ This works, of course, also after removal of the left half...
+mc
+
+9
+16
++ ... situation after removal of the left half...
+c
++ ... and here also the removed structures regenerate
+mr
++ Intercalary regeneration occurs after removal of a central portion ....
+mt
+
+1
+3
+13
+
+
++ ... situation after removal of a central portion ...
+kt
+100
+c
++ ... the correct sequence is restored.
+#
+Conclusion: By a coupling of several pattern forming systems by a long
+ranging activation and local competition, a subdivision in several regions
+can be achieved. Regeneration of terminal or internal structures is a
+straightforward property of such an interaction.
+EOF-GT

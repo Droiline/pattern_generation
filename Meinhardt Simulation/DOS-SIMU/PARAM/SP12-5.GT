@@ -1,0 +1,96 @@
+Space-dependent gene activation
+igtdelay
+4
+cls
+#
+In the first simulation, the activity of a single gene will be shown
+that has an autoregulatory feedback on its own. This saturates at high
+concentrations of the gene product. Under the influence of a gradedly
+distributed morphogen, all cells above a threshold will become activated.
+r12-5c
+ Bistable system under the influence of a morphogen
+i
+fdelay
+1
+s
++
+#
+Regions with a high and with a low gene activity results. The border is
+sharp. After a gene is once activated, the signal is no longer required
+for the maintenance of the gene activity. The signal will now be switched off.
+Only the tendency to flip over into the "higher" state will disappear.
+d
+<1
+kt=10
+ba
+0
+d
+<1
+c
++
+#
+The next simulations demonstrate the behaviour of a systems with several
+alternative genes. Fife genes are assumed with gene products that have a
+positive autoregulatory feedback on their own gene and that compete with each
+other. The red bar in the background is a measure for the mutual competition.
+r12-5a
+ In one cell, only one gene can remain active
+i
++
+s
++
+ A small external signal (top): the corresponding gene is moderately active
+ba
+.15
+c
+ A somewhat stronger signal: complete flip over to the new gene
+ba
+.25
+c
+ba
+
+ Again, the gene activity remains stable even without the signal.
+c
++
+#
+Conclusion: By a feedback of a gene product on the activity of its own
+gene, a stable gene activation is achieved that is independent of the
+evoking signal. By competition it can be arranged that only one of
+several alternatively possible genes can remain active in one cell.
+#
+In the following simulation the space-dependent activation of several
+genes under the control of a morphogen gradient will be shown. Starting
+with the default activation of the "blue" gene, sequentially higher genes
+become activated and lower once again deactivated.
+r12-5
+ba=.0009
+i
+fdelay
+.5
+<1
+kt=100
+s
++
+#
+A later increase of the morphogen causes a shift of the pattern of
+active genes:
+
+ba
+.0012
+n
++
+#
+In contrast, gene activation remains unchanged after a lowering or after
+a switching off of the signal...
+
+d
+ba=0
+kt=30
+n
++
+#
+Conclusion: If under the influence of the morphogen a change from one
+gene to the next occurs in a concentration-dependent manner, particular
+genes remain active at particular positions. Although the signal is
+shallow, the resulting borders are sharp.
+EOF-GT

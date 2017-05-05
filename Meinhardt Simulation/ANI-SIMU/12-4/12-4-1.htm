@@ -1,0 +1,229 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Hans Meinhardt">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (Win98; I) [Netscape]">
+   <title>Phyllotaxis - also a time record</title>
+</head>
+<body>
+&nbsp;
+<center>
+<p><font face="Arial,Helvetica"><font size=+3>Phyllotaxis: initiation of
+leaves along spirals</font></font></center>
+
+<p><br>
+<br>
+<p><font face="Arial,Helvetica">The regular initiation of new leaf primordia
+behind the tip of a growing shoot, the so-called phyllotaxis, seems to
+have nothing in common with any pattern on seashells. This impression is,
+however, misleading. On growing shoots as in shells, the new pattern elements
+are initiated in a narrow zone. The tip of the shoot, the meristem, contains
+undifferentiated cells that divide rapidly. Only cells just leaving this
+zone are able to generate new leaf primordia. Thus, the leaf-forming zone
+has the geometry of a narrow ring. As in shells, the final pattern of leaves
+or seedlings is a time record of what happens in the primordia-forming
+zone.</font>
+<p><font face="Arial,Helvetica">Many flowering plants display helical patterns.
+The same holds for the arrangement of seedlings. The fir cone shown below
+is an example. A comparison shows that in both systems the new elements
+- seedling or pigment spots - appear at regularly displaced positions.</font>
+<center>
+<p><img SRC="Phylshel.gif" BORDER=0 height=179 width=395></center>
+
+<p><font face="Arial,Helvetica">As it has been shown above, <a href="../5/5-5.htm">signals
+can emerge at regular displaced positions</a> if two antagonists are involved.
+In the simulation below, two inhibitors are assumed. One spreads rapidly
+and keeps the signal localized (red). The second one (green) has a longer
+time constant and spreads much less widely. It allows the formation of
+a further signal in the same region only after a certain time interval.
+Both effects together enforce the new signals to emerge at regularly shifted
+positions. As it is appropriate for phyllotaxis, in the simulation below,
+the time is plotted bottom-up, in contrast to the simulations of shell
+patterns.</font>
+<center>
+<p><img SRC="kai-sim.gif" BORDER=1 height=466 width=375>
+<br>(for equation and parameters <a href="../5/5-5.htm#Equation 5.3">click
+here</a>; time is plotted bottom-up)</center>
+
+<p><font face="Arial,Helvetica">In plants, the displacement between subsequent
+leaves is frequently close to 137.5&deg;, the golden angle. This helical
+arrangement requires that the positioning of a new leaf is not only influenced
+by the last but also by the earlier leaves. This is easily understandable.
+Imagine that a first leaf exists. The second can appear at 180&deg;. Only
+if the third leaf to be formed is exposed to some inhibitory influence
+from the first, it cannot be formed at the same circumferential position
+as the first and will become displaced. As discussed above for the shell
+patterns, this requires two antagonists with different properties. According
+to this model, the helical arrangement does not result from an inhibitory
+influence of the earlier leaves directly, but from the remnants of the
+long-lasting antagonist in the leaf-forming zone that a preceding leaf
+has left behind at this position.</font>
+<p><font face="Arial,Helvetica">If the diameter of the ring-shaped zone
+next to the meristem is small, there is space only for one maximum at the
+time. The simulation below shows the situation in the ring. The long-lasting
+inhibition is shown in green. A new activation arises always at a position
+where green is lowest. Although the simulation is initiated by random fluctuations
+only, the helical positioning is rapidly attained. The figure at right
+illustrates the helical arrangement if these rings are piled up to a cylinder.
+Signals at the rear of the cylinder are drawn in gray to allow a better
+3-D visualization.</font>
+<center>
+<p><img SRC="Phyl-2i.gif" height=258 width=274><img SRC="phy-zyli.gif" height=296 width=118></center>
+
+<p><br>
+<br>
+<br>
+<br>
+<p><font face="Arial,Helvetica">For the simulation above, assumed was an
+interaction with two inhibitors that act in an additive way (equation 5.4)</font>
+<br>&nbsp;
+<br>&nbsp;
+<table BORDER COLS=2 WIDTH="78%" >
+<tr>
+<td>
+<br><img SRC="eq54.gif" height=199 width=322></td>
+
+<td><font face="Arial,Helvetica">Activator - two-inhibitor system (equation
+5.4 abc)</font>
+<br><font face="Arial,Helvetica"><i>b,</i> shown in red, is responsible
+for the pattern in space. On its own, the <i>a,b </i>system would form
+a stable pattern;</font>
+<br><font face="Arial,Helvetica"><i>c, </i>shown in green, is responsible
+for the de-stabilization. For this, it has to have a long time constant
+i.e., a smaller decay rate (rc&lt;ra) and very little diffusion.&nbsp;</font>
+<br><font face="Arial,Helvetica">Da=&nbsp; 0.005; ra=&nbsp; 0.004; ba=&nbsp;
+0.05</font>
+<br><font face="Arial,Helvetica">Db=&nbsp; 0.4; rb=&nbsp; 0.006; bb=&nbsp;
+0; sb=&nbsp; 1;</font>
+<br><font face="Arial,Helvetica">Dc=&nbsp; 0.003; rc=&nbsp; 0.0002; sc=&nbsp;
+1</font></td>
+</tr>
+</table>
+
+<p><font face="Arial,Helvetica">Recent observations have shown that the
+plant hormone auxin is required as a prerequisite in leaf initiation (Reinhardt
+et al., 2000; Plant Cell 12, 507-518). Suppression of auxin transport suppresses
+leaf initiation, a situation that can be rescued by a local supply of auxin.
+This suggests that one of the expected antagonistic reactions results from
+a depletion of auxin in a wider surrounding. The figure below shows snapshots
+of a corresponding simulation. Auxin is shown in gray, the long lasting
+inhibition in red. The upper row shows the coming and going of a signal
+to initiate a primordium. A new primordium appears when auxin concentration
+is high enough and the inhibitor low enough. The primordium remains localized
+due to a depletion of auxin in a wider region. The blue arrow points to
+the site of the least concentration of the long-lasting inhibitor, foreshadowing
+the position where the next leaf primordia will arise.</font>
+<br>&nbsp;
+<br>&nbsp;
+<br>
+<br>
+<center>
+<p><img SRC="n-aux-s.gif" height=228 width=510></center>
+
+<p><font face="Arial,Helvetica">The bottom row shows the initiation of
+the two subsequent primordia at displaced positions. In the simulation
+it is assumed that the spread of auxin is accomplished by diffusion. A
+more realistic model has to include its active transport.</font>
+<p><font face="Arial,Helvetica">The displacement by the golden angle is
+a stable configuration attained in a wider range of parameters and interactions.
+The simulation below is based on the same interaction as used above. As
+used in many botanical textbooks, the position of the activated regions
+are plotted on circles with shrinking radius, the most recent primordia
+are close to the center. The angle drawn has 137,5&deg;. As the simulation
+shows, the angular separation of two successive primordia is close to the
+golden angle.</font>
+<center>
+<p><img SRC="137-aux.gif" height=207 width=204><img SRC="137-rj.jpg" height=191 width=202><img SRC="137-rk.jpg" height=190 width=183></center>
+
+<p><font face="Arial,Helvetica">The notion of 137.5&deg; may suggest a
+very high precision. However, as shown in the two figures at right, the
+natural patterns also show some variation.</font>
+<p><font face="Arial,Helvetica">Equation 5.1 that has been used for several
+shell patterns is able to generate a helical pattern with the following
+set of constants</font>
+<div class=Section1>
+<div class="MsoPlainText">&nbsp;
+<table BORDER COLS=2 WIDTH="79%" >
+<tr>
+<td><img SRC="Eq54.gif" height=199 width=322></td>
+
+<td><font face="Arial,Helvetica"><i>a,b</i> activator-substrate system,
+<i>c</i>
+is an additional inhibitor; its efficiency is determined by sc</font>
+<br><font face="Arial,Helvetica">Da = 0.002; ra = 0.002; ba =0.005; sa
+= 0.1;&nbsp;</font>
+<br><font face="Arial,Helvetica">sb = 0; sc = 1; s = ra <u>+</u> 5% random
+fluctuation</font>
+<br><font face="Arial,Helvetica">Db = 0.15; rb = 0; bb = 0.0005; i.e.,
+on its own the <i>a, b</i> system would already oscillate. The additional
+inhibitor remains essentially local and has an even longer time constant:
+Dc = 0.0002; rc = 0.0001. With 24 space elements around the circumference,
+the distance between subsequent maxima is about&nbsp; 9, corresponding
+to an angular distance of 135&deg;; Opposite arrangement occurs with the
+same parameters except Da =0.001; ba =0.002; Db = 0.4;&nbsp; Dc = 0.001;
+rc = 0.001, i.e., if the long-lasting inhibitor fades away faster such
+that the penultimate leaf has less influence. In addition, the long-lasting
+inhibitor has to diffuse somewhat faster to localize the next maximum to
+the opposite side.</font>
+<br><font face="Arial,Helvetica">Pairs of activation in 90&deg; displacement:
+ra = 0.002;&nbsp;</font>
+<br><font face="Arial,Helvetica">ba = 0.008; Dc = 0.001; rc = 0.001, 48
+instead of 24 space elements around the circumference</font></td>
+</tr>
+</table>
+
+<p><font face="Arial,Helvetica">Also common are patterns in which new leaves
+either appear at alternating opposing positions (distichous patterns) or
+in a pair-wise arrangement in which each subsequent pair is rotated by
+90&deg; (decussate pattern). The generation of paired peaks has been discussed
+already above in connection with the <a href="../12-3/12-3-3.htm#opposite">non-random
+patterning of isolated chemotactic cells</a>. They occur if the size of
+the leaf-forming zone is sufficiently large such that two peak can be formed
+simultaneously and if the diffusion of the long-lasting antagonist is high
+enough such that the new maxima appear <a href="../5/5-5.htm#precisely">precisely
+in the gaps</a> of the previous maxima:</font>
+<center>
+<p><img SRC="r-82-pa.gif" height=323 width=161><img SRC="Phyl-cr.gif" BORDER=0 height=197 width=203></center>
+<font face="Arial,Helvetica">Although the alternating pattern can be generated
+by a system with a <a href="../2/2-7.htm#phyllotaxis">single inhibitor</a>,
+minor changes (see box) allow the generation of alternating peaks with
+the two-antagonist model:</font>
+<center>
+<p><img SRC="r-82-ge.gif" height=259 width=245><img SRC="phyl-a-g.gif" height=162 width=308></center>
+
+<p><font face="Arial,Helvetica">Whether auxin is involved as a long-ranging
+signal is an open question. From the modeling, the use of a real inhibitor
+as antagonist (as used in the simulations at the top of this page, Eq.
+5.4) leads in the modeling usually to more robust patterning. This has
+its origin from the tendency of maxima generated by a depletion mechanism
+to broaden and to split.</font>
+<p><font face="Arial,Helvetica">According to this model, the spacing between
+leaves depends not only on the inhibition of the already established leaf
+primordia on the initiation of the next. Proposed is that two different
+inhibitions are involved: one around the circumference and one that determines
+when new primordia can be formed again. The necessity of such a separation
+is especially evident in plants with a whorl-like arrangement of leaves
+that are separated by leaf-free zones:</font>
+<center>
+<p><img SRC="whorl.jpg" height=316 width=251></center>
+
+<p><font face="Arial,Helvetica">There are certainly other elements that
+have to be included in future models, such as the real geometry of the
+dome-shaped tip of the shoot, the rapid differentiation of the upper and
+lower leaf surface and the feedback of leaf primordia onto the meristem.</font>
+<p><font face="Arial,Helvetica"><a href="../../Shellsim.htm">Back to the
+index page</a></font>
+<br>&nbsp;
+<p>[For more details about these models of phyllotaxis, see:
+<br>Bernasconi, G.P.(1994). Reaction-diffusion model for phyllotaxis. Physica
+D 70, 90-99
+<br>Meinhardt, H., Koch, A.J. and Bernasconi, G. ,1998. Models of pattern
+formation applied to plant development
+<br>In: 'Symmetry in Plants' (D. Barabe and R. V. Jean, Eds), World Scientific
+Publishing, Singapore; pp. 723-758]
+<br>&nbsp;</div>
+</div>
+
+</body>
+</html>

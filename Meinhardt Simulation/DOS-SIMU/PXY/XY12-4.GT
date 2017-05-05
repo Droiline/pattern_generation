@@ -1,0 +1,39 @@
+Insertion of new maxima during growth
+fdelay
+.4
+igtdelay
+1
+#
+In the following simulation four existing maxima are assumed. Their distances
+enlarge due to growth. If a certain distance is achieved, a new maximum
+is triggered at the largest possible distance.
+
+r5
+i
++
+c
+kg=0
+kt
+40
+c
++
+#
+It is a property of an A-I system to generate a new activator maximum at
+the position of the lowest inhibitor concentration. This becomes shaped
+by the surrounding self-produced cloud of inhibitor
+
+#
+The initiation of new leaves at regular distances can be explained in
+this way. Here the initiation of "leaves" (or better, the signals for
+leaf initiation) in opposite (distichous) arrangement is shown. An
+existing signal inhibits other signals in its vicinity.
+r12-4
+kt=31
+i
+<1
+s
+dw
+a
+c
++
+EOF-GT

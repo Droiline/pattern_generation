@@ -1,0 +1,15 @@
+Program XY: possible modes of graphic display (parameter: KD)
+      (see also GUIDED TOUR in program XY, GT1
+KD=1  3D-display with lines in x-direction, iy=1 in the foreground
+KD=2  3D-display with lines in x-direction, iy=ky in the foreground
+KD=3  3D-display, netlike profile
+KD=4  as 3, but cells with zero-concentrations are not plotted
+KD=5  3D-display, each cell as block
+KD=6  as 5, but cells with zero-concentrations are not plotted
+KD=7  cylinder, ix=kx at the tip, ix=1 bottom
+KD=8  density of the pixels proportional to concentration
+KD=9  as 8, but with different colours in Y-direction (not used here)
+KD=10 Special plot for net-like structures
+KD=11 Random dots, concentration proportional to concentration, superimposed
+KD=12 Schematic plot ( .:°°±±²²Û) with maximum and field size (also via F4)
+KD=13 as KD=12, but with print (also via F5)

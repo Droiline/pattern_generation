@@ -1,0 +1,83 @@
+Introduction into program handling and examples
+% Comment lines start with a %-character
+&
+1,1,6,1
+In this GUIDED TOUR, you will find an introduction into the handling
+of the program. The inputs normally made from the key board are read
+from a file. Only pressing the <RETUTN> key is required. This is indicated
+by the [ok] sign at bottom right corner of the screen.
+igtdelay
+60
+#
+The command S starts a simulation, S and the name of a parameter file starts
+a particular simulation. The corresponding command are given in the figure
+captions. For instance, inputting of <S23a> leads to the start of the
+simulation shown in Fig. 2.3a. The command S2.3a would be legal too.
+s23a
+#
+In this simulation, pattern formation in a one-dimensional chain of cells
+is plotted as function of time. Initial condition: no pattern except some
+small random fluctuation. The result is a pattern with several peaks that are
+more or less regularly spaced. They are stable im time.
+#
+A smaller field size and longer time constants can lead to a single high
+concentration at a marginal position, i.e. the distributions of the
+substances will become polar. To change the parameter, one has to type the
+name of the parameter, followed by the new value.
+#
+.
+Changing of the field size is accomplished by changing KY (or ky). Here
+the computer types ky for you, gives back the present value and set it to
+the new value 11
+ky
+11
+#
+.
+.
+similarly, the decay rate of the activator and inhibitor can be changed
+via ra and rb
+ra
+.008
+rb
+.012
+#
+.
+.
+.
+The diffusion of the activator is changed via da, it is increased here
+da
+.015
+#
+.
+Since the time required for pattern formation increases when longer
+time constants are involved, more iterations are calculated between
+the individual displays by increasing the parameter kp
+kp
+120
+#
+.
+.
+.
+The complete list of parameters appers after pressing the <RETURN> key
+
++
+s
+#
+a simulation with the new constants should lead to a monotonic gradient
+
+#
+The original set of parameter can be read again by the command RR
+
+rr
+
++
+ That are the original parameter
+s
+#
+That was the first example of a GUIDED TOUR, you obtain now full control
+control of the computer, typing S (Start), for instance, will repeat the
+last simulation, typing N causes, after a refreh of the screen, a
+continuation that shows that the pattern is stable
+EOF-GT
+
+

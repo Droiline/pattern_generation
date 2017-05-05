@@ -1,0 +1,53 @@
+Oliva porphyria: Role of initial condition and random fluctuations
+&
+1,1,6,1
+In the first simulations, the same initial condition but different
+random fluctuations are used in superimposed calculations. The
+resulting pattern becomes different in the course of time
+
+r64
+  First simulation
+s
+ Second simulation, with other random fluctuation, in different colours
+cs
+12
+&
+0,1,6,1
+Conclusion: minor fluctuations cause patterns that differ in details
+but the overall character of the pattern is maintained
+
+&
+1,1,6,1
+In the next simulation, no random fluctuations are assumed to occur, but
+the subsequent simulation is made with slightly different initial conditions
+
+  First simulation
+kr
+0
+igtdelay
+3
+icol
+
+s
+ki
+4
+  Second simulation
+cs
+10
+22
+55
+75
+120
+180
+194
+
+12
+&
+0,1,6,1
+Conclusion: After a certain time, either random fluctuations or small
+differences in the initial conditions lead to completely different patterns
+
+igtdelay
+10
+EOF-GT
+

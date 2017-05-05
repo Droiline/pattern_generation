@@ -1,0 +1,22 @@
+Program SP: Initially activated cells, selectable by KI
+KI=1  Left-most cell: concentration of a, c and e is set to AA, AC and AE
+KI=2  Left-most and right-most cell is set to AA, AC and AE
+KI=3  Central cell is set to AA, AC and AE
+KI=4  Individual cells can be selected (0=end of the selection and start)
+KI=5  Specific cells (10, 22, 55, 75, 115, 180, 195, 240, 310,...)
+KI=6  Cells at random position, 10-50 cells distance
+KI=7  A sinusoidal prepattern is generated, maximum = 1 (see Fig. 4.9)
+       DY =degree of modulation, DY=1 causes a ratio of 0.5 to 1
+       Repeat length of the pattern in cells
+       K2 Phase (position of the maximum)
+KI=8  The source density becomes an exponential slope, the exponent is AB
+KI=9  A more step-like prepattern is generated (see Fig. 4.2)
+       DY degree of modulation, DY=1 causes a ratio of 0.5 to 1
+       K1 Repeat length of the pattern in cells
+       K2 cell at which the high production rate starts
+       K4 cell at which the high production rate ends
+       DZ Degree of smoothing, 1-80 is reasonable
+KI=10  Left-most cell can have a different rate of substrate production
+        factor is given by AB (see Fig. 3.8): pacemaker region
+KI=11  Left-most and rightmost cells are pacemaker
+

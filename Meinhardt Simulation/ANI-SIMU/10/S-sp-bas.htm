@@ -1,0 +1,1181 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Hans Meinhardt">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (Win98; I) [Netscape]">
+   <title>source-sp-bas</title>
+</head>
+<body>
+
+<center><font face="Arial,Helvetica"><font size=+3>The source file SP.BAS</font></font></center>
+
+<p>' (<font face="Arial,Helvetica"><a href="../../Shellsim.htm">Back to
+the index page)</a></font>
+<p><tt>'Program for the simulation of pigmentation patterns on sea shells</tt>
+<br><tt>' (c) by Hans Meinhardt, 1995, 1997</tt><tt></tt>
+<p><tt>'-----------------------------------------------------------------------</tt>
+<br><tt>' A word of precaution...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&sup3;</tt>
+<br><tt>'&nbsp; The software was written with care but the customer knows
+that</tt>
+<br><tt>'&nbsp; software cannot be produced without errors. Springer-Verlag
+and the</tt>
+<br><tt>'&nbsp; author disclaim any liability for software errors or their</tt>
+<br><tt>'&nbsp; consequences.</tt>
+<br><tt>'</tt>
+<br><tt>'&nbsp; All user rights to the software are held exclusively by
+the author.</tt>
+<br><tt>'&nbsp; Springer-Verlag does not author data and programs but makes
+them</tt>
+<br><tt>'&nbsp; available. Any commercial use or distribution independently
+of the</tt>
+<br><tt>'&nbsp; book is not permitted</tt>
+<br><tt>'-----------------------------------------------------------------------</tt><tt></tt>
+<p><tt>' This version is appropriate for the compilation with POWER-BASIC;</tt>
+<br><tt>' use SPMS.BAS for MS - BASIC</tt><tt></tt>
+<p><tt>$ERROR all on</tt>
+<br><tt>DEFINT H-N</tt>
+<br><tt>DECLARE SUB hormone (ila%, ahorm!, ja%, js%)</tt>
+<br><tt>DECLARE SUB oscillation (ila%, C!, D!, olddecaydiffC!, olddecaydiffD!,
+ja%, js%)</tt>
+<br><tt>DECLARE SUB cmessage (itype%, iline%, irow%, ilettercol%, iletterback%,
+ibackcol%, text$, resp$)</tt>
+<br><tt>DECLARE SUB gtreturn (inz%, igt%)</tt>
+<br><tt>DECLARE SUB init (inewscreen%, igraph%, ivorcol%, ibackcol%, ivgashift%)</tt>
+<br><tt>DECLARE SUB manipulationxt (pcontrol2$, ja%, js%, kinsert%, imxl%,
+imxl2%, icc%)</tt>
+<br><tt>DECLARE SUB paramenu ()</tt>
+<br><tt>DECLARE SUB showprof (inz%, iendm%, dw$, a!(), ja%, js%, icc%)</tt>
+<br><tt>DECLARE SUB switchscreen (inz%, iactive%, ibackcol%)</tt>
+<br><tt>DECLARE SUB zeingabe (igt%, iquest%, inz%, i%, f!, label$, text$)</tt><tt></tt>
+<p><tt>$INCLUDE "sub-util\plibxt.inc" ' this line is required ONLY for
+POWER-BASIC</tt>
+<br><tt>' for MS_BASIC please use program SPMS.BAS</tt>
+<br><tt>' $INCLUDE: 'scommon.bi': this line is required for MS-BASIC</tt><tt></tt>
+<p><tt>DATA 10,22,55,75,115,180,195,240,310,352,375,425,455,555,585,595,630</tt>
+<br><tt>programname$ = "SP":</tt>
+<br><tt>pdir$ = "PARAM\"</tt>
+<br><tt>basfilename$ = "SP.BAS"</tt>
+<br><tt>imxl = 300: imyl = 641</tt>
+<br><tt>imxl2 = imyl / 2: ianzmax = 9: msiluetmax = 800</tt>
+<br><tt>DIM parnam$(75), flv(60), inv(15), msiluet(msiluetmax)</tt>
+<br><tt>DIM a(ianzmax, imyl), label$(10)</tt>
+<br><tt>DIM xa(8), fa(8), am(8), ya(8), f1(8), icol(8), ityp(8), iwi(8)</tt>
+<br><tt>DIM s$(150)</tt>
+<br><tt>ihp = 1: igtdelay = 20: inewscreen = 1</tt>
+<br><tt>diffmax = .4'Maximum numerical constant for diffusion</tt><tt></tt>
+<p><tt>CLS : RANDOMIZE TIMER</tt><tt></tt>
+<p><tt>parameter:</tt>
+<br><tt>ON ERROR GOTO 0</tt>
+<br><tt>CALL paramenu '----- set simulation parameters, choose equation
+etc.</tt><tt></tt>
+<p><tt>&nbsp;'-----------------&nbsp; start / continuation of program ------------------</tt>
+<br><tt>SELECT CASE pcontrol$</tt>
+<br><tt>CASE "S", "N", "C", "D", "I", "II", "CS"</tt>
+<br><tt>&nbsp; dra = 1! - ra - 2! * da '- sparing simulation time: factor
+by which</tt>
+<br><tt>&nbsp; drb = 1! - rb - 2! * db '- concentration becomes reduced
+due to decay and</tt>
+<br><tt>&nbsp; drc = 1! - rc - 2! * dc '- diffusion is calculated in advance</tt>
+<br><tt>&nbsp; drd = 1! - rd - 2! * DD</tt>
+<br><tt>&nbsp; dre = 1! - re - 2! * DE</tt>
+<br><tt>&nbsp; drf = 1! - rf - 2! * DF</tt>
+<br><tt>&nbsp; drg = 1! - rg - 2! * dg</tt>
+<br><tt>&nbsp; drh = 1! - rh - 2! * dh</tt>
+<br><tt>&nbsp; ahorm = 0: igrowth = 0: icountk3 = 0</tt>
+<br><tt>&nbsp; icountot = 0</tt>
+<br><tt>&nbsp; IF PCONTROL$ = "N" OR PCONTROL$ = "D" GOTO newplot</tt>
+<br><tt>&nbsp; IF PCONTROL$ = "C" AND iparam &lt; 2 GOTO newplot</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; IF PCONTROL$ = "C" THEN</tt>
+<br><tt>&nbsp;&nbsp; 'IF igt = 0 AND igraph = 12 AND icc = 1 THEN</tt>
+<br><tt>&nbsp;&nbsp; CALL cmessage(3, -1, 1, 1, 15, ibackcol, title$, resp$)</tt>
+<br><tt>&nbsp;&nbsp; 'END IF</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; GOTO continue</tt>
+<br><tt>&nbsp; END IF</tt>
+<br><tt>&nbsp;&nbsp; '---------------------&nbsp;&nbsp;&nbsp; initial conditions&nbsp;
+--------------</tt>
+<br><tt>&nbsp; ja = KX: js = ky</tt>
+<br><tt>&nbsp; ja = KX: js = ky</tt>
+<br><tt>&nbsp; imxnew = imxl2: IF ky > imxnew THEN imxnew = imyl</tt>
+<br><tt>&nbsp; FOR i = 1 TO imxnew</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; IF PCONTROL$ &lt;> "II" THEN&nbsp; 'II maintains
+random numbers</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; 'RND: random numbers between 0.0 and 1.0 lead
+to plus-minus KR% fluctuations</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(0, i) = ra * (1! + 2 * KR / 100
+* (RND - .5)) 'Source density&nbsp; s</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(8, i) = 1</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(9, i) = 1! + 2 * KR / 100 * (RND
+- .5)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF ca > 0 THEN a(0, i) = ca * (1!
++ 2 * KR / 100 * (RND - .5))</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; END IF</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(1, i) = ga '-- initial condition: A is set
+to GA in all cells</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(2, i) = gb '-- B to GB etc.</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(3, i) = gc</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(4, i) = gd</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(5, i) = ge</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(6, i) = gf</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(7, i) = gg</tt>
+<br><tt>&nbsp; NEXT i</tt><tt></tt>
+<p><tt>&nbsp; SELECT CASE ki '---- KI determines particular initial conditions
+-------</tt>
+<br><tt>&nbsp; CASE 1: a(1, ja) = aa: a(3, ja) = ac: a(5, ja) = ae&nbsp;
+'left cell</tt>
+<br><tt>&nbsp; CASE 2: a(1, ja) = aa: a(3, ja) = ac: a(1, js) = aa: a(3,
+js) = ac</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(5, ja) = ae: a(5, js) =
+ae</tt>
+<br><tt>&nbsp; CASE 3:</tt>
+<br><tt>&nbsp; jx = js / 2: a(1, jx) = aa: a(3, jx) = ac</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(5, jx) = ae&nbsp; 'cell
+in the centre</tt>
+<br><tt>&nbsp; CASE 4</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; DO WHILE i > 0 'particular cells are initiated
+during run-time</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mess$ = "# of cell to be initially
+active (A(#) = aa), &lt;return>=stop"</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CALL zeingabe(igt, 0, 1, i, dummy,
+dummy$, mess$)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = aa</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; LOOP</tt>
+<br><tt>&nbsp; CASE 5, 15</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR i = 1 TO 17</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; READ ix 'Special cells are red from data statement</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; IF ix > js THEN EXIT FOR</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(1, ix) = aa: a(3, ix) = ac: a(5, ix) = ae</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; NEXT i: RESTORE</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; IF ki = 15 GOTO STEPPATTERN</tt>
+<br><tt>&nbsp; CASE 6 'Random cells are activated at maximum 50 cells distance</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; ix = RND * 30</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR i = 1 TO 20</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(1, ix) = aa: a(3, ix) = ac</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; ix = ix + RND * 40 + 10</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; IF ix > js THEN EXIT FOR</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; NEXT i</tt>
+<br><tt>&nbsp; CASE 7 'sinusoidal prepattern, used for space-dependent</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; amax7 = 0'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+substrate production</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR i = 1 TO ky</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(8, i) = 1! + dy * (COS((i - k2)
+* 3.14 / K1)) ^ 2 + i * ab / ky</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF a(8, i) > amax7 THEN amax7 =
+a(8, i)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; NEXT i</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR i = 1 TO ky: a(8, i) = a(8, i) / amax7:
+NEXT i'Normalization</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; '&nbsp;&nbsp;&nbsp; artificial spatial periodic,
+stable in time, dy determines</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; '&nbsp;&nbsp;&nbsp; the difference between maxima
+and minima, K1 the spatial wavelength.</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; '&nbsp;&nbsp;&nbsp; K2 is the phase; AB adds
+a linear gradient (for Nautilus Pompilius)</tt>
+<br><tt>CASE 8 'Exponential gradient or bzw sinusoidal distribution of
+the source</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR ix = 1 TO ky:</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(0, ix) = a(0, ix) * EXP(-aB * (ix - 1)) *
+(1! + DY * (COS((ix - k2) * 3.14 / (ky))) ^ 2)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; NEXT ix</tt><tt></tt>
+<p><tt>&nbsp; CASE 9 'a more step-like distribution</tt>
+<br><tt>STEPPATTERN:</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR i = k2 TO k4: a(8, i) = 1 + dy: NEXT</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR i = K1 + 1 TO ky: a(8, i) = a(8, i - K1):
+NEXT'Repetition after K1 cells</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR i = 1 TO ky: a(8, i) = a(8, i) + i * ab
+/ ky: NEXT</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR ji = 1 TO dz</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; al = a(8, kx)'smoothing</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FOR i = kx TO ky - 1: a(8, i) =
+(a(8, i) + a(8, i + 1)) / 2: NEXT i</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FOR i = ky TO kx + 1 STEP -1: a(8,
+i) = (a(8, i) + a(8, i - 1)) / 2</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NEXT i: NEXT ji</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; amax7 = 0 'normalization</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR i = 1 TO ky: IF a(8, i) > amax7 THEN amax7
+= a(8, i)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; NEXT i</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR i = 1 TO ky: a(8, i) = a(8, i) / amax7:
+NEXT i'normalization</tt>
+<br><tt>&nbsp; CASE 10 'particular cell may function as pace-makers</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(8, ja) = ab 'left cell</tt>
+<br><tt>&nbsp; CASE 11 'left and right cells can be pacemaker</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(8, ja) = aB</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(8, js) = aB</tt><tt></tt>
+<p><tt>'------------Special cases for non-shell patterns, gene-activations
+etc.</tt><tt></tt>
+<p><tt>&nbsp; CASE 121 'for gene activation in different cells</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; 'ca = Efficiency of the genes, cb=Slope of the
+gradient</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR i = 1 TO js: a(8, i) = EXP(cB * (i - 1))</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(6, i) = ba * a(8, i): NEXT 'Positional Information</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; fkr = KR / 100</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR iy = 1 TO 4 ' Efficiency of the genes in
+the autocatalysis</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(0, iy) = ra * (1 + fkr * RND - .5 * fkr):
+NEXT</tt><tt></tt>
+<p><tt>&nbsp; CASE 123'for Gen-Activation in single cells</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(1, ja) = aa ' Gene 1 somewhat different</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR i = ja TO js: a(8, i) = 0: NEXT</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(8, js) = ab ' Signal for switching acts only
+on the last cell</tt><tt></tt>
+<p><tt>&nbsp; CASE 124: 'Gene activation in a single cell: threshold</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR i = 1 TO js: a(8, i) = 1 + i * aB / ky:
+a(2, i) = ba * a(8, i)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; NEXT i 'Pos. Inf. in B</tt>
+<br><tt>&nbsp;CASE 126 'Small initial gradient, only for hydra-simulation</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR ix = 1 TO ky: a(3, ix) = gC * EXP(-aC *
+(ix - 1)): NEXT ix</tt>
+<br><tt>&nbsp;&nbsp; CASE ELSE</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; mess$ = "no such initial conditions, use KI
+between 1 and 11"</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; resp$ = "ok": CALL cmessage(4, -1, 1, 15, 4,
+0, mess$, resp$)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; GOTO parameter</tt>
+<br><tt>&nbsp; END SELECT</tt>
+<br><tt>&nbsp; itot&amp; = 0</tt>
+<br><tt>newplot:</tt>
+<br><tt>&nbsp; IF PCONTROL$ = "CS" THEN 'Screen not cleared, second pattern
+drawn</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+'on top of the first</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CALL zeingabe(igt, 1, 1, icol(1), dummy, dummy$,
+"New colour, 0-14")</tt>
+<br><tt>&nbsp; ELSE</tt>
+<br><tt>&nbsp; CALL init(inewscreen, igraph, ivorcol, ibackcol, ivgashift)</tt>
+<br><tt>&nbsp; END IF</tt>
+<br><tt>&nbsp; IF igraph = 12 THEN CALL cmessage(5, -1, 1, 1, 15, ibackcol,
+label$(0), "")</tt>
+<br><tt>&nbsp; icc = 0</tt>
+<br><tt>simulation:</tt>
+<br><tt>&nbsp; icc = icc + 1</tt>
+<br><tt>&nbsp; CALL showprof(KD, 1, displaywas$, a(), ja, js, icc) ' Plot
+on screen</tt>
+<br><tt>&nbsp; IF INKEY$ = CHR$(27) THEN GOTO EndSimulation' interrupted
+with ESC</tt>
+<br><tt>&nbsp; IF icountot >= KT OR PCONTROL$ = "I" OR PCONTROL$ = "II"
+GOTO EndSimulation</tt>
+<br><tt>&nbsp; IF PCONTROL$ = "D" GOTO EndSimulation</tt><tt></tt>
+<p><tt>continue:</tt>
+<br><tt>&nbsp;ON ERROR GOTO erroverflow</tt>
+<br><tt>&nbsp; igrowth = igrowth + 1: icountk3 = icountk3 +1</tt>
+<br><tt>IF kg > 0 THEN 'growth by insertion of additional cells if kg>0</tt>
+<br><tt>IF igrowth >= KG AND js &lt; imyl - 1 THEN</tt>
+<br><tt>&nbsp;&nbsp; igrowth = 0</tt>
+<br><tt>&nbsp;&nbsp; CALL manipulationxt("G", ja, js, kinsert, imyl, imxl2,
+icc)</tt>
+<br><tt>END IF 'K1 determines the mode of insertion</tt>
+<br><tt>END IF</tt><tt></tt>
+<p><tt>' Begin of the iterations. After each KP iterations the concentration
+are</tt>
+<br><tt>' plotted. This will happens KT times. Altogether KT * KP time
+steps will</tt>
+<br><tt>' be calculated.</tt><tt></tt>
+<p><tt>jrechts = js: jlinks = ja</tt>
+<br><tt>IF kd = 16 or kd = 22 THEN jrechts = ja: jlinks = js' cyclic boundary</tt><tt></tt>
+<p><tt>FOR iprint = 1 TO KP&nbsp; '-- SECOND LOOP: kp iterations until
+next plot ------</tt><tt></tt>
+<p><tt>' Boundary conditions: impermeable; this is achieved by</tt>
+<br><tt>' giving the cells ja-1 and js+1 the same values as cells ja resp.js</tt>
+<br><tt>' or , if k1=11, then cyclic</tt>
+<br><tt>&nbsp; FOR il = 1 TO KN: a(il, js + 1) = a(il, jrechts): NEXT il
+'right border cells</tt>
+<br><tt>&nbsp; al = a(1, jlinks): bl = a(2, jlinks) ' virtual left border
+cells:</tt>
+<br><tt>&nbsp; IF KN > 2 THEN cl = a(3, jlinks): dl = a(4, jlinks):</tt>
+<br><tt>&nbsp; IF KN > 4 THEN el = a(5, jlinks): fl = a(6, jlinks):&nbsp;
+gl = a(7, jlinks)</tt>
+<br><tt>&nbsp; IF KN > 7 THEN zhl = a(8, jlinks)</tt><tt></tt>
+<p><tt>' don't change next line, otherwise the command PE will no longer
+work</tt>
+<br><tt>SELECT CASE KE'EQUATIONS&nbsp; '---- Auswahl der Geleichungen</tt>
+<br><tt></tt>&nbsp;<tt></tt>
+<p><tt>'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ================ Main equations
+==================</tt>
+<br><tt>CASE 21 '- activator - inhibitor mechanism: B is inhibitor --------------</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + s * (a * a /
+b + ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB + s * a * a +
+bb</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 211 '- activator - inhibitor mechanism: B is inhibitor --------------</tt>
+<br><tt>&nbsp;&nbsp; 'This is a special Version of Eq. 21 for the simulations
+in two</tt>
+<br><tt>&nbsp;&nbsp; 'separate fields to show regeneration</tt>
+<br><tt>&nbsp;&nbsp; IF k4 = 0 THEN k4 = (js - ja) / 2 + 2</tt>
+<br><tt>&nbsp;&nbsp; a(1, k4) = a(1, k4 - 1): a(2, k4) = a(2, k4 - 1):</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO k4 - 1: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + s * (a * a /
+b + ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB + s * a * a +
+bb</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt>
+<br><tt>&nbsp;&nbsp; al = a(1, k4 + 1): bl = a(2, k4 + 1):</tt>
+<br><tt>&nbsp;&nbsp; FOR i = k4 + 1 TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + s * (a * a /
+b + ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB + s * a * a +
+bb</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt>
+<br><tt></tt>&nbsp;<tt></tt>
+<p><tt>CASE 23 '- activator - inhibitor mechanism: B is inhibitor --------------</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; 'with saturation and Michaelis-Menten-cinetics</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + s * (a * a /
+(sb + b) / (1 + sA * a * a) + ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB + s * a * a +
+bb</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 24 '- activator-depletion mechanism:&nbsp; ----</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; '&nbsp;&nbsp; a activator,&nbsp; b substrate,</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; '&nbsp;&nbsp; a(8,i) may contain a stable
+pattern (normalized to 1)</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * (a * a / (1 + sA * a * a)
++ ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb * a(8,
+i)</tt>
+<br><tt>&nbsp;IF a(2, i) &lt; 0 THEN a(2, i) = 0</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 51 '------- Crossings&nbsp; a: activator, b: substrate c: inhibitor</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * (a * a + ba) / (1! + sA *
+a * a) / (sb + sc * C)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb * a(8,
+i)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + rc * a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; if a(2,i)&lt;0 then a(2,i)=0</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 52 '--- one activator - two substrates</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aqfs = a * a / (1 + sA * a
+* a)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aqb = s * b * aqfs</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aqc = cB * C * aqfs</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA +
+aqb + aqc</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB -
+aqb + bb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC -
+aqc + bc</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt>
+<br><tt>CASE 511 '- activator - inhibitor mechanism: B is inhibitor --------------</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + c * s * (a *
+a / b + ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB + c * s * a *
+a + bb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + bc - sc * a
+* c</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 512 '------- Crossings&nbsp; a: activator, b: substrate c:
+inhibitor</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * (a * a + ba) / (1! + sA *
+a * a) / (sb + sc * C)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - cc * aq + bb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + rc * a*a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; if a(2,i)&lt;0 then a(2,i)=0</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 61 '-- Branches controlled by a hormone&nbsp; : Olivia Porphyria
+----------</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; '&nbsp; Hormone (c) changes lifetime of
+the inhibitor</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * a * a / (1! + sA * a * a) + ba</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq / (sb + b)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB + aq + bb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; ahorm = ahorm + rc * a 'hormone production
+by a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; IF i = js THEN 'averaging</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; CALL hormone(3, ahorm, ja, js)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rbb = rB / C '---- effective inhibitor
+decay rate</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drb = 1! - 2! * db - rbb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; END IF</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 71 '-- activation (a, b), enhancement (c, d)</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; 'and&nbsp; extinguishing&nbsp; (e, f)
+reaction</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * (a * a / (1! + sA * a * a)
++ ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq - ce * a
+* e</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb * (1
++ sb * C + cB * D)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; cq = rc * a * (C * C + bc)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + cq / (sd + D)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(4, i) = olddecaydiffD + cq + bd</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; eqf = e * e</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; eq = re * f * (eqf / (1! + se * eqf) +
+be)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(5, i) = olddecaydiffE + eq + sf * a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(6, i) = olddecaydiffF - eq + bf * a
++ cf * a(8, i)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; IF a(2, i) &lt; 0 THEN a(2, i) = 0'to
+avoid numerical instabilities</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; IF a(6, i) &lt; 0 THEN a(6, i) = 0</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 711 '-- activation (ab) and extinguishing&nbsp; (e,f) reaction</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; 'as 71 without enhancing reaction</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * (a * a / (1! + sA * a * a)
++ ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq - ce * a
+* e</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; eqf = e * e</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; eq = re * f * (eqf / (1! + se * eqf) +
+be)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(5, i) = olddecaydiffE + eq + sf * a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(6, i) = olddecaydiffF - eq + bf * a
++ cf * a(8, i)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; IF a(2, i) &lt; 0 THEN a(2, i) = 0</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; IF a(6, i) &lt; 0 THEN a(6, i) = 0</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 712 '-- activation (ab) and enhancing (c,d) reaction</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; 'as 71 without extinguishing reaction</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * (a * a / (1! + sA * a * a)
++ ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb * (1
++ sb * C + cB * D) * a(8, i)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; IF a(2, i) &lt; 0 THEN a(2, i) = 0</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; cq = rc * a * (C * C + bc)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + cq / (sd + D)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(4, i) = olddecaydiffD + cq + bd</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 713 '-- activation (ab) and enhancing (c,d) reaction</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; 'as 71 without extinguishing reaction</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; 'as 712 but for band modulated is live
+time of the activator</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js:</tt>
+<br><tt>&nbsp;&nbsp; dra = 1 - ra / a(8, i) - 2 * DA</tt>
+<br><tt>&nbsp;&nbsp; GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * (a * a / (1! + sA * a * a)
++ ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb * (1
++ sb * C + cB * D)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; IF a(2, i) &lt; 0 THEN a(2, i) = 0</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; cq = rc * a * (C * C + bc)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + cq / (sd + D)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(4, i) = olddecaydiffD + cq + bd</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt>
+<br><tt></tt>&nbsp;<tt></tt>
+<p><tt>CASE 714 '-- sharp dots (d, e) along invisible lines (c)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; 'and waves (a, b)</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * (a * a / (1! + sA * a * a)
++ ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb * (1
++ ce * e)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; eq = re * a * C * (e * e + be)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(5, i) = olddecaydiffE + eq / (sf + f)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(6, i) = olddecaydiffF + eq</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 72 '---&nbsp; a, b = pigmentation, c, d = enhancement, e =
+pool</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * (a * a / (1! + sA * a * a)
++ ba * C)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; frompool = bb * se * e / (1 + se * e +
+ce * b) * (1 + sc * C)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; IF frompool > e THEN frompool = e</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + frompool</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; cq = rc * a(9, i) * a * (C * C + bc)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + cq / (sd + D)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(4, i) = olddecaydiffD + cq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(5, i) = olddecaydiffE + be * a(8, i)
+- frompool</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; IF a(2, i) &lt; 0 THEN a(2, i) = 0</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; IF a(5, i) &lt; 0 THEN a(5, i) = 0</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 77 '---------two activator-depletion mechanisms, c kills a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'plus a stagered dot system
+that enhances a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'for Cymbiolacca wisemani</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * (a * a / (1! + sA * a * a)
++ ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq - cc * a
+* C</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb * (1
++ ce * e)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; IF a(2, i) &lt; 0 THEN a(2, i) = 0</tt>
+<br><tt>' killing reaction</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; cqf = C * C</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; cq = a(9, i) * D * (cqf / (1! + sc * cqf)
++ bc)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + cq + sd * a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(4, i) = olddecaydiffD - cq + bd * a
++ cd * e</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; IF a(4, i) &lt; 0 THEN a(4, i) = 0</tt>
+<br><tt>'enhancing reaction</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(5, i) = olddecaydiffE + re * a * a(9,
+i) / g * (e * e / f + be)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(6, i) = olddecaydiffF + rf * e * e /
+g</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(7, i) = olddecaydiffG + rg * e</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 91 '---&nbsp; Clithon</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; ' a,b -> pigmentation (AS-system)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; ' c,d -> precondition/background (AI-system)</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * C * (a * a / (1! + sA * a
+* a) + ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; cqf = C ^ 2</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; REM a(9,i) = 1 &ntilde; random fluctuations
+(given by KR in %)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; cq = rc * a(9, i) * (cqf / (1! + sc *
+cqf) + bc * a)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + cq / (D + cd
+* b + se * e)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(4, i) = olddecaydiffD + cq + bd * a(8,
+i)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(5, i) = olddecaydiffE + be * a(8, i)
+* C'the long term poison</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>'CASE ============ Special cases and modified equations ==================</tt><tt></tt>
+<p><tt>CASE 242 '- Natica euzona</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js:</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; dra = 1 - ra * a(8, i) - 2! * DA</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = a(8, i) * s * b * (a * a / (1! +
+sA * a * a) + ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb * a(8,
+i)</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 27 'autocatalysis by an inhibition of an inhibition (a and
+c)</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + s / (sA + C
+* C) + ba</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB + rB * a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + rc / (sc + a
+* a / (sb + b * b))</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 41 ' activator - inhibitor mechanism and feedback on the source
+(c)</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = C * s * (a * a + ba)&nbsp;&nbsp;&nbsp;
+'------&nbsp;&nbsp;&nbsp; simple rows of dots</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq / b</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB + aq + bb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; 'Source (C)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + rc * a + bc</tt>
+<br><tt>&nbsp; NEXT i</tt>
+<br><tt>CASE 42 '--Two activ.-inh. systems a, b and c, d. c inhibits also
+a</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = a * a / (1! + sA * a * a)'&nbsp;&nbsp;&nbsp;
+----&nbsp;&nbsp;&nbsp; for Junona</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + s * (aq / (b
++ sb * C) + ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB + rB * aq + bb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; cq = rc * a(9, i) * (C * C + bc)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + cq / D</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(4, i) = olddecaydiffD + cq</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 43 '- activator - inhibitor mechanism:</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; 'lifetime of the inhibitior is space-dependent</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; ' shifted horizontal lines, one system</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js:</tt>
+<br><tt>&nbsp;&nbsp; drb = 1 - rB * a(8, i) - 2 * db</tt>
+<br><tt>&nbsp;&nbsp; GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = a * a / (1 + sA * a * a)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + s * (aq / b
++ ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB + rB * aq</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 44 '-- activation (a, b) and enhancing (c, d) reaction</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; ' shifted horizontal lines, two systems</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * (a * a / (1! + sA * a * a)
++ ba + cc * C)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb * a(8,
+i)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; cq = rc * D * (C * C / (1 + sc * C * C)
++ bc)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + cq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(4, i) = olddecaydiffD - cq + bd</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 53 'shifted dots = c has negative feedback on a and b</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + s / C * (a *
+a / b + ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB + rB * a * a /
+C + bb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + rc * a</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 531 'shifted dots = c has negative feedback on a and b</tt>
+<br><tt>' fr die Bl„tter,</tt>
+<br><tt>' d,e=zweites System, fr Polarit„t</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + s / (C + cc*d)
+* (a * a / b + ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB + rB * a * a /
+C + bb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + rc * a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; dq = rd * a(9, i) * (D * D + bd)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(4, i) = olddecaydiffD + dq / e + bd*a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(5, i) = olddecaydiffE + dq + be</tt><tt></tt>
+<p><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 54 'shifted dots triangles =&nbsp; sum of two inhibitors</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + s * (a * a +
+ba) / (sb * b + sc * C)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB + rB * a * a +
+bb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + rc * a</tt>
+<br><tt>&nbsp;NEXT i</tt><tt></tt>
+<p><tt>CASE 62 '- Branches controlled by a hormone&nbsp; : Olivia Porphyria
+----------</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; '&nbsp; Hormone (c) changes lifetime of
+the activator</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * a * a / (1! + sA * a * a) + ba</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq / (sb + b)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB + aq + bb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; ahorm = ahorm + rc * a '------ hormone
+production by a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; IF i = js THEN</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; CALL hormone(3, ahorm, ja, js)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; raa = ra * C '---- effective
+inhibitor decay rate</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dra = 1! - 2! * DA - raa</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; END IF</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 63 '- Branches controlled by a hormone&nbsp; : Olivia Porphyria
+----------</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; '&nbsp; Hormone (c) changes production
+rate of substrate b</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * (a * a / (1 + sA * a * a)
++ ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb / (cB
++ sb * C)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; ahorm = ahorm + rc * a '------ hormone
+production by a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; IF i = js THEN CALL hormone(3, ahorm,
+ja, js)</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 64 ' Branches controlled by a hormone&nbsp; : Olivia Porphyria
+----------</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; '&nbsp; Hormone changes lifetime of the
+inhibitor</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; '&nbsp; two inhibitors are involved (b,d)
+a: activator, c: hormone</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * (a * a / (1! + sA * a * a) +
+ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq / (sb + sd
+* D + b)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB + aq + bb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(4, i) = olddecaydiffD + rd * a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; ahorm = ahorm + rc * a ' hormone production
+by a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; IF i = js THEN</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; CALL hormone(3, ahorm, ja, js)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rbb = rB / C '---- effective
+inhibitor decay rate</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drb = 1! - 2! * db - rbb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; END IF</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 73 '-- Survival by change of substrate production</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * (a * a / (1! + sA * a * a)
++ ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq - sb * a
+* C</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb * C</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + rc * b</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 731 ' Production rate of the substrate increases in non-activated</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; ' periods via c</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * (a * a / (1! + sA * a * a)
++ ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb * C</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + rc / (cc + bc
+* a)</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 81 '- activator-depletion mechanisms, homogeneous oscillation</tt>
+<br><tt>'oscillation blocks substrate production or enhances activator
+destruction</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * (a * a / (1! + sA * a * a)
++ ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq - cc * a
+* C</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb / (1
++ sb * C)</tt>
+<br><tt>IF i = js THEN CALL oscillation(3, C, D, olddecaydiffC, olddecaydiffD,
+ja, js)</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 83 '----- Crossing solution plus oscillations</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * (a * a + ba) / (1! + sA *
+a * a) / (sb + sc * C)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq - cc * D
+* a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + rc * a</tt>
+<br><tt>IF i = js THEN CALL oscillation(4, D, e, olddecaydiffD, olddecaydiffE,
+ja, js)</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 832 ' Crossing solution plus oscillations (de -> ai-system)</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * (a * a + ba) / (1! + sA *
+a * a) / (sb + sc * C)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq - cc * D
+* a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb * (1
++ cB * D)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + rc * a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; dq = rd * a(9, i) * (D * D + bd)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(4, i) = olddecaydiffD + dq / e</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(5, i) = olddecaydiffE + dq</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 84 'triangles with global stop, two inhibitors, hormone and
+oscillation</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; 'a=activator, b,c inhibitors; cd = oscillation,
+e=hormone</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + s * (a * a /
+((1 + sA * a * a) * (b + sc * C + sf * f)) + ba) - cc * a * D</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB + s * a * a +
+bb'rb in 54</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + rc * a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; ahorm = ahorm + rf * a '------ AD gets
+hormone input</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; IF i = js THEN</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; CALL oscillation(4, D, e, olddecaydiffD,
+olddecaydiffE, ja, js)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; CALL hormone(6, ahorm, ja, js)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; END IF</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 85 '-- Branches versus triangles: antagonistic action of the</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; 'c-d oscillation</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js:</tt>
+<br><tt>&nbsp;&nbsp; drb = (1 - rbb - 2 * db)</tt>
+<br><tt>&nbsp;&nbsp; GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rbb = rB * (1 + cB * D) / (1 + cc
+* C)' effective inhibitor decay rate</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drb = 1! - 2! * db - rbb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * (a * a / (1! + sA * a * a) +
+ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq / (sb + se
+* e + b)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = b * (1 - rbb - 2 * db) + db
+* (bl + a(2, i + 1)) + aq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; cq = rc * a(8, i) * (C * C + bc)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + cq / (sd + D)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(4, i) = olddecaydiffD + cq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(5, i) = olddecaydiffE + re * a</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 86 'three inhibitors (b,e,f) and oscillation - L. hieroglyphica</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; C = a(3, i): D = a(4, i)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rbb = rB * (1 + cB * D + cd * C)
+/ (1 + cc * C)'---- effective Inhibitor</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drb = 1! - 2! * db - rbb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+'&nbsp;&nbsp;&nbsp;&nbsp; Zerfallsrate</tt>
+<br><tt>&nbsp;&nbsp; GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * (a * a / (1! + sA * a * a) +
+ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq / (sb + sf
+* f + se * e + b)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = b * (1 - rbb - 2 * db) + db
+* (bl + a(2, i + 1)) + aq + bb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; cq = rc * a(8, i) * (C * C + bc)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+'c and d - > oscillation</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + cq / (sd + D)&nbsp;
+'= A-I system</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(4, i) = olddecaydiffD + cq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(5, i) = olddecaydiffE + re * a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(6, i) = olddecaydiffF + rf * a</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 87 'Activator-substrate plus two additional inhibitors</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; '=> three inhibitory actions</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * ((a * a + ba) / (1! + sA
+* a * a)) / (D + sb * C)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + rc * a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(4, i) = olddecaydiffD + bd * a</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 92 ' a,b -> pigmentation (AS-system)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; ' c,d -> precondition/background (AI-system)</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * b * (a * a / (1! + sA * a * a)
++ ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb * C</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; cq = rc * a(9, i) * (C * C / (1! + sc
+* C * C) + bc)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + cq / (bd + D)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(4, i) = olddecaydiffD + cq</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 93 ' a,b -> pigmentation (AS-system)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; ' c,d -> precondition/background (AI-system)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; ' e,f -> Extinguishing system (AS-system)</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; aq = s * C * b * (a * a / (1! + sA * a
+* a) + ba)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + aq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB - aq + bb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; cqf = C * C</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; cq = rc * a(9, i) * D * (cqf / (1! + sc
+* cqf) + bc * a)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + cq - cc * C
+* e</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(4, i) = olddecaydiffD - cq + bd</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; 'extinguishing reaction</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; eqf = e ^ 2</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; eq = re * f * (eqf / (1! + se * eqf) +
+be + ce * C)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(5, i) = olddecaydiffE + eq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(6, i) = olddecaydiffF - eq + bf * C</tt>
+<br><tt>&nbsp; NEXT i</tt>
+<br><tt></tt>&nbsp;<tt></tt>
+<p><tt>' CASE ==========&nbsp; Other simulations, such as Gene-Activation,
+Hydra....</tt><tt></tt>
+<p><tt>CASE 121 'Activation of several genes by a graded morphogen distribution</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; 'e = Repressor, f = positional information</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; 'sa, sb, sc.. = Efficiency of the genes in the
+autokatalyse</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; ' a(i,iy)= ra+(1 +- Fluctuations)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; ' cb slope of the gradient</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; ' e = a measure for the antagonistic reaction,
+competition</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; ' f = positionnal information</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; ' ba absolute influence of the morphogen</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay' :</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; e = sA * a * a + sb * b * b + sc * C * C + sd
+* D * D</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; dq = sd * a(0, 4) * D * D: a(4, i) = olddecaydiffD
++ (dq + f * a(3, i)) / e</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; cq = sc * a(0, 3) * C * C: a(3, i) = olddecaydiffC
++ (cq + f * a(2, i)) / e</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; bq = sb * a(0, 2) * b * b: a(2, i) = olddecaydiffB
++ (bq + f * a(1, i)) / e</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; aq = sA * a(0, 1) * a * a: a(1, i) = olddecaydiffA
++ aq / e</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(5, i) = olddecaydiffE + aq + bq + cq + dq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(6, i) = ba * a(8, i)</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>&nbsp; CASE 123 'Activation of several genes in a single cell</tt>
+<br><tt>'&nbsp; i=Gene Nr., not, as usual, the position</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;aq = a * a / (1! + sA * a * a)</tt>
+<br><tt>&nbsp;a(2, i) = a(8, i) * ba</tt>
+<br><tt>&nbsp;a(1, i) = olddecaydiffA + s * (aq / C + b)</tt>
+<br><tt>&nbsp;ahorm = ahorm + rc * aq</tt>
+<br><tt>&nbsp;IF i = js THEN</tt>
+<br><tt>&nbsp;a(3, 1) = a(3, 1) * (1! - rc) + ahorm</tt>
+<br><tt>&nbsp;FOR iic = ja TO js</tt>
+<br><tt>&nbsp;&nbsp; a(3, iic) = a(3, 1)</tt>
+<br><tt>&nbsp;NEXT iic</tt>
+<br><tt>&nbsp;ahorm = 0</tt>
+<br><tt>&nbsp;END IF</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 124 'Only one gene, with threshold</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;a(1, i) = olddecaydiffA + ra * a * a / (1! + sA * a * a)
++ b</tt>
+<br><tt>&nbsp;a(2, i) = ba * a(8, i) ' Morphogen concentration, for display</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 126 'HY- - Hydra hypostome, tentacles and foot</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;aq = C * s * (a * a + ba)</tt>
+<br><tt>&nbsp;a(1, i) = olddecaydiffA + aq / b</tt>
+<br><tt>&nbsp;a(2, i) = olddecaydiffB + aq + bb</tt>
+<br><tt>&nbsp;'Source</tt>
+<br><tt>&nbsp;IF rc > 0 THEN a(3, i) = olddecaydiffC + rc * a + bc - rc
+* C * f</tt>
+<br><tt>&nbsp;dfq = D * D + bd</tt>
+<br><tt>&nbsp;dq = C * cd * dfq / (1 + sd * dfq) / (1 + ce * a)</tt>
+<br><tt>&nbsp;a(4, i) = olddecaydiffD + dq / e</tt>
+<br><tt>&nbsp;a(5, i) = olddecaydiffE + dq + be</tt>
+<br><tt>&nbsp;'Foot</tt>
+<br><tt>&nbsp;fq = rf * (f * f + bf) / C</tt>
+<br><tt>&nbsp;a(6, i) = olddecaydiffF + fq / g</tt>
+<br><tt>&nbsp;a(7, i) = olddecaydiffG + fq + bg * C</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt>
+<br><tt></tt>&nbsp;<tt></tt>
+<p><tt>CASE 127 ' Activator-inhibitor-system feedback on the source</tt>
+<br><tt>'&nbsp;&nbsp; if sc>0: Activator has the influence</tt>
+<br><tt>'&nbsp;&nbsp; if cc>0: Inhibitor has the influence, must become
+slower at higher</tt>
+<br><tt>'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; source density otherwhise numerically
+instable</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;aq = C * s * (a * a + ba)</tt>
+<br><tt>&nbsp;a(1, i) = olddecaydiffA + aq / b</tt>
+<br><tt>&nbsp;a(2, i) = olddecaydiffB + aq + bb</tt>
+<br><tt>&nbsp;'Source</tt>
+<br><tt>&nbsp;a(3, i) = olddecaydiffC + sc * a + cc * b / C + bc</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 128 'A set of each other on long range activating but locally
+exclusive</tt>
+<br><tt>' activator-inhibitor-Systems: an alternative way to generate polarity</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rep = a * a + C * C + e *
+e + g * g</tt><tt></tt>
+<p><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = olddecaydiffA + s
+* (a + ba * C) ^ 2 / b / rep</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(2, i) = olddecaydiffB +
+rB * a * a</tt><tt></tt>
+<p><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(3, i) = olddecaydiffC + a(9,
+i) * rc * (C + ba * (a + e)) ^ 2 / D / rep</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(4, i) = olddecaydiffD +
+rd * C ^ 2</tt><tt></tt>
+<p><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(5, i) = olddecaydiffE + a(9,
+i + js) * re * (e + ba * (C + g)) ^ 2 / f / rep</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(6, i) = olddecaydiffF +
+rf * e ^ 2</tt><tt></tt>
+<p><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(7, i) = olddecaydiffG + a(9,
+2 * i) * rg * (g + ba * e) ^ 2 / zh / rep</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(8, i) = olddecaydiffH +
+rh * (g + ba * e) ^ 2</tt>
+<br><tt>NEXT i</tt><tt></tt>
+<p><tt>CASE 131 'Growth cone-- two antagonists</tt>
+<br><tt>'&nbsp; b=uniformely distributed inhibitor s'=s/(sc+c)</tt>
+<br><tt>'&nbsp; c=additional inhibitor that destabilizes activated regions</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay:</tt>
+<br><tt>&nbsp;&nbsp; a(1, i) = olddecaydiffA + s / (sc + c) * (a * a /
+b + ba) / (1! + sa * a * a)</tt>
+<br><tt>&nbsp;&nbsp; a(3, i) = olddecaydiffC + bc * a</tt>
+<br><tt>&nbsp;&nbsp; a(4, i) = s ' external signal, used only for plotting</tt>
+<br><tt>&nbsp;&nbsp; ahorm = ahorm + s / (sc + c) * a * a + bb</tt>
+<br><tt>&nbsp;&nbsp; IF i = js THEN CALL hormone(2, ahorm, ja, js)</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt><tt></tt>
+<p><tt>CASE 132 'for chemotactic orientation, AI system</tt>
+<br><tt>' B, the inhibitor is uniformly distributed within the cell</tt>
+<br><tt>&nbsp;&nbsp; FOR i = ja TO js: GOSUB olddecay:</tt>
+<br><tt>&nbsp;&nbsp; a(1, i) = olddecaydiffA + s * (a * a / b + ba) / (1!
++ sa * a * a)</tt>
+<br><tt>&nbsp;&nbsp; ahorm = ahorm + s * a * a + bb</tt>
+<br><tt>&nbsp;IF i = js THEN CALL hormone(2, ahorm, ja, js)</tt>
+<br><tt>&nbsp;&nbsp; a(3, i) = s</tt>
+<br><tt>&nbsp;&nbsp; NEXT i</tt>
+<br><tt></tt>&nbsp;
+<br><tt></tt>&nbsp;<tt></tt>
+<p><tt>&nbsp;'-------------- End of equations ---------------------------------------------</tt>
+<br><tt>CASE ELSE: GOTO nosuchequation</tt>
+<br><tt>&nbsp;END SELECT</tt>
+<br><tt>&nbsp;&nbsp; NEXT iprint</tt>
+<br><tt>&nbsp;&nbsp; itot&amp; = itot&amp; + KP</tt>
+<br><tt>&nbsp; icountot = icountot + 1</tt>
+<br><tt>&nbsp; IF K3 > 0 AND icountk3 = K3 THEN&nbsp; 'Possible change
+of parameters during calculation</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; SELECT CASE k4'&nbsp; K3: Number of printouts
+after which the change occurs</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CASE 0</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CASE 1'&nbsp; K4 Type of change,&nbsp; DZ new
+parameter</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mess$ = "Basic activator production
+ba changed from" + STR$(ba) + " to" + STR$(dz)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ba = dz</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CASE 2</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mess$ = "decay rate of b (inhibitor
+of substrate) changed from" + STR$(rb) + " to" + STR$(dz)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rb = dz: drb = 1! - rb - 2! * db</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CASE 3</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mess$ = "bb = basic inhibitor/substrate
+production changed from" + STR$(bb) + " to" + STR$(dz)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bb = dz</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CASE 4</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mess$ = "decay rate of the activator
+a changed from" + STR$(ra) + " to" + STR$(dz)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ra = dz: dra = 1! - ra - 2! * da</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CASE 5</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mess$ = "Activator concentration
+will be modified in a fraction of the field"</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; istart = ja: istop = js</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CALL zeingabe(igt, 1, 1, istart,
+dummy, dummy$, "Perturbation starts at cell")</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CALL zeingabe(igt, 1, 1, istop,
+dummy, dummy$, "Perturbation stops at cell")</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF istart &lt; ja THEN istart =
+ja</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF istop = 0 OR istop > js THEN
+istop = js</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CALL zeingabe(igt, 0, 2, istop,
+factor, dummy$, "modifying factor, 1= unchanged")</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FOR i = istart TO istop</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(1, i) = factor * a(1, i): NEXT
+i</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mess$ = ""</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CASE 6</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FOR ix = 1 TO js: a(1, ix) = a(1,
+ix) * dz: NEXT</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mess$ = "the activator concentration
+modified via dz by a factor " + STR$(dz)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CASE 7</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mess$ = "production and decay rate
+of C changed from" + STR$(rc) + " to" + STR$(dz)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rc = dz: drc = 1! - rc - 2! * dc</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CASE 8</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mess$ = "saturation (sa) of the
+activator a changed from" + STR$(sa) + " to" + STR$(dz)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sa = dz</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CASE 9</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mess$ = "CB changed from" + STR$(cb)
++ " to" + STR$(dz)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cb = dz</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CASE 10</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mess$ = "concentration of an array
+to be selected can be changed"</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CALL manipulationxt("A", ja, js,
+kinsert, imxl, imxl2, icc)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CASE 11</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mess$ = "Diffusion rate of activator
+and inhibitor is set to zero"</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; da = 0: db = 0: dra = 1 - ra: drb
+= 1 - rb</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CASE 12</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mess$ = "array C is set to DZ between
+ja+10 and js-10"</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FOR i = ja + 10 TO js - 10: a(3,
+i) = dz: NEXT i</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CASE 13</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mess$ = "DW=(displaywhat) is set
+to a => only the a distribution is shown"</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; displaywas$ = "a"</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CASE 14</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mess$ = "Influx to the pool (be)
+changed from" + STR$(be) + " to " + STR$(dz)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; be = dz</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CASE 15</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mess$ = "array A is set to DZ =
+" + STR$(dz) + "between ja+10 and js-10"</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FOR i = ja + 10 TO js - 10: a(1,
+i) = dz: NEXT i</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CASE 16 'Exponential gradient or bzw sinusoidal
+distribution of the source</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; mess$ = ""</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; IF dy > 0 THEN</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; ' density (for chemotactic reorientation)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; mess$ = "Orientation of the gradient will be
+changed"</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; k2 = k2 + ky / 4 + RND * ky / 3: IF k2 > ky
+THEN k2 = k2 - ky</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; icountk3 = 0</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; inv(12) = k2</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; FOR ix = 1 TO ky:</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(0, ix) = ra * (1! + 2 * KR / 100 * (RND -
+.5)) 'new Source density</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; a(0, ix) = a(0, ix) * EXP(-aB * (ix - 1)) *
+(1! + dy * (COS((ix - k2) * 3.14 / (ky))) ^ 2)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; NEXT ix</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; END IF</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CASE ELSE</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; mess$ = "No such modification is implemented,
+K4 must be 1... 15"</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CALL gtreturn(0, 0)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; END SELECT</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; IF mess$ > "" AND igraph &lt;> 9 THEN CALL cmessage(7,
+-1, 1, 15, 2, ibackcol, mess$, "OK")</tt>
+<br><tt>&nbsp; END IF</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; GOTO simulation</tt><tt></tt>
+<p><tt>&nbsp;&nbsp; '------------------------- END OF LOOP 1 ----------------------------</tt><tt></tt>
+<p><tt>nosuchequation:</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; mess$ = "no equation of this type (KE) is available"</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CALL switchscreen(3, iactive, ibackcol)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; CALL cmessage(4, -1, 1, 15, 4, ibackcol, mess$,
+"OK")</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; GOTO parameter</tt>
+<br><tt></tt>&nbsp;<tt></tt>
+<p><tt>EndSimulation:</tt>
+<br><tt>&nbsp; CALL showprof(KD, 99, displaywas$, a(), ja, js, icc)</tt>
+<br><tt>&nbsp; IF igraph = 9 THEN CALL switchscreen(3, iactive, ibackcol)</tt>
+<br><tt>&nbsp; iparam = 2: ipcontrol = 0</tt>
+<br><tt>&nbsp; GOTO parameter</tt><tt></tt>
+<p><tt>erroverflow:</tt>
+<br><tt>mess$ = "Error, presumable an overflow, num. instability, zero-division"</tt>
+<br><tt>resp$ = "ok": CALL cmessage(4, -1, 1, 15, 4, 0, mess$, resp$)</tt>
+<br><tt>RESUME parameter</tt>
+<br><tt></tt>&nbsp;<tt></tt>
+<p><tt>CASE "M"</tt>
+<br><tt>&nbsp; CALL manipulationxt(pcontrol2$, ja, js, kinsert, imyl, imxl2,
+icc)</tt>
+<br><tt>&nbsp; IF igraph = 9 THEN CALL switchscreen(3, iactive, ibackcol)</tt>
+<br><tt>&nbsp; ipcontrol = 0</tt><tt></tt>
+<p><tt>END SELECT</tt>
+<br><tt>GOTO parameter</tt>
+<br><tt></tt>&nbsp;<tt></tt>
+<p><tt>olddecay:</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a = a(1, i): b = a(2, i): s = a(0,
+i):</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; olddecaydiffA = dra * a + DA * (al
++ a(1, i + 1)): al = a</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; olddecaydiffB = drb * b + db * (bl
++ a(2, i + 1)): bl = b</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF KN > 2 THEN</tt>
+<br><tt>&nbsp;C = a(3, i): D = a(4, i):</tt>
+<br><tt>&nbsp;olddecaydiffC = drc * C + DC * (cl + a(3, i + 1)): cl = C</tt>
+<br><tt>&nbsp;olddecaydiffD = drd * D + DD * (dl + a(4, i + 1)): dl = D</tt>
+<br><tt>&nbsp;IF KN > 4 THEN</tt>
+<br><tt>&nbsp;&nbsp; e = a(5, i): f = a(6, i): g = a(7, i):</tt>
+<br><tt>&nbsp;&nbsp; olddecaydiffE = dre * e + DE * (el + a(5, i + 1)):
+el = e</tt>
+<br><tt>&nbsp;&nbsp; olddecaydiffF = drf * f + DF * (fl + a(6, i + 1)):
+fl = f</tt>
+<br><tt>&nbsp;&nbsp; olddecaydiffG = drg * g + dg * (gl + a(7, i + 1)):
+gl = g</tt>
+<br><tt>&nbsp;&nbsp; IF KN > 7 THEN</tt>
+<br><tt>&nbsp;&nbsp; zh = a(8, i):</tt>
+<br><tt>&nbsp;&nbsp; olddecaydiffH = drh * zh + dh * (zhl + a(8, i + 1)):
+zhl = zh</tt>
+<br><tt>&nbsp;END IF</tt>
+<br><tt>&nbsp;END IF</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; END IF</tt>
+<br><tt>RETURN</tt><tt></tt>
+<p><tt>END&nbsp; '==================&nbsp; End of Main-program&nbsp; ==========</tt><tt></tt>
+<p><tt>SUB hormone (ila, ahorm, ja, js)</tt>
+<br><tt>SHARED a(), flv()</tt>
+<br><tt>rx = flv(7 * ila - 2)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a(ila, 1) = a(ila, 1) * (1!
+- rx) + ahorm / (js - ja + 1)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FOR iic = ja TO js</tt>
+<br><tt>&nbsp; a(ila, iic) = a(ila, 1)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NEXT iic</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ahorm = 0</tt>
+<br><tt>&nbsp; EXIT SUB</tt>
+<br><tt>END SUB</tt><tt></tt>
+<p><tt>SUB oscillation (ila, C, D, olddecaydiffC, olddecaydiffD, ja, js)</tt>
+<br><tt>SHARED a(), flv()</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; ila7 = 7 * ila</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; cqf = C * C</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; cq = flv(ila7 - 2) * D * (cqf / (1! +
+flv(ila7) * cqf) + flv(ila7 - 1))</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; C = olddecaydiffC + cq</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; D = olddecaydiffD - cq + flv(ila7 + 6)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; FOR jic = 1 TO js</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(ila, jic) = C</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; a(ila + 1, jic) = D</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp; NEXT jic</tt>
+<br><tt>&nbsp; EXIT SUB</tt>
+<br><tt>END SUB</tt>
+<br><tt></tt>&nbsp;
+<br><tt></tt>&nbsp;
+</body>
+</html>

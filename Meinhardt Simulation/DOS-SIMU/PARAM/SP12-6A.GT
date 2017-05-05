@@ -1,0 +1,151 @@
+Tissue polarity results from a feedback on the source density
+cls
+#
+In the following simulation it is shown that in an activator-inhibitor
+systems regeneration can occur that is accompanied by a polarity
+reversal. First a normal A-I pattern will be generated.
+
+r12-6c
+ First a normal A-I pattern will be generated.....
+i
+<1
+c
+#
+ ....the activated region will be now removed....
+
+mc
+s
+15
+25
+#
+In the remaining field the activator distribution is nearly flat. The
+highest inhibitor points toward to originally activated side. Therefore,
+the activation can regenerate at the ORIGINALLY NON-ACTIVATED side. In other
+word, regeneration may be connected with a reversal of polarity.
+kt=150
+c
++
+#
+Such a polarity reversal is know to occur in some developing systems.
+Separation of a sea urchin embryo leads to regeneration of both
+fragments, one with normal, one with reversed polarity. Both fragments
+are mirror-symmetric.
+mr
+k4=14
+Ke=211
+kd=23
+d
+<2
+ Also in a regenerating sea urchin, one half needs more time...
+c
+#
+Other systems such as the hydra, regenerate ALWAYS with the correct
+polarity. This can result from a feedback of the A-I system on the
+ability of the cells to produce the activator and inhibitor. This
+ability, the so-called source density, is shown here in green.
+r12-6d
+i
+<1
+c
+kg=0
+kp=20
+c
+#
+Here the inhibitor (red) has had a feedback on the source density
+(green). Since the source density has a much longer time constant than
+the A-I system, the source density remains essentially unchanged during
+regeneration. By its orienting influence the polarity is maintained.
+mc
+s
+24
+
+#
+Also in this case the activator distribution is flat and the inhibitor
+has its highest level at the original "head side". But now the highest
+concentration of the source density (green) determines where the
+activation will occur: here the process in a time laps display.
+c
+ On long run, also the source density obtains normal levels
+c
++
+#
+A second point is essential: the suppression of secondary maxima during
+growth. Since the source density declines in the non-activated region, the
+trigger of a new maximum becomes more and more difficult although the
+inhibitor declines too. For comparison, a simulation without this feedback...
+ Without feedback on the source: secondary maxima are formed
+Kt=56
+kp
+200
+kg
+3
+rc=0
+cc=0
+i
+<1
+s
++
+#
+The suppression of secondary maxima is very important since usually no secon-
+dary organizing regions should appear during growth. As shown, this can be
+accomplished by a feedback of the pattern on the source density. In the
+following simulation, the source obtains a steeper slope than the inhibitor
+r12-6e
+ Source has a steeper slope than the inhibitor: no secondary maxima
+i
+<1
+s
+kg=0
+kt=12
+c
++
+#
+ ...nevertheless, the system can regenerate...
+
+kt=60
+ ... and the graded source distribution takes care for the correct polarity
+mc
+s
+20
+
+<1
+c
++
+#
+Conclusion: a feedback of the pattern onto the ability of the cells to
+produce the pattern (i.e. on the source density) causes a stable polarity
+in the tissue
+
+#
+The source density can be used to couple two systems such that a maximum
+of each emerges at opposite sides of the field. Such a pattern is required
+for the initiation of the head (blue) and the foot (black) in hydra:
+
+r12-6a
+ Activation of two systems at opposite positions
+i
++
+c
+ ...The change of the source density is a slow process
+c
+#
+The head signal increases the source density, the foot signal (black)
+lowers it. Upon regeneration, the head appears at the highest, the foot
+at the region of lowest source density. Therefore, head and foot appear
+at opposite positions although they don't inhibit each other directly.
+mc
+s
+1
+6
+#
+Due to the absence of a direct inhibition, foot regeneration is possible
+also close to an existing head, as observed. Note that the trigger of
+the food signal is without influence on the head signal.
+
+kt=160
+ Regeneration of a foot is possible even close to an existing head
+c
+#
+      This was a GUIDED TOUR on the influence of the source density
+
+EOF-GT

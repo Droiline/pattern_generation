@@ -1,0 +1,176 @@
+Basic pattern and types of displays in the  XY-Program
+igtdelay
+80
+#
+Demonstration of the possible modes of graphic display in the XY-program:
+first a pattern in two dimensions will be calculated. It will be used later
+on to illustrate other possibilities....
+
+r1
+Kt=75
+ A regular pattern results after a local perturbation
+s
++
+#
+This was a display in the EGA-mode. In the VGA-mode, the resolution is
+better, but the display will flicker during simulations:
+
+vga
+d
++
+kt=30
+c
++
+#
+The view can be changed with the command PER.
+First more a view from above (per = .4)
+
+per
+.4
+d
++
+#
+Now a view from more from the front (per = .1)
+
+per
+.1
+d
++
+per
+.2
+#
+This was KD = 4; with KD = 1 only lines in X-direction will be drawn;
+      (sometimes helpful if many cells are displayed)
+
+kd
+1
+d
++
+#
+This was  kd=1. With KD = 5, the concentrations of the cells are shown
+as blocks:
+
+kd
+5
+  KD=5
+d
++
+#
+This display is helpful when cells become activated in an all-or-nothing
+manner. This happens if the diffusion of the activator is zero (DA = 0)
+
+DA
+0
+c
++
+#
+Without diffusion, the concentrations become rather high. With the
+command f (factor for display) this can be changed
+
+f
+.1
+.1
+d
++
+#
+This was kd=5. With KD = 6 only those cells are shown whose concentrations
+are above a threshold:
+
+kd
+6
+d
++
+#
+With KD = 8 the concentration of cells is shown as a density of pixels.
+The displays can be superimposed
+
+kd
+8
+f
+g.3
+x
+g100
+y
+g100
+dx
+24
+d
++
+#
+A similar display is possible with KD=11. Density of dots is proportional
+to the (relative) concentration.
+
+kd
+11
+f
+g.5
+d
++
+#
+This was kd=11. Via F4 one can obtain also a schematic plot with
+the maximum and, if the array is not to large, the relative
+concentration. Size of the field is given too. With F5, these
+distributions can be printed.
+M4
+a
+#
+With the command d the original display can be restored
+
++
+d
++
+#
+With kd= 12 one can observe pattern formation also in this schematic
+display
+
+r1
+vga
+kd=12
+DW
+a
+i
+<1
+n
++
+#
+With KD = 7 one can plot the distributions around a cylinder. The
+distance of a maximum to the surface of the cylinder is a measure for
+the concentration; used for the simulation of leaf initiation at a
+growing shoot.
+r12-4
+i
+kt
+25
+c
++
+#
+The display KD=10 was developed to show the formation of net-like
+structures:
+
+r12-8b
+kx=10
+ky=10
+kt=10
+s
++
+#
+Sometimes it can be helpful to combine several modes of displays:
+In the following, the differentiation of cells is shown with KD=6
+(blocks), the activator-, inhibitor and substrate distributions
+are drawn as 3-D nets (KD=3):
+r12-8a
+kt
+30
+S
++
+#
+This is accomplished by KD=0 and an individual control by the command ITYP.
+To draw e.g. the distribution of the substance d (the fourth distribution)
+with the display mode 8, type the following command: ityp4 <RETURN> 8 <RETURN>
+Substance d will be plotted in the pixel mode above the other distributions
+ityp4
+8
+n
+c
++
+EOF-GT

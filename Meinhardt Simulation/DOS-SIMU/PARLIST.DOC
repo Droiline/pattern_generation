@@ -1,0 +1,1840 @@
+This file contains a list of all prerecorded parameter sets used in
+the simulations. If called for the first time (selected by the para-
+meter KE), the corresponding code for the equation is listed too.
+
+________________________________________________________________________________
+
+CASE 21 '- ACTIVATOR - INHIBITOR MECHANISM: B IS INHIBITOR --------------
+     a(1, i) = olddecaydiffA + s * (a * a / b + ba)
+     a(2, i) = olddecaydiffB + s * a * a + bb
+
+File: sp1.prmsp1
+                     Stable periodic pattern in space
+  45-KT   12-KP   1-KX  20-KY   1-KD   1-KI  21-KE   3-KR   2-KN   0-KG
+  2-K1   2-K2   0-K3   0-K4       16.0000-DX  0.0000-DY 12.0000-DZ  ab-DW
+  0.0100-DA  0.0500-RA  0.0100-BA  0.0000-SA  0.0000-CA  1.5000-AA  1.5000-GA
+  0.4000-DB  0.0800-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.5000-AB  1.5000-GB
+
+File: sp1A.prm
+                    A-I, Stable periodic pattern, KD=3
+  90-KT   10-KP   1-KX  30-KY   3-KD   1-KI  21-KE   1-KR   2-KN   0-KG
+  2-K1   2-K2   0-K3   0-K4       18.0000-DX  0.0000-DY 12.0000-DZ  sab-DW
+  0.0100-DA  0.0500-RA  0.0100-BA  0.0000-SA  0.0000-CA  1.5000-AA  1.5000-GA
+  0.4000-DB  0.0800-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.5000-AB  1.5000-GB
+
+File: sp1C.prm
+              Generation of a maximum at a terminal position
+ 200-KT   30-KP   1-KX  12-KY   3-KD   8-KI  21-KE   3-KR   2-KN   0-KG
+  1-K1   2-K2   0-K3   8-K4       36.0000-DX  0.0000-DY 12.0000-DZ  sab-DW
+  0.0100-DA  0.0040-RA  0.0500-BA  0.0000-SA  0.0000-CA  2.0000-AA  2.0000-GA
+  0.4000-DB  0.0060-RB  0.0000-BB  0.0000-SB  0.0000-CB  0.0000-AB  1.9000-GB
+
+File: sp1D.prm
+                    Generation of a gradient during growth
+ 200-KT   30-KP   7-KX   9-KY   3-KD   1-KI  21-KE   3-KR   2-KN  30-KG
+  1-K1   2-K2   0-K3   8-K4       38.0000-DX  0.0000-DY 12.0000-DZ  ab-DW
+  0.0100-DA  0.0050-RA  0.0500-BA  0.0000-SA  0.0000-CA  1.8500-AA  1.8500-GA
+  0.4000-DB  0.0090-RB  0.0000-BB  0.0000-SB  0.0000-CB  0.0000-AB  1.9000-GB
+
+
+________________________________________________________________________________
+
+
+File: sp12-9.prm    (Figure 12-9)
+      Orientation of an oscillating A-I system by a weak external cue
+ 360-KT    6-KP   1-KX  17-KY  16-KD   8-KI  21-KE   0-KR   2-KN   0-KG
+ 11-K1   1-K2 150-K3  16-K4        6.0000-DX  0.0500-DY  5.0000-DZ  abs-DW
+  0.0050-DA  0.0400-RA  0.0800-BA  0.0000-SA  0.0000-CA  0.5000-AA  0.5000-GA
+  0.4000-DB  0.0100-RB  0.0000-BB  0.0000-SB  0.0000-CB  0.0000-AB  1.0000-GB
+
+File: sp22.prm    (Figure 2.2)
+               Pattern formation after a local perturbation
+ 100-KT   25-KP   1-KX  19-KY   3-KD   3-KI  21-KE   0-KR   2-KN   0-KG
+  2-K1   2-K2   0-K3   0-K4       30.0000-DX  0.0000-DY 12.0000-DZ  ab-DW
+  0.0100-DA  0.0100-RA  0.0500-BA  0.0000-SA  0.0000-CA  1.2000-AA  1.0000-GA
+  0.4000-DB  0.0150-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.4000-AB  1.0000-GB
+
+File: sp23A.prm    (Figure 2.3A)
+                     Stable periodic pattern in space
+  45-KT   12-KP   1-KX  20-KY   2-KD   1-KI  21-KE   3-KR   2-KN   0-KG 
+  2-K1   2-K2   0-K3   0-K4       20.0000-DX  0.0000-DY 12.0000-DZ  ab-DW     
+  0.0100-DA  0.0500-RA  0.0100-BA  0.0000-SA  0.0000-CA  1.5000-AA  1.5000-GA
+  0.4000-DB  0.0800-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.5000-AB  1.5000-GB
+
+File: sp23B.prm    (Figure 2.3B)
+                Stripes perpendicular to the growing edge
+ 455-KT   10-KP   1-KX 155-KY   9-KD   1-KI  21-KE   3-KR   2-KN   0-KG 
+  2-K1   2-K2   0-K3   0-K4        4.0000-DX  0.0000-DY 12.0000-DZ  a-DW      
+  0.0050-DA  0.0100-RA  0.0500-BA  0.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.4000-DB  0.0150-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  1.0000-GB
+
+File: sp23C.prm    (Figure 2.3C)
+                  Stable pattern, periodic in space; kd=3
+  90-KT    6-KP   1-KX  40-KY   3-KD   1-KI  21-KE   3-KR   2-KN   0-KG 
+  2-K1   2-K2   0-K3   0-K4       15.0000-DX  0.0000-DY 12.0000-DZ  ab-DW     
+  0.0100-DA  0.0500-RA  0.0100-BA  0.0000-SA  0.0000-CA  1.5000-AA  1.5000-GA
+  0.4000-DB  0.0800-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.5000-AB  1.5000-GB
+
+----------------------------------------------------------------------------
+
+CASE 23 '- ACTIVATOR - INHIBITOR MECHANISM: B IS INHIBITOR --------------
+     'with saturation and Michaelis-Menten-cinetics
+     a(1, i) = olddecaydiffA + s * (a * a / (sb + b) / (1 + sA * a * a) + ba)
+     a(2, i) = olddecaydiffB + s * a * a + bb
+
+File: sp24A.prm    (Figure 2.4A)
+                             Width of stripes
+ 455-KT   15-KP   1-KX  76-KY   9-KD   1-KI  23-KE   3-KR   2-KN   0-KG
+  2-K1   2-K2   0-K3   0-K4        8.0000-DX  0.0000-DY 12.0000-DZ  ab-DW
+  0.0010-DA  0.0100-RA  0.0500-BA  0.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.4000-DB  0.0150-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  1.0000-GB
+
+File: sp24B.prm    (Figure 2.4B)
+                  Broad stripes due to saturation (sa=.3)
+ 455-KT   20-KP   1-KX  60-KY   9-KD   1-KI  23-KE   3-KR   2-KN   0-KG
+  2-K1   2-K2   0-K3   0-K4        8.0000-DX  0.0000-DY 12.0000-DZ  a-DW
+  0.0010-DA  0.0100-RA  0.0500-BA  0.3000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.4000-DB  0.0150-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  1.0000-GB
+
+File: sp24D.prm    (Figure 2.4D)
+                  Early fixation of an evolving pattern
+ 455-KT   15-KP   1-KX  76-KY   9-KD   1-KI  21-KE   3-KR   2-KN   0-KG
+  2-K1   2-K2  45-K3  11-K4        8.0000-DX  0.0000-DY 12.0000-DZ  a-DW
+  0.0080-DA  0.0100-RA  0.0100-BA  0.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.4000-DB  0.0150-RB  0.0055-BB  0.0000-SB  0.0000-CB  1.0000-AB  1.0000-GB
+
+File: sp24E.prm    (Figure 2.4E)
+                       Early fixation, larger field
+ 455-KT   30-KP   1-KX 155-KY   9-KD   1-KI  21-KE   3-KR   2-KN   0-KG
+  2-K1   2-K2  32-K3  11-K4        4.0000-DX  0.0000-DY 12.0000-DZ  a-DW
+  0.0080-DA  0.0100-RA  0.0100-BA  0.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.3500-DB  0.0150-RB  0.0055-BB  0.0000-SB  0.0000-CB  1.0000-AB  1.0000-GB
+
+
+________________________________________________________________________________
+
+CASE 24 '- ACTIVATOR-DEPLETION MECHANISM:  ----
+     '   a activator,  b substrate,
+     '   a(8,i) may contain a stable pattern (normalized to 1)
+     aq = s * b * (a * a / (1 + sA * a * a) + ba)
+     a(1, i) = olddecaydiffA + aq
+     a(2, i) = olddecaydiffB - aq + bb * a(8, i)
+	IF a(2, i) < 0 THEN a(2, i) = 0
+
+File: sp25.prm    (Figure 2.5)
+                Activator-depletion mechanism, periodic, 3D
+  50-KT   24-KP   1-KX  27-KY   2-KD   1-KI  24-KE   0-KR   2-KN   0-KG
+  1-K1   2-K2   0-K3   0-K4       12.0000-DX  0.0000-DY 12.0000-DZ  ab-DW
+  0.0100-DA  0.0400-RA  0.0000-BA  0.0100-SA  0.0000-CA  3.0000-AA  2.7000-GA
+  0.3500-DB  0.0000-RB  0.0600-BB  0.0000-SB  0.0000-CB  1.0000-AB  0.7000-GB
+
+File: sp25A.prm    (Figure 2.5)
+        Activator-depleted substrate model, periodic pattern, KD=3
+ 150-KT   12-KP   1-KX  27-KY   3-KD   1-KI  24-KE   1-KR   2-KN   0-KG
+  1-K1   2-K2   0-K3   0-K4       20.0000-DX  0.0000-DY 12.0000-DZ  sab-DW
+  0.0100-DA  0.0400-RA  0.0000-BA  0.0100-SA  0.0000-CA  1.5000-AA  1.5000-GA
+  0.3500-DB  0.0000-RB  0.0600-BB  0.0000-SB  0.0000-CB  1.0000-AB  0.7000-GB
+
+File: sp25B.prm    (Figure 2.5)
+            Activator-depletion mechanism, stripes as on shells
+ 455-KT   30-KP   1-KX  80-KY   9-KD   1-KI  24-KE   3-KR   2-KN   0-KG
+  1-K1   2-K2   0-K3   0-K4        7.0000-DX  0.0000-DY 12.0000-DZ  a-DW
+  0.0040-DA  0.0200-RA  0.0000-BA  0.0050-SA  0.0000-CA  1.5000-AA  1.5000-GA
+  0.3000-DB  0.0000-RB  0.0300-BB  0.0000-SB  0.0000-CB  1.0000-AB  0.7000-GB
+
+File: sp26B.prm    (Figure 2.6)
+ 435-KT   20-KP  75-KX  85-KY   6-KD   1-KI  23-KE   3-KR   2-KN   6-KG
+  1-K1   2-K2   0-K3   0-K4        4.0000-DX  0.0000-DY 12.0000-DZ  a-DW
+  0.0100-DA  0.0200-RA  0.0300-BA  0.0080-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.4000-DB  0.0600-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  1.0000-GB
+
+File: sp26D.prm    (Figure 2.6)
+        Wedges generated by growth; diffusion is early switched off
+ 435-KT   20-KP  75-KX  85-KY   6-KD   1-KI  23-KE   3-KR   2-KN   6-KG
+  1-K1   2-K2  80-K3  11-K4        4.0000-DX  0.0000-DY 12.0000-DZ  a-DW
+  0.0100-DA  0.0200-RA  0.0300-BA  0.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.4000-DB  0.0600-RB  0.0200-BB  0.0000-SB  0.0000-CB  1.0000-AB  1.0000-GB
+
+File: sp27A.prm    (Figure 2.7)
+    Activator-Inhibitor system in a growing field: insertion of maxima
+  50-KT  200-KP  29-KX  33-KY   2-KD   1-KI  21-KE   3-KR   2-KN   2-KG
+  1-K1   2-K2   0-K3   0-K4        8.0000-DX  0.0000-DY 12.0000-DZ  ab-DW
+  0.0100-DA  0.0200-RA  0.1500-BA  0.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.4000-DB  0.0250-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  1.0000-GB
+
+File: sp27B.prm    (Figure 2.7)
+ Activator-depleted substrate mechanism in a growing field: split of maxima
+  55-KT  500-KP  30-KX  33-KY   2-KD   1-KI  24-KE   3-KR   2-KN   2-KG
+  1-K1   2-K2   0-K3   0-K4        8.0000-DX  0.0000-DY 12.0000-DZ  ab-DW
+  0.0050-DA  0.0050-RA  0.0000-BA  0.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.4000-DB  0.0000-RB  0.0080-BB  0.0000-SB  0.0000-CB  1.0000-AB  0.6000-GB
+
+
+________________________________________________________________________________
+
+CASE 27 'AUTOCATALYSIS BY AN INHIBITION OF AN INHIBITION (A AND C)
+   FOR i = ja TO js: GOSUB olddecay
+     a(1, i) = olddecaydiffA + s / (sA + C * C) + ba
+     a(2, i) = olddecaydiffB + rB * a
+     a(3, i) = olddecaydiffC + rc / (sc + a * a / (sb + b * b))
+
+File: sp28.prm    (Figure 2.8)
+               Activation by an inhibition of an inhibition
+ 440-KT   12-KP   1-KX  60-KY   6-KD   1-KI  27-KE   3-KR   3-KN   0-KG 
+  2-K1   2-K2   0-K3   0-K4        5.0000-DX  0.0000-DY 12.0000-DZ  ac-DW     
+  0.0050-DA  0.0200-RA  0.0000-BA  0.1000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.4000-DB  0.0300-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  1.0000-GB
+  0.0050-DC  0.0200-RC  0.0000-BC  0.1000-SC  0.0000-CC  1.0000-AC  1.0000-GC
+
+File: sp29.prm    (Figure 2.9)
+   Activator-inhibitor mechanism: gradient formation in a growing field
+  60-KT  200-KP  12-KX  14-KY   2-KD   1-KI  21-KE   3-KR   2-KN   5-KG 
+  1-K1   2-K2   0-K3   0-K4       12.0000-DX  0.0000-DY 12.0000-DZ  ab-DW     
+  0.0150-DA  0.0050-RA  0.0200-BA  0.0000-SA  0.0000-CA  1.0000-AA  1.5000-GA
+  0.4000-DB  0.0080-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  1.5000-GB
+
+File: sp29A.prm    (Figure 2.9)
+                  Generation of a gradient during growth
+ 130-KT  100-KP   7-KX   9-KY   3-KD   1-KI  21-KE   3-KR   2-KN  20-KG 
+  1-K1   2-K2   0-K3   8-K4       38.0000-DX  0.0000-DY 12.0000-DZ  ab-DW     
+  0.0100-DA  0.0050-RA  0.0500-BA  0.0000-SA  0.0000-CA  1.8500-AA  1.8500-GA
+  0.4000-DB  0.0090-RB  0.0000-BB  0.0000-SB  0.0000-CB  0.0000-AB  1.9000-GB
+
+File: sp29B.prm    (Figure 2.9)
+               Properties of an organizing region, use GT29
+ 100-KT   30-KP   1-KX  22-KY   3-KD   1-KI  21-KE   3-KR   2-KN   0-KG 
+  2-K1   2-K2   0-K3   8-K4       26.0000-DX  0.0000-DY 12.0000-DZ  ab-DW     
+  0.0100-DA  0.0050-RA  0.0700-BA  0.0000-SA  0.0000-CA  3.0000-AA  0.0000-GA
+  0.4000-DB  0.0090-RB  0.0000-BB  0.0000-SB  0.0000-CB  0.0000-AB  1.0000-GB
+
+File: sp29C.prm    (Figure 2.9)
+              Generation of a maximum at a terminal position
+ 200-KT   30-KP   1-KX  12-KY   3-KD   8-KI  21-KE   3-KR   2-KN   0-KG 
+  1-K1   2-K2   0-K3   8-K4       48.0000-DX  0.0000-DY 12.0000-DZ  sab-DW    
+  0.0100-DA  0.0040-RA  0.0500-BA  0.0000-SA  0.0000-CA  2.0000-AA  2.0000-GA
+  0.4000-DB  0.0060-RB  0.0000-BB  0.0000-SB  0.0000-CB  0.0000-AB  1.9000-GB
+
+File: sp32.prm    (Figure 3.2)
+ Oscillation in a single cell, use the command GT32  to get the simulation
+ 120-KT    4-KP   1-KX   1-KY  20-KD   1-KI  23-KE   0-KR   2-KN   0-KG 
+  3-K1   2-K2   0-K3   0-K4        1.0000-DX 80.0000-DY  0.0000-DZ  ab-DW     
+  0.0000-DA  0.0800-RA  0.0400-BA  0.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.0000-DB  0.0400-RB  0.0020-BB  0.0000-SB  0.0000-CB  1.0000-AB  0.2000-GB
+
+File: sp33.prm    (Figure 3.3)
+  Activator-depletion mechanism, oscillation in a single cell, use GT33
+ 175-KT    4-KP   1-KX   1-KY  20-KD   1-KI  24-KE   0-KR   2-KN   0-KG 
+  3-K1   2-K2   0-K3   1-K4        1.0000-DX 80.0000-DY  0.1000-DZ  ab-DW     
+  0.0000-DA  0.0800-RA  0.0200-BA  0.0000-SA  0.0000-CA  0.0000-AA  0.0000-GA
+  0.0000-DB  0.0030-RB  0.0400-BB  0.0000-SB  0.0000-CB  1.0000-AB  0.1000-GB
+
+File: sp34.prm    (Figure 3.4)
+                        Oscillation, XT-3D- display
+ 110-KT    8-KP   1-KX  24-KY   2-KD   1-KI  21-KE   1-KR   2-KN   0-KG 
+  1-K1   2-K2   0-K3   0-K4        7.0000-DX  0.0000-DY 12.0000-DZ  ab-DW     
+  0.1000-DA  0.0600-RA  0.0500-BA  0.0000-SA  0.0000-CA  0.5000-AA  0.5000-GA
+  0.4000-DB  0.0300-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  1.0000-GB
+
+File: sp34A.prm    (Figure 3.4)
+                            Oscillations, kd=3
+ 500-KT    2-KP   1-KX  24-KY   3-KD   1-KI  21-KE   1-KR   2-KN   0-KG 
+  1-K1   2-K2   0-K3   0-K4       25.0000-DX  0.0000-DY 12.0000-DZ  ab-DW     
+  0.1000-DA  0.0600-RA  0.1000-BA  0.0000-SA  0.0000-CA  0.5000-AA  0.5000-GA
+  0.4000-DB  0.0300-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  1.0000-GB
+
+File: sp35A.prm    (Figure 3.5)
+          Synchronous oscillation, parallel stripes on the shell
+ 455-KT    4-KP   1-KX 100-KY   9-KD  10-KI  23-KE   5-KR   2-KN   0-KG 
+  3-K1   2-K2   0-K3   5-K4        6.0000-DX  0.0000-DY  0.0000-DZ  a-DW      
+  0.0150-DA  0.0500-RA  0.0200-BA  0.0000-SA  0.0000-CA  0.0000-AA  0.1000-GA
+  0.0000-DB  0.0300-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  0.2000-GB
+
+File: sp35B.prm    (Figure 3.5)
+                    Thicker stripes due to saturation
+ 430-KT    4-KP   1-KX  50-KY   9-KD  10-KI  23-KE   5-KR   2-KN   0-KG 
+  3-K1   2-K2   0-K3   5-K4        6.0000-DX  0.0000-DY  0.0000-DZ  a-DW      
+  0.0150-DA  0.0500-RA  0.0200-BA  0.6000-SA  0.0000-CA  0.0000-AA  0.1000-GA
+  0.0000-DB  0.0300-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  0.2000-GB
+
+File: sp35C.prm    (Figure 3.5)
+    Stripes parallel to the egde change to a perpendicular orientation
+ 430-KT    6-KP   1-KX  50-KY   9-KD  10-KI  21-KE   3-KR   2-KN   0-KG
+  3-K1   2-K2 200-K3   2-K4        6.0000-DX  0.0000-DY  0.0600-DZ  a-DW
+  0.0150-DA  0.0500-RA  0.0200-BA  0.0000-SA  0.0000-CA  0.0000-AA  0.1000-GA
+  0.4000-DB  0.0300-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  0.2000-GB
+
+File: sp37.prm    (Figure 3.7)
+       Role of pace maker, use command GT37 for complete simulation
+ 440-KT   10-KP   1-KX 100-KY   9-KD  10-KI  24-KE  10-KR   2-KN   0-KG 
+  3-K1   2-K2   0-K3   5-K4        3.0000-DX  0.0000-DY  0.0000-DZ  ab-DW     
+  0.0050-DA  0.0800-RA  0.0080-BA  0.0500-SA  0.0000-CA  0.0000-AA  0.1000-GA
+  0.0000-DB  0.0060-RB  0.0400-BB  0.0600-SB  0.0000-CB  1.3000-AB  2.0000-GB
+
+File: sp37A.prm    (Figure 3.7)
+             Pace-maker and wave formation - the growing egde
+ 600-KT    8-KP   1-KX 100-KY  19-KD  10-KI  24-KE  10-KR   2-KN   0-KG 
+  3-K1   2-K2   0-K3   5-K4        6.0000-DX  0.0000-DY  0.0000-DZ  ab-DW     
+  0.0050-DA  0.0800-RA  0.0080-BA  0.0500-SA  0.0000-CA  0.0000-AA  0.1000-GA
+  0.0000-DB  0.0060-RB  0.0400-BB  0.0600-SB  0.0000-CB  1.3000-AB  2.0000-GB
+
+File: sp38.prm    (Figure 3.8)
+        For simulation of pattern regulation in Strigilla, use GT38
+ 440-KT    8-KP   1-KX  90-KY   9-KD  10-KI  24-KE   8-KR   2-KN   0-KG 
+  3-K1   2-K2   0-K3   5-K4        3.0000-DX  0.0000-DY  0.0000-DZ  a-DW      
+  0.0050-DA  0.0800-RA  0.0080-BA  0.0500-SA  0.0000-CA  0.0000-AA  0.1000-GA
+  0.0000-DB  0.0060-RB  0.0400-BB  0.0600-SB  0.0000-CB  1.3000-AB  2.0000-GB
+
+
+________________________________________________________________________________
+
+CASE 242 '- NATICA EUZONA
+     dra = 1 - ra * a(8, i) - 2! * DA
+     GOSUB olddecay
+     aq = a(8, i) * s * b * (a * a / (1! + sA * a * a) + ba)
+     a(1, i) = olddecaydiffA + aq
+     a(2, i) = olddecaydiffB - aq + bb * a(8, i)
+
+File: sp42.prm    (Figure 4.2)
+ Natica euzona: an invisible stable system controls oscillating pigmentation
+ 395-KT   12-KP   1-KX 250-KY  11-KD   9-KI 242-KE  15-KR   2-KN   0-KG 
+140-K1  25-K2   0-K3  90-K4        2.0000-DX  3.0000-DY 30.0000-DZ  a-DW      
+  0.0150-DA  0.1000-RA  0.0100-BA  0.5000-SA  0.1000-CA  2.5000-AA  0.0000-GA
+  0.0500-DB  0.0000-RB  0.0500-BB  0.0000-SB  0.0000-CB  0.0000-AB  2.5000-GB
+
+File: sp43.prm    (Figure 4.3)
+    Stable and oscilllating patterns: termination of travelling waves
+ 390-KT   20-KP   1-KX  35-KY  11-KD   7-KI  24-KE   1-KR   2-KN   0-KG 
+ 65-K1  34-K2   0-K3   0-K4        4.0000-DX  1.0000-DY  0.0300-DZ  ab-DW     
+  0.0030-DA  0.1000-RA  0.0040-BA  0.0500-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.0000-DB  0.0000-RB  0.0200-BB  0.0000-SB  0.0000-CB  0.0000-AB  2.5000-GB
+
+File: sp45B.prm    (Figure 4.5)
+           Amorina marcandrewi: more frequent wave terminations
+ 390-KT   16-KP   1-KX 140-KY  11-KD   9-KI  24-KE   3-KR   2-KN   0-KG 
+ 75-K1  10-K2   0-K3  45-K4        3.0000-DX  1.0000-DY 20.0000-DZ  a-DW      
+  0.0020-DA  0.1000-RA  0.0020-BA  8.0000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0010-DB  0.0000-RB  0.0200-BB  0.0000-SB  0.0000-CB  0.2000-AB  6.0000-GB
+
+File: sp45C.prm    (Figure 4.5)
+                    Amorina undulata, less termination
+ 390-KT    8-KP   1-KX 265-KY  11-KD   9-KI  24-KE   2-KR   2-KN   0-KG 
+160-K1  30-K2   0-K3  80-K4        1.0000-DX  1.0000-DY 10.0000-DZ  a-DW      
+  0.0030-DA  0.1000-RA  0.0030-BA  2.0000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.0000-RB  0.0400-BB  0.0000-SB  0.0000-CB  0.0000-AB  2.0000-GB
+
+File: sp46.prm    (Figure 4.6)
+    Palmadusta diluculum (continue with N to get the full steep lines)
+ 390-KT    8-KP   1-KX 300-KY  11-KD   9-KI  24-KE   2-KR   2-KN   0-KG 
+160-K1  30-K2   0-K3  90-K4        2.0000-DX -0.4000-DY 10.0000-DZ  a-DW      
+  0.0030-DA  0.1000-RA  0.0050-BA  4.0000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.0000-RB  0.0400-BB  0.0000-SB  0.0000-CB  0.0000-AB  2.0000-GB
+
+File: sp47.prm    (Figure 4.7)
+                             Connected arches
+ 390-KT   16-KP   1-KX 180-KY  11-KD   9-KI 242-KE  10-KR   2-KN   0-KG 
+100-K1  30-K2   0-K3  60-K4        1.0000-DX  3.0000-DY 20.0000-DZ  a-DW      
+  0.0200-DA  0.1000-RA  0.0100-BA  0.5000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0600-DB  0.0000-RB  0.0250-BB  0.0000-SB  0.0000-CB  0.0000-AB  2.0000-GB
+
+File: sp48C.prm    (Figure 4.8)
+                                 Nautilus
+ 550-KT   10-KP   1-KX  60-KY  15-KD   7-KI  24-KE   0-KR   2-KN   0-KG 
+  3-K1   0-K2   0-K3   4-K4        2.0000-DX  0.0000-DY  0.0000-DZ  a-DW      
+  0.0600-DA  0.1000-RA  0.0080-BA  3.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.1500-DB  0.0000-RB  0.0450-BB  0.0000-SB  0.0000-CB  2.5000-AB  2.5000-GB
+
+File: sp48D.prm    (Figure 4.8)
+                            Nautilus, side view
+ 390-KT   10-KP   1-KX 140-KY  11-KD   7-KI  24-KE   0-KR   2-KN   0-KG 
+160-K1  70-K2   0-K3   4-K4        2.0000-DX  2.5000-DY  0.0000-DZ  a-DW      
+  0.0600-DA  0.1000-RA  0.0072-BA  3.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.1500-DB  0.0000-RB  0.0500-BB  0.0000-SB  0.0000-CB  0.0000-AB  2.5000-GB
+
+File: sp49.prm    (Figure 4.9)
+      Voluta musica: transition of oscillating into stable patterns
+ 390-KT   15-KP   1-KX 100-KY  11-KD   7-KI  24-KE   0-KR   2-KN   0-KG 
+ 90-K1  50-K2   0-K3   4-K4        3.0000-DX  1.0000-DY  0.0000-DZ  a-DW      
+  0.0030-DA  0.1000-RA  0.0040-BA  2.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.0200-DB  0.0000-RB  0.0300-BB  0.0000-SB  0.0000-CB  0.0000-AB  2.5000-GB
+
+File: sp410.prm    (Figure 4.10)
+                            Fish-bone pattern
+ 390-KT    3-KP   1-KX  80-KY   8-KD   9-KI  24-KE   0-KR   2-KN   0-KG 
+ 40-K1  20-K2   0-K3  24-K4        4.0000-DX  0.8000-DY  2.0000-DZ  a-DW      
+  0.0100-DA  0.1000-RA  0.0025-BA  0.5000-SA  0.1000-CA  7.0000-AA  0.4000-GA
+  0.0300-DB  0.0020-RB  0.1000-BB  0.0000-SB  0.0000-CB  0.0000-AB  4.0000-GB
+
+
+________________________________________________________________________________
+
+CASE 41 ' ACTIVATOR - INHIBITOR MECHANISM AND FEEDBACK ON THE SOURCE (C)
+     aq = C * s * (a * a + ba)    '------    simple rows of dots
+     a(1, i) = olddecaydiffA + aq / b
+     a(2, i) = olddecaydiffB + aq + bb
+     'Source (C)
+     a(3, i) = olddecaydiffC + rc * a + bc
+File: sp411.prm    (Figure 4.11)
+                  Dots by feedback on the source density
+ 430-KT    8-KP   1-KX  80-KY   9-KD  10-KI  41-KE   3-KR   3-KN   0-KG 
+  3-K1   2-K2   0-K3   5-K4        4.0000-DX  0.0000-DY  0.0000-DZ  ac-DW     
+  0.0150-DA  0.0500-RA  0.0300-BA  0.0000-SA  0.0000-CA  0.0000-AA  0.1000-GA
+  0.4000-DB  0.0200-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  0.2000-GB
+  0.0000-DC  0.0010-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.0000-AC  1.0000-GC
+
+
+________________________________________________________________________________
+
+CASE 711 '-- ACTIVATION (AB) AND EXTINGUISHING  (E,F) REACTION
+     'as 71 without enhancing reaction
+     aq = s * b * (a * a / (1! + sA * a * a) + ba)
+     a(1, i) = olddecaydiffA + aq - ce * a * e
+     a(2, i) = olddecaydiffB - aq + bb
+     eqf = e * e
+     eq = re * f * (eqf / (1! + se * eqf) + be)
+     a(5, i) = olddecaydiffE + eq + sf * a
+     a(6, i) = olddecaydiffF - eq + bf * a + cf * a(8, i)
+     IF a(2, i) < 0 THEN a(2, i) = 0
+     IF a(6, i) < 0 THEN a(6, i) = 0
+
+File: sp412.prm    (Figure 4.12)
+    Rows of pigmented patches separated by narrow unpigmented stripes
+ 395-KT    3-KP   1-KX  88-KY  11-KD   9-KI 711-KE  10-KR   6-KN   0-KG 
+ 12-K1   1-K2   0-K3   4-K4        3.0000-DX100.0000-DY  0.0000-DZ  ae-DW     
+  0.0400-DA  0.0100-RA  0.0500-BA  0.2000-SA  0.0000-CA  0.0000-AA  0.0000-GA
+  0.1000-DB  0.0030-RB  0.1400-BB  0.0000-SB  0.0000-CB  0.0000-AB  4.0000-GB
+  0.0000-DC  0.0000-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.0000-DD  0.0000-RD  0.0000-BD  0.0000-SD  0.0000-CD  0.0000-AD  0.0000-GD
+  0.0010-DE  0.0300-RE  0.0150-BE  0.0500-SE  0.0800-CE  1.0000-AE  1.0000-GE
+  0.0000-DF  0.0000-RF  0.0050-BF  0.0000-SF  0.0400-CF  0.0000-AF  4.0000-GF
+
+
+________________________________________________________________________________
+
+CASE 42 '--TWO ACTIV.-INH. SYSTEMS A, B AND C, D. C INHIBITS ALSO A
+     aq = a * a / (1! + sA * a * a)'    ----    for Junona
+     a(1, i) = olddecaydiffA + s * (aq / (b + sb * C) + ba)
+     a(2, i) = olddecaydiffB + rB * aq + bb
+     cq = rc * a(9, i) * (C * C + bc)
+     a(3, i) = olddecaydiffC + cq / D
+     a(4, i) = olddecaydiffD + cq
+
+File: sp413B.prm    (Figure 4.13)
+      Rows of patches: two activator-inhibitor systems superimposed
+ 450-KT    6-KP   1-KX 200-KY   9-KD   1-KI  42-KE   5-KR   4-KN   0-KG 
+ 30-K1  10-K2   0-K3  25-K4        2.0000-DX  0.2000-DY 10.0000-DZ  ac-DW     
+  0.0300-DA  0.0300-RA  0.0500-BA  0.1000-SA  0.0000-CA  0.0000-AA  0.0000-GA
+  0.0100-DB  0.0100-RB  0.0000-BB  1.0000-SB  0.0000-CB  0.0000-AB  0.3000-GB
+  0.0100-DC  0.0100-RC  0.0050-BC  0.0000-SC  0.0000-CC  0.0000-AC  1.0000-GC
+  0.4000-DD  0.0150-RD  0.0000-BD  0.0000-SD  0.0000-CD  0.0000-AD  1.0000-GD
+
+File: sp413C.prm    (Figure 4.13)
+ Rows of patches: two activator-inhibitor systems superimposed: growing field
+ 450-KT    7-KP 120-KX 200-KY   9-KD   1-KI  42-KE   5-KR   4-KN   4-KG 
+  1-K1  10-K2   0-K3  25-K4        2.0000-DX  0.2000-DY 10.0000-DZ  ac-DW     
+  0.0300-DA  0.0300-RA  0.0500-BA  0.1000-SA  0.0000-CA  0.0000-AA  0.0000-GA
+  0.0100-DB  0.0100-RB  0.0000-BB  1.0000-SB  0.0000-CB  0.0000-AB  0.3000-GB
+  0.0100-DC  0.0100-RC  0.0150-BC  0.0000-SC  0.0000-CC  0.0000-AC  1.0000-GC
+  0.4000-DD  0.0150-RD  0.0000-BD  0.0000-SD  0.0000-CD  0.0000-AD  1.0000-GD
+
+
+________________________________________________________________________________
+
+CASE 43 '- ACTIVATOR - INHIBITOR MECHANISM:
+     'lifetime of the inhibitior is space-dependent
+     ' shifted horizontal lines, one system
+   drb = 1 - rB * a(8, i) - 2 * db
+   GOSUB olddecay
+     aq = a * a / (1 + sA * a * a)
+     a(1, i) = olddecaydiffA + s * (aq / b + ba)
+     a(2, i) = olddecaydiffB + rB * aq
+
+File: sp414B.prm    (Figure 4.14)
+                   Shifted horizontal lines, one system
+ 390-KT   16-KP   1-KX  75-KY  11-KD   7-KI  43-KE   0-KR   2-KN   0-KG 
+200-K1   0-K2   0-K3  30-K4        3.0000-DX  0.3000-DY 12.0000-DZ  a-DW      
+  0.0030-DA  0.1000-RA  0.0040-BA  0.1000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.0100-DB  0.0300-RB  0.0000-BB  0.0000-SB  0.0000-CB  0.0000-AB  2.5000-GB
+
+
+________________________________________________________________________________
+
+CASE 44 '-- ACTIVATION (A, B) AND ENHANCING (C, D) REACTION
+     ' shifted horizontal lines, two systems
+     aq = s * b * (a * a / (1! + sA * a * a) + ba + cc * C)
+     a(1, i) = olddecaydiffA + aq
+     a(2, i) = olddecaydiffB - aq + bb * a(8, i)
+     cq = rc * D * (C * C / (1 + sc * C * C) + bc)
+     a(3, i) = olddecaydiffC + cq
+     a(4, i) = olddecaydiffD - cq + bd
+
+File: sp414C.prm    (Figure 4.14)
+    Shifted parallel lines: an oscillating system and a central clock
+ 390-KT   12-KP   1-KX  80-KY  11-KD   7-KI  44-KE   2-KR   4-KN   0-KG 
+200-K1   0-K2   0-K3  30-K4        4.0000-DX  0.3000-DY 12.0000-DZ  ac-DW     
+  0.0400-DA  0.0800-RA  0.0100-BA  0.1000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.4000-DB  0.0000-RB  0.0400-BB  0.0000-SB  0.0000-CB  0.0000-AB  1.0000-GB
+  0.0100-DC  0.0800-RC  0.0100-BC  0.0500-SC  0.0020-CC  1.0000-AC  1.0000-GC
+  0.0100-DD  0.0000-RD  0.0400-BD  0.0000-SD  0.0000-CD  0.0000-AD  1.0000-GD
+
+
+________________________________________________________________________________
+
+CASE 51 '------- CROSSINGS  A: ACTIVATOR, B: SUBSTRATE C: INHIBITOR
+     aq = s * b * (a * a + ba) / (1! + sA * a * a) / (sb + sc * C)
+     a(1, i) = olddecaydiffA + aq
+     a(2, i) = olddecaydiffB - aq + bb * a(8, i)
+     a(3, i) = olddecaydiffC + rc * a
+     if a(2,i)<0 then a(2,i)=0
+
+File: sp52.prm    (Figure 5.2)
+                     Meshwork-oblique line transition
+ 450-KT    6-KP   1-KX  80-KY   9-KD   5-KI  51-KE   5-KR   3-KN   0-KG 
+  3-K1   2-K2   0-K3   0-K4        5.0000-DX  0.0000-DY  5.0000-DZ  a-DW      
+  0.0100-DA  0.0800-RA  0.0100-BA  0.1000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.3000-DB  0.0000-RB  0.0800-BB  0.0000-SB  0.0000-CB  0.0000-AB  1.0000-GB
+  0.0020-DC  0.0100-RC  0.0000-BC  1.0000-SC  0.0000-CC  1.0000-AC  1.0000-GC
+
+File: sp53.prm    (Figure 5.3)
+        Kos-shells, set rc = 0.033 for transition to oblique lines
+ 440-KT    8-KP   1-KX 100-KY   9-KD   5-KI  51-KE   5-KR   3-KN   0-KG 
+  3-K1   2-K2   0-K3   0-K4        5.0000-DX  0.0000-DY  3.0000-DZ  a-DW      
+  0.0100-DA  0.0500-RA  0.0050-BA  1.0000-SA  0.0500-CA  1.0000-AA  1.0000-GA
+  0.0000-DB  0.0000-RB  0.0300-BB  1.0000-SB  0.0000-CB  0.0500-AB  7.0000-GB
+  0.4000-DC  0.0220-RC  0.0000-BC  2.0000-SC  0.0000-CC  1.0000-AC  1.0000-GC
+
+File: sp54.prm    (Figure 5.4)
+        Oblique-wavy transition, k3 determines time of perturbation
+ 630-KT    9-KP   1-KX 140-KY  10-KD   5-KI  51-KE   5-KR   3-KN   0-KG 
+  3-K1   2-K2 450-K3   6-K4        3.0000-DX  0.0000-DY  0.1000-DZ  a-DW      
+  0.0100-DA  0.0500-RA  0.0030-BA  1.0000-SA  0.0500-CA  1.0000-AA  1.0000-GA
+  0.0000-DB  0.0000-RB  0.0200-BB  1.0000-SB  0.0000-CB  0.0500-AB  9.0000-GB
+  0.4000-DC  0.0300-RC  0.0000-BC  5.0000-SC  0.0000-CC  1.0000-AC  1.0000-GC
+
+File: sp55.prm    (Figure 5.5)
+  Oblique lines, begin and end partially out of phase (continue with <N>)
+ 440-KT   16-KP   1-KX 120-KY   6-KD   5-KI  51-KE   5-KR   3-KN   0-KG 
+  3-K1   2-K2   0-K3   6-K4        4.0000-DX  0.0000-DY  0.1000-DZ  a-DW      
+  0.0015-DA  0.0200-RA  0.0050-BA  1.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.4000-DB  0.0000-RB  0.0060-BB  0.0000-SB  0.0000-CB  0.0050-AB  1.0000-GB
+  0.0020-DC  0.0040-RC  0.0000-BC  1.0000-SC  0.0000-CC  1.0000-AC  1.0000-GC
+
+File: sp56.prm    (Figure 5.6)
+             Chess board, change bb to.006 for oblique lines
+ 455-KT    8-KP   1-KX  80-KY   9-KD   5-KI  51-KE   5-KR   3-KN   0-KG 
+  3-K1   2-K2   0-K3   6-K4        6.0000-DX  0.0000-DY  0.1000-DZ  a-DW      
+  0.0015-DA  0.0200-RA  0.0050-BA  1.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.4000-DB  0.0000-RB  0.0040-BB  0.0000-SB  0.0000-CB  0.0050-AB  1.0000-GB
+  0.0020-DC  0.0040-RC  0.0000-BC  1.0000-SC  0.0000-CC  1.0000-AC  1.0000-GC
+
+File: sp57.prm    (Figure 5.7)
+                        Crossings, without branches
+ 455-KT    6-KP   1-KX 205-KY   9-KD   5-KI  51-KE   5-KR   3-KN   0-KG 
+  3-K1   2-K2 300-K3   6-K4        3.0000-DX  0.0000-DY  0.2000-DZ  acb-DW    
+  0.0100-DA  0.0800-RA  0.0001-BA  0.5000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.0050-RB  0.1000-BB  1.0000-SB  0.0000-CB  0.0000-AB  5.0000-GB
+  0.4000-DC  0.0200-RC  0.0000-BC  3.0000-SC  0.0000-CC  0.1000-AC  0.0000-GC
+
+File: sp57A.prm    (Figure 5.7)
+         Crossing without branches: situation at the growing edge
+ 180-KT    6-KP   1-KX  75-KY  19-KD   5-KI  51-KE   5-KR   3-KN   0-KG 
+  3-K1   2-K2   0-K3   6-K4        8.0000-DX  0.0000-DY  0.2000-DZ  acb-DW    
+  0.0100-DA  0.0800-RA  0.0001-BA  0.5000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.0050-RB  0.1000-BB  1.0000-SB  0.0000-CB  0.0000-AB  5.0000-GB
+  0.4000-DC  0.0200-RC  0.0000-BC  3.0000-SC  0.0000-CC  0.1000-AC  0.0000-GC
+
+File: sp57C.prm    (Figure 5.7)
+    Tapes literatus (movie): after a perturbation wave splitting occurs
+ 455-KT    2-KP   1-KX  50-KY  19-KD   1-KI  51-KE   5-KR   3-KN   0-KG 
+  3-K1   2-K2 250-K3   6-K4       10.0000-DX  0.0000-DY  0.2000-DZ  acb-DW    
+  0.0100-DA  0.0800-RA  0.0001-BA  0.5000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.0050-RB  0.1000-BB  1.0000-SB  0.0000-CB  0.0000-AB  5.0000-GB
+  0.4000-DC  0.0200-RC  0.0000-BC  3.0000-SC  0.0000-CC  0.1000-AC  0.0000-GC
+
+File: sp58.prm    (Figure 5.8)
+                          Crossing and branching
+ 455-KT   18-KP   1-KX 150-KY  19-KD   5-KI  51-KE   5-KR   3-KN   0-KG
+  3-K1   2-K2 300-K3   6-K4        4.0000-DX  0.0000-DY  0.2000-DZ  ac-DW
+  0.0100-DA  0.0800-RA  0.0001-BA  1.0000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.0040-RB  0.1000-BB  1.0000-SB  0.0000-CB  0.0000-AB 15.0000-GB
+  0.4000-DC  0.1000-RC  0.0000-BC 11.0000-SC  0.0000-CC  0.1000-AC  0.0000-GC
+
+File: sp58A.prm    (Figure 5.8)
+    Initiation of backwards-waves (branching) in the crossing-reaction
+ 455-KT    6-KP   1-KX  70-KY  19-KD   1-KI  51-KE   5-KR   3-KN   0-KG 
+  3-K1   2-K2   0-K3   6-K4        9.0000-DX  0.0000-DY  0.2000-DZ  acb-DW    
+  0.0100-DA  0.0800-RA  0.0001-BA  1.0000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.0040-RB  0.1000-BB  1.0000-SB  0.0000-CB  0.0000-AB 15.0000-GB
+  0.4000-DC  0.1000-RC  0.0000-BC 11.0000-SC  0.0000-CC  0.1000-AC  0.0000-GC
+
+
+_____________________________________________________________________________
+
+CASE 52 '--- ONE ACTIVATOR - TWO SUBSTRATES
+       aqfs = a * a / (1 + sA * a * a)
+       aqb = s * b * aqfs
+       aqc = cB * C * aqfs
+       a(1, i) = olddecaydiffA + aqb + aqc
+       a(2, i) = olddecaydiffB - aqb + bb
+       a(3, i) = olddecaydiffC - aqc + bc
+File: sp59.prm    (Figure 5.9)
+             Tiling pattern: one activator and two substrates
+ 445-KT    8-KP   1-KX 205-KY   6-KD   5-KI  52-KE   0-KR   3-KN   0-KG
+  3-K1   2-K2   0-K3   0-K4        3.0000-DX  0.0000-DY  4.0000-DZ  a-DW
+  0.0050-DA  0.0300-RA  0.0000-BA  0.0500-SA  0.0000-CA  1.0000-AA  0.0001-GA
+  0.0000-DB  0.0000-RB  0.0100-BB  0.0500-SB  0.0100-CB  1.0000-AB  4.0000-GB
+  0.3000-DC  0.0000-RC  0.0200-BC  0.0000-SC  0.0000-CC  1.0000-AC  0.0001-GC
+
+_____________________________________________________________________________
+
+
+CASE 53 'SHIFTED DOTS = C HAS NEGATIVE FEEDBACK ON A AND B
+     a(1, i) = olddecaydiffA + s / C * (a * a / b + ba)
+     a(2, i) = olddecaydiffB + rB * a * a / C + bb
+     a(3, i) = olddecaydiffC + rc * a
+
+File: sp510.prm    (Figure 5.10)
+            Oblique rows of dots, set DB=.03 for parallel rows
+ 450-KT   12-KP   1-KX 120-KY   9-KD   5-KI  53-KE   5-KR   3-KN   0-KG
+  3-K1   2-K2   0-K3   1-K4        3.0000-DX  0.0000-DY  0.3000-DZ  abc-DW    
+  0.0100-DA  0.0200-RA  0.0500-BA  0.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.0060-DB  0.0020-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  1.0000-GB
+  0.4000-DC  0.0100-RC  0.0000-BC  0.0000-SC  0.0000-CC  1.0000-AC  1.0000-GC
+
+
+________________________________________________________________________________
+
+CASE 54 'SHIFTED DOTS TRIANGLES =  SUM OF TWO INHIBITORS
+     a(1, i) = olddecaydiffA + s * (a * a + ba) / (sb * b + sc * C)
+     a(2, i) = olddecaydiffB + rB * a * a + bb
+     a(3, i) = olddecaydiffC + rc * a
+
+File: sp512.prm    (Figure 5.12)
+           Isolated triangles, set db=0 for connected triangles
+ 450-KT   20-KP   1-KX 120-KY   6-KD   5-KI  54-KE   5-KR   3-KN   0-KG 
+  3-K1   2-K2   0-K3   1-K4        3.0000-DX  0.0000-DY  0.3000-DZ  a-DW      
+  0.0100-DA  0.0100-RA  0.0800-BA  0.0000-SA  0.0000-CA  0.0000-AA  0.0000-GA
+  0.0050-DB  0.0015-RB  0.0000-BB  0.1000-SB  0.0000-CB  1.0000-AB  0.1000-GB
+  0.4000-DC  0.0150-RC  0.0000-BC  1.0000-SC  0.0000-CC  1.0000-AC  0.1000-GC
+
+
+________________________________________________________________________________
+
+CASE 61 '-- BRANCHES CONTROLLED BY A HORMONE  : OLIVIA PORPHYRIA ----------
+     '  Hormone (c) changes lifetime of the inhibitor
+     aq = s * a * a / (1! + sA * a * a) + ba
+     a(1, i) = olddecaydiffA + aq / (sb + b)
+     a(2, i) = olddecaydiffB + aq + bb
+     ahorm = ahorm + rc * a 'hormone production by a
+     IF i = js THEN 'averaging
+     CALL hormone(3, ahorm, ja, js)
+      rbb = rB / C '---- effective inhibitor decay rate
+      drb = 1! - 2! * db - rbb
+     END IF
+
+File: sp61.prm    (Figure 6.1)
+                              Oliva porphyria
+ 455-KT    4-KP   1-KX 205-KY   9-KD   5-KI  61-KE  15-KR   3-KN   0-KG 
+  3-K1   2-K2   0-K3   0-K4        3.0000-DX  0.0000-DY  5.0000-DZ  abc-DW    
+  0.0150-DA  0.1000-RA  0.0001-BA  0.2500-SA  0.1000-CA  2.5000-AA  0.0001-GA
+  0.0000-DB  0.0180-RB  0.0000-BB  0.1000-SB  0.0000-CB  0.0000-AB  0.1000-GB
+  0.0000-DC  0.1000-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.1000-AC  0.3000-GC
+
+File: sp61A.prm    (Figure 6.1)
+                Oliva porphyra: movie of the growing edge
+ 445-KT    3-KP   1-KX  80-KY  19-KD   5-KI  61-KE  15-KR   3-KN   0-KG 
+  3-K1   2-K2   0-K3   0-K4        8.0000-DX  0.0000-DY  5.0000-DZ  abc-DW    
+  0.0150-DA  0.1000-RA  0.0001-BA  0.2500-SA  0.1000-CA  2.5000-AA  0.0001-GA
+  0.0000-DB  0.0180-RB  0.0000-BB  0.1000-SB  0.0000-CB  0.0000-AB  0.1000-GB
+  0.0000-DC  0.1000-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.1000-AC  0.1000-GC
+
+File: sp63.prm    (Figure 6.3)
+                      Oliva porphyria, larger field
+ 455-KT   12-KP   1-KX 630-KY  14-KD   5-KI  61-KE   5-KR   3-KN   0-KG 
+  3-K1   2-K2   0-K3   0-K4        1.0000-DX  0.0000-DY  5.0000-DZ  a-DW      
+  0.0150-DA  0.1000-RA  0.0001-BA  0.2500-SA  0.1000-CA  2.5000-AA  0.0001-GA
+  0.0000-DB  0.0140-RB  0.0000-BB  0.1000-SB  0.0000-CB  0.0000-AB  0.1000-GB
+  0.0000-DC  0.1000-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.1000-AC  0.1000-GC
+
+File: sp64.prm    (Figure 6.4)
+ Oliva: for GUIDED TOUR GT64 to demonstrate influence of initial conditions
+ 455-KT    4-KP   1-KX 155-KY   9-KD   5-KI  61-KE  10-KR   3-KN   0-KG
+  3-K1   2-K2   0-K3   0-K4        3.0000-DX  0.0000-DY  5.0000-DZ  a-DW
+  0.0150-DA  0.1000-RA  0.0001-BA  0.2500-SA  0.1000-CA  2.5000-AA  0.0001-GA
+  0.0000-DB  0.0180-RB  0.0000-BB  0.1000-SB  0.0000-CB  0.0000-AB  0.1000-GB
+  0.0000-DC  0.1000-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.1000-AC  0.1000-GC
+
+File: sp65A.prm    (Figure 6.5A)
+                      Oliva, change of line density
+ 445-KT    6-KP   1-KX 315-KY   6-KD   5-KI  61-KE   5-KR   3-KN   0-KG
+  3-K1   2-K2 120-K3   2-K4        2.0000-DX  0.0000-DY  0.0100-DZ  a-DW
+  0.0150-DA  0.1000-RA  0.0001-BA  0.2500-SA  0.1000-CA  2.5000-AA  0.0001-GA
+  0.0000-DB  0.0280-RB  0.0000-BB  0.1000-SB  0.0000-CB  0.0000-AB  0.1000-GB
+  0.0000-DC  0.1000-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.1000-AC  0.1000-GC
+
+File: sp65B.prm    (Figure 6.5B)
+        Oliva, oblique lines preferentially parallel to each other
+ 445-KT    6-KP   1-KX 315-KY   6-KD   5-KI  61-KE   5-KR   3-KN   0-KG
+  3-K1   2-K2   0-K3   0-K4        2.0000-DX  0.0000-DY  5.0000-DZ  a-DW
+  0.0150-DA  0.1000-RA  0.0001-BA  0.2500-SA  0.1000-CA  2.5000-AA  0.0001-GA
+  0.0000-DB  0.0120-RB  0.0000-BB  0.1000-SB  0.0000-CB  0.0000-AB  0.1000-GB
+  0.0000-DC  0.0050-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.1000-AC  0.1000-GC
+
+File: sp65C.prm    (Figure 6.5C)
+                            Oliva, dense lines
+ 445-KT   12-KP   1-KX 315-KY   6-KD   5-KI  61-KE   5-KR   3-KN   0-KG
+  0-K1   0-K2   0-K3   2-K4        1.0000-DX  0.0000-DY  0.0100-DZ  a-DW
+  0.0150-DA  0.1000-RA  0.0001-BA  0.2500-SA  0.1000-CA  2.5000-AA  0.0001-GA
+  0.0000-DB  0.0300-RB  0.0000-BB  0.1000-SB  0.0000-CB  0.0000-AB  0.1000-GB
+  0.0000-DC  0.0050-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.1000-AC  0.1000-GC
+
+File: sp65D.prm    (Figure 6.5D)
+                     Triangles by the Oliva-mechanism
+ 445-KT    6-KP   1-KX 315-KY   6-KD   5-KI  61-KE   5-KR   3-KN   0-KG
+  0-K1   0-K2   0-K3   2-K4        2.0000-DX  0.0000-DY  0.0100-DZ  a-DW
+  0.0150-DA  0.1000-RA  0.0001-BA  0.2500-SA  0.1000-CA  2.5000-AA  0.0001-GA
+  0.0000-DB  0.0400-RB  0.0000-BB  0.1000-SB  0.0000-CB  0.0000-AB  0.1000-GB
+  0.0000-DC  0.1000-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.1000-AC  0.1000-GC
+
+File: sp66.prm    (Figure 6.6)
+                    Global control and line termination
+ 440-KT    5-KP   1-KX 155-KY   9-KD   5-KI  61-KE  15-KR   3-KN   0-KG
+  3-K1   2-K2   0-K3   0-K4        4.0000-DX  0.0000-DY  5.0000-DZ  a-DW
+  0.0150-DA  0.1000-RA  0.0001-BA  0.2500-SA  0.1000-CA  2.5000-AA  0.0000-GA
+  0.0000-DB  0.0180-RB  0.0000-BB  0.1500-SB  0.0000-CB  3.0000-AB  0.1000-GB
+  0.0000-DC  0.1000-RC  0.0000-BC  0.0000-SC  0.0000-CC 10.0000-AC  0.1000-GC
+
+
+________________________________________________________________________________
+
+CASE 62 '- BRANCHES CONTROLLED BY A HORMONE  : OLIVIA PORPHYRIA ----------
+     '  Hormone (c) changes lifetime of the activator
+     aq = s * a * a / (1! + sA * a * a) + ba
+     a(1, i) = olddecaydiffA + aq / (sb + b)
+     a(2, i) = olddecaydiffB + aq + bb
+     ahorm = ahorm + rc * a '------ hormone production by a
+     IF i = js THEN
+     CALL hormone(3, ahorm, ja, js)
+       raa = ra * C '---- effective inhibitor decay rate
+       dra = 1! - 2! * DA - raa
+     END IF
+
+File: sp67A.prm    (Figure 6.7A)
+               Oliva: hormon enhances activator destruction
+ 445-KT    6-KP   3-KX 315-KY   6-KD   5-KI  62-KE   5-KR   3-KN   0-KG 
+  3-K1   2-K2   0-K3   0-K4        2.0000-DX  0.0000-DY  5.0000-DZ  a-DW      
+  0.0150-DA  0.1000-RA  0.0000-BA  0.2500-SA  0.1000-CA  2.5000-AA  0.0000-GA
+  0.0000-DB  0.0200-RB  0.0000-BB  0.1000-SB  0.0000-CB  0.0000-AB  4.0000-GB
+  0.0000-DC  0.1000-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.1000-AC  0.1000-GC
+
+
+________________________________________________________________________________
+
+CASE 63 '- BRANCHES CONTROLLED BY A HORMONE  : OLIVIA PORPHYRIA ----------
+     '  Hormone (c) changes production rate of substrate b
+     aq = s * b * (a * a / (1 + sA * a * a) + ba)
+     a(1, i) = olddecaydiffA + aq
+     a(2, i) = olddecaydiffB - aq + bb / (cB + sb * C)
+     ahorm = ahorm + rc * a '------ hormone production by a
+     IF i = js THEN CALL hormone(3, ahorm, ja, js)
+
+File: sp67B.prm    (Figure 6.7B)
+                   Oliva porphyria: depletion mechanism
+ 455-KT    4-KP   1-KX 315-KY   6-KD   5-KI  63-KE   5-KR   3-KN   0-KG 
+  3-K1   2-K2   0-K3   0-K4        2.0000-DX  0.0000-DY  5.0000-DZ  a-DW      
+  0.0150-DA  0.1000-RA  0.0001-BA  0.2500-SA  0.1000-CA  2.5000-AA  0.0001-GA
+  0.0000-DB  0.0040-RB  0.0400-BB  1.0000-SB  0.0000-CB  0.0000-AB  4.0000-GB
+  0.0000-DC  0.1000-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.1000-AC  0.1000-GC
+
+
+________________________________________________________________________________
+
+CASE 64 ' BRANCHES CONTROLLED BY A HORMONE  : OLIVIA PORPHYRIA ----------
+     '  Hormone changes lifetime of the inhibitor
+     '  two inhibitors are involved (b,d) a: activator, c: hormone
+     aq = s * (a * a / (1! + sA * a * a) + ba)
+     a(1, i) = olddecaydiffA + aq / (sb + sd * D + b)
+     a(2, i) = olddecaydiffB + aq + bb
+     a(4, i) = olddecaydiffD + rd * a
+     ahorm = ahorm + rc * a ' hormone production by a
+     IF i = js THEN
+     CALL hormone(3, ahorm, ja, js)
+       rbb = rB / C '---- effective inhibitor decay rate
+       drb = 1! - 2! * db - rbb
+     END IF
+
+File: sp67C.prm    (Figure 6.7C)
+      Oliva porphyria: two antagonists allow spontaneous initiation
+ 455-KT    8-KP   1-KX 305-KY   6-KD   5-KI  64-KE  10-KR   4-KN   0-KG 
+  3-K1   2-K2   0-K3   0-K4        2.0000-DX  0.0000-DY  5.0000-DZ  a-DW      
+  0.0150-DA  0.1000-RA  0.0003-BA  0.2500-SA  0.1000-CA  0.3000-AA  0.3000-GA
+  0.0000-DB  0.0070-RB  0.0000-BB  0.0300-SB  0.0000-CB  0.0000-AB  0.1000-GB
+  0.0000-DC  0.2000-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.1000-AC  0.1000-GC
+  0.4000-DD  0.0500-RD  0.0000-BD  0.3000-SD  0.0000-CD  0.0000-AD  0.0000-GD
+
+File: sp72C.prm    (Figure 7.2C)
+            White drop pattern (substance c and d not in use)
+ 455-KT    3-KP   1-KX 195-KY   9-KD   5-KI 711-KE   0-KR   6-KN   0-KG 
+  0-K1   0-K2   0-K3   0-K4        3.2000-DX  0.0000-DY  4.0000-DZ  ae-DW     
+  0.0050-DA  0.0100-RA  0.0000-BA  0.0500-SA  0.0000-CA  1.0000-AA  0.0001-GA
+  0.0000-DB  0.0000-RB  0.1000-BB  0.0000-SB  0.0000-CB  0.0000-AB  4.0000-GB
+  0.0000-DC  0.0000-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.0000-DD  0.0000-RD  0.0000-BD  0.0000-SD  0.0000-CD  0.0000-AD  0.0000-GD
+  0.3000-DE  0.1000-RE  0.0130-BE  0.0500-SE  0.0700-CE  0.0000-AE  0.0001-GE
+  0.3000-DF  0.0000-RF  0.0100-BF  0.0000-SF  0.0000-CF  0.0000-AF  0.0000-GF
+
+File: sp72D.prm    (Figure 7.2D)
+     Conus nobilis: white drop pattern (substance c and d not in use)
+ 440-KT    3-KP   1-KX 155-KY   9-KD   5-KI 711-KE   0-KR   6-KN   0-KG 
+  0-K1   0-K2   0-K3   0-K4        4.0000-DX  0.0000-DY  4.0000-DZ  ace-DW    
+  0.0050-DA  0.0100-RA  0.0000-BA  0.0500-SA  0.0000-CA  1.0000-AA  0.0001-GA
+  0.0000-DB  0.0000-RB  0.1000-BB  0.0000-SB  0.0000-CB  0.0000-AB  4.0000-GB
+  0.0000-DC  0.0000-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.0000-DD  0.0000-RD  0.0000-BD  0.0000-SD  0.0000-CD  0.0000-AD  0.0000-GD
+  0.0200-DE  0.0700-RE  0.0250-BE  0.1000-SE  0.1000-CE  0.0000-AE  0.0001-GE
+  0.4000-DF  0.0000-RF  0.0040-BF  0.0010-SF  0.0200-CF  0.0000-AF  0.0000-GF
+
+File: sp72E.prm    (Figure 7.2)
+      White drop-like pattern on black background: movie C.marmoreus
+ 455-KT    3-KP   1-KX 155-KY  19-KD   5-KI 711-KE   0-KR   6-KN   0-KG
+  0-K1   0-K2   0-K3   0-K4        4.0000-DX  0.0000-DY  4.0000-DZ  ae-DW
+  0.0050-DA  0.0100-RA  0.0000-BA  0.0500-SA  0.0000-CA  1.0000-AA  0.0001-GA
+  0.0000-DB  0.0000-RB  0.1000-BB  0.0000-SB  0.0000-CB  0.0000-AB  4.0000-GB
+  0.0000-DC  0.0000-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.0000-DD  0.0000-RD  0.0000-BD  0.0000-SD  0.0000-CD  0.0000-AD  0.0000-GD
+  0.3000-DE  0.1000-RE  0.0130-BE  0.0500-SE  0.0700-CE  0.0000-AE  0.0001-GE
+  0.3000-DF  0.0000-RF  0.0100-BF  0.0000-SF  0.0000-CF  0.0000-AF  0.0000-GF
+
+File: sp72F.prm    (Figure 7.2F)
+             Conus Marmoreus: stronger extinguishing reaction
+ 455-KT    3-KP   1-KX 205-KY   9-KD   5-KI 711-KE   0-KR   6-KN   0-KG 
+  0-K1   0-K2   0-K3   0-K4        3.0000-DX  0.0000-DY  4.0000-DZ  a-DW      
+  0.0050-DA  0.0100-RA  0.0000-BA  0.0500-SA  0.0000-CA  1.0000-AA  0.0001-GA
+  0.0000-DB  0.0000-RB  0.1000-BB  0.0000-SB  0.0000-CB  0.0000-AB  4.0000-GB
+  0.0000-DC  0.0000-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.0000-DD  0.0000-RD  0.0000-BD  0.0000-SD  0.0000-CD  0.0000-AD  0.0000-GD
+  0.3000-DE  0.1000-RE  0.0130-BE  0.0500-SE  0.2500-CE  0.0000-AE  0.0001-GE
+  0.3000-DF  0.0000-RF  0.0070-BF  0.0000-SF  0.0000-CF  0.0000-AF  0.0000-GF
+
+
+________________________________________________________________________________
+
+CASE 73 '-- SURVIVAL BY CHANGE OF SUBSTRATE PRODUCTION
+     aq = s * b * (a * a / (1! + sA * a * a) + ba)
+     a(1, i) = olddecaydiffA + aq - sb * a * C
+     a(2, i) = olddecaydiffB - aq + bb * C
+     a(3, i) = olddecaydiffC + rc * b
+
+File: sp73A.prm    (Figure 7.3A)
+    A not realized pattern: Survival by increasing b-production via C
+ 455-KT    6-KP   1-KX 305-KY   9-KD   5-KI  73-KE   5-KR   3-KN   0-KG 
+  0-K1   0-K2   0-K3   0-K4        2.0000-DX  0.8000-DY  6.0000-DZ  ac-DW     
+  0.0120-DA  0.0500-RA  0.0000-BA  0.2500-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0800-DB  0.0001-RB  0.0100-BB  0.0000-SB  0.0000-CB  0.0000-AB 10.0000-GB
+  0.0000-DC  0.0060-RC  0.0000-BC  0.0000-SC  0.0000-CC  1.0000-AC  1.0000-GC
+
+
+________________________________________________________________________________
+
+CASE 731 ' PRODUCTION RATE OF THE SUBSTRATE INCREASES IN NON-ACTIVATED
+     ' periods via c
+     aq = s * b * (a * a / (1! + sA * a * a) + ba)
+     a(1, i) = olddecaydiffA + aq
+     a(2, i) = olddecaydiffB - aq + bb * C
+     a(3, i) = olddecaydiffC + rc / (cc + bc * a)
+
+File: sp73B.prm    (Figure 7.3B)
+         Substrate production increases in non-activated periodes
+ 455-KT    8-KP   1-KX 305-KY   9-KD   5-KI 731-KE   5-KR   3-KN   0-KG 
+  0-K1   0-K2   0-K3   0-K4        2.0000-DX  0.0000-DY  0.0000-DZ  ac-DW     
+  0.0100-DA  0.0500-RA  0.0000-BA  3.0000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.0001-RB  0.0100-BB  0.0000-SB  0.0000-CB  0.0000-AB 12.0000-GB
+  0.4000-DC  0.0050-RC  1.0000-BC  0.0000-SC  0.1000-CC  2.0000-AC  2.0000-GC
+
+File: sp74A.prm    (Figure 7.4A)
+ White drop pattern, lighter pigmentation (substances c and d not in use)
+ 440-KT    3-KP   1-KX 155-KY   9-KD   5-KI 711-KE   0-KR   6-KN   0-KG 
+  0-K1   0-K2   0-K3   0-K4        4.0000-DX  0.0000-DY  4.0000-DZ  ae-DW     
+  0.0050-DA  0.0300-RA  0.0000-BA  0.0500-SA  0.0000-CA  1.0000-AA  0.0001-GA
+  0.0000-DB  0.0010-RB  0.1000-BB  0.0000-SB  0.0000-CB  0.0000-AB  4.0000-GB
+  0.0000-DC  0.0000-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.0000-DD  0.0000-RD  0.0000-BD  0.0000-SD  0.0000-CD  0.0000-AD  0.0000-GD
+  0.3000-DE  0.0500-RE  0.1000-BE  0.0500-SE  0.0700-CE  0.0000-AE  0.0001-GE
+  0.3000-DF  0.0000-RF  0.0200-BF  0.0000-SF  0.0000-CF  0.0000-AF  0.0000-GF
+
+File: sp74B.prm
+ White drop mechanism, more dense pigmentation (substances c and d not in use)
+ 440-KT    7-KP   1-KX 155-KY   9-KD   5-KI 711-KE   0-KR   6-KN   0-KG 
+  0-K1   0-K2   0-K3   0-K4        4.0000-DX  0.0000-DY  4.0000-DZ  ae-DW     
+  0.0050-DA  0.0300-RA  0.0000-BA  2.0000-SA  0.0000-CA  1.0000-AA  0.0001-GA
+  0.0000-DB  0.0010-RB  0.1000-BB  0.0000-SB  0.0000-CB  0.0000-AB  4.0000-GB
+  0.0000-DC  0.0000-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.0000-DD  0.0000-RD  0.0000-BD  0.0000-SD  0.0000-CD  0.0000-AD  0.0000-GD
+  0.1000-DE  0.0500-RE  0.1000-BE  0.0500-SE  0.0700-CE  0.0000-AE  0.0001-GE
+  0.4000-DF  0.0000-RF  0.0250-BF  0.0000-SF  0.0000-CF  0.0000-AF  0.0000-GF
+
+File: sp75.prm    (Figure 7.5)
+  A plateau of activation by a bistable system + extinguishing reaction
+ 395-KT    3-KP   1-KX 155-KY  11-KD   9-KI 711-KE  10-KR   6-KN   0-KG 
+ 50-K1   1-K2   0-K3  12-K4        3.0000-DX100.0000-DY  0.0000-DZ  ae-DW     
+  0.0400-DA  0.0100-RA  0.0500-BA  0.0500-SA  0.0000-CA  0.0000-AA  0.0000-GA
+  0.2000-DB  0.0030-RB  0.1400-BB  0.0000-SB  0.0000-CB  0.0000-AB  4.0000-GB
+  0.0000-DC  0.0000-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.0000-DD  0.0000-RD  0.0000-BD  0.0000-SD  0.0000-CD  0.0000-AD  0.0000-GD
+  0.0050-DE  0.0300-RE  0.0150-BE  0.0500-SE  0.0800-CE  1.0000-AE  1.0000-GE
+  0.0500-DF  0.0000-RF  0.0050-BF  0.0000-SF  0.0600-CF  0.0000-AF  4.0000-GF
+
+
+________________________________________________________________________________
+
+CASE 71 '-- ACTIVATION (A, B), ENHANCEMENT (C, D)
+     'and  extinguishing  (e, f) reaction
+     aq = s * b * (a * a / (1! + sA * a * a) + ba)
+     a(1, i) = olddecaydiffA + aq - ce * a * e
+     a(2, i) = olddecaydiffB - aq + bb * (1 + sb * C + cB * D)
+     cq = rc * a * (C * C + bc)
+     a(3, i) = olddecaydiffC + cq / (sd + D)
+     a(4, i) = olddecaydiffD + cq + bd
+     eqf = e * e
+     eq = re * f * (eqf / (1! + se * eqf) + be)
+     a(5, i) = olddecaydiffE + eq + sf * a
+     a(6, i) = olddecaydiffF - eq + bf * a + cf * a(8, i)
+     IF a(2, i) < 0 THEN a(2, i) = 0'to avoid numerical instabilities
+     IF a(6, i) < 0 THEN a(6, i) = 0
+
+File: sp76.prm    (Figure 7.6)
+                     Conus episcopus, not yet perfect
+ 396-KT    4-KP   1-KX 205-KY  11-KD   9-KI  71-KE  10-KR   6-KN   0-KG 
+400-K1  50-K2   0-K3 160-K4        3.0000-DX 10.0000-DY120.0000-DZ  aec-DW    
+  0.0040-DA  0.0100-RA  0.0000-BA  0.1000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.0000-DB  0.0000-RB  0.1200-BB  0.3000-SB  0.0080-CB  0.0000-AB  6.0000-GB
+  0.0100-DC  0.0150-RC  0.0050-BC  0.0000-SC  0.0000-CC  0.0000-AC  1.0000-GC
+  0.4000-DD  0.0200-RD  0.0100-BD  0.0000-SD  0.0000-CD  0.0000-AD  1.0000-GD
+  0.0200-DE  0.1000-RE  0.0050-BE  0.1000-SE  0.1500-CE  0.0000-AE  0.0001-GE
+  0.2000-DF  0.0010-RF  0.0015-BF  0.0005-SF  0.0400-CF  0.0000-AF  0.0000-GF
+
+
+________________________________________________________________________________
+
+CASE 712 '-- ACTIVATION (AB) AND ENHANCING (C,D) REACTION
+     'as 71 without extinguishing reaction
+     aq = s * b * (a * a / (1! + sA * a * a) + ba)
+     a(1, i) = olddecaydiffA + aq
+     a(2, i) = olddecaydiffB - aq + bb * (1 + sb * C + cB * D) * a(8, i)
+     IF a(2, i) < 0 THEN a(2, i) = 0
+     cq = rc * a * (C * C + bc)
+     a(3, i) = olddecaydiffC + cq / (sd + D)
+     a(4, i) = olddecaydiffD + cq + bd
+
+File: sp78A.prm    (Figure 7.8)
+ Branching induced by a second, elongating system (green in the upper part)
+ 455-KT    7-KP   1-KX 305-KY   9-KD   5-KI 712-KE   5-KR   4-KN   0-KG
+  0-K1   0-K2 180-K3  13-K4        2.0000-DX  0.0000-DY  0.0000-DZ  ca-DW     
+  0.0100-DA  0.0500-RA  0.0000-BA  0.0100-SA  0.0000-CA  1.5000-AA  0.0000-GA
+  0.0000-DB  0.0045-RB  0.0350-BB  0.2500-SB  0.0000-CB  0.0000-AB  5.0000-GB
+  0.0100-DC  0.0200-RC  0.0100-BC  0.0000-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.4000-DD  0.0100-RD  0.0000-BD  0.0100-SD  0.0000-CD  0.0000-AD  1.5000-GD
+
+File: sp78B.prm    (Figure 7.8)
+            Branching by elongation mediated by the inhibitor
+ 455-KT    5-KP   1-KX 200-KY   9-KD   5-KI 712-KE   5-KR   4-KN   0-KG 
+  0-K1   0-K2 180-K3  13-K4        3.0000-DX  0.0000-DY  0.0000-DZ  ca-DW     
+  0.0100-DA  0.0500-RA  0.0000-BA  0.0100-SA  0.0000-CA  1.5000-AA  0.0000-GA
+  0.0000-DB  0.0045-RB  0.0350-BB  0.0000-SB  0.2000-CB  0.0000-AB  5.0000-GB
+  0.0100-DC  0.0500-RC  0.0100-BC  0.0000-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.4000-DD  0.0130-RD  0.0000-BD  0.0100-SD  0.0000-CD  0.0000-AD  1.5000-GD
+
+File: sp78C.prm    (Figure 7.8)
+                   Enhancing reaction: fishbone pattern
+ 455-KT    5-KP   1-KX 120-KY   9-KD   5-KI 712-KE   5-KR   4-KN   0-KG 
+  0-K1   0-K2 180-K3  13-K4        4.0000-DX  0.0000-DY  0.0000-DZ  ca-DW     
+  0.0100-DA  0.0500-RA  0.0000-BA  0.0100-SA  0.0000-CA  1.5000-AA  0.0000-GA
+  0.0000-DB  0.0045-RB  0.0350-BB  0.3000-SB  0.0000-CB  0.0000-AB  5.0000-GB
+  0.0050-DC  0.0100-RC  0.0050-BC  0.0000-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.4000-DD  0.0140-RD  0.0000-BD  0.0100-SD  0.0000-CD  0.0000-AD  2.5000-GD
+
+File: sp78D.prm    (Figure 7.8)
+              Stable enhanced reaction: perpendicular lines
+ 455-KT    5-KP   1-KX 120-KY   9-KD   5-KI 712-KE   5-KR   4-KN   0-KG 
+  0-K1   0-K2 180-K3  13-K4        4.0000-DX  0.0000-DY  5.0000-DZ  ca-DW     
+  0.0100-DA  0.0500-RA  0.0000-BA  0.0100-SA  0.0000-CA  1.5000-AA  0.0000-GA
+  0.0000-DB  0.0045-RB  0.0600-BB  0.5000-SB  0.0000-CB  0.0000-AB  5.0000-GB
+  0.0100-DC  0.0100-RC  0.0200-BC  0.0000-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.4000-DD  0.0130-RD  0.0000-BD  0.0100-SD  0.0000-CD  0.0000-AD  1.5000-GD
+
+File: sp78E.prm    (Figure 7.8)
+            Oscillating enhancement reaction: white triangles
+ 455-KT    8-KP   1-KX 120-KY   9-KD   5-KI 712-KE   5-KR   4-KN   0-KG 
+  0-K1   0-K2 180-K3  13-K4        4.0000-DX  0.1000-DY 80.0000-DZ  ca-DW     
+  0.0100-DA  0.0500-RA  0.0000-BA  1.0000-SA  0.0000-CA  1.5000-AA  0.0000-GA
+  0.0000-DB  0.0045-RB  0.0220-BB  3.0000-SB  0.0000-CB  0.0000-AB  5.0000-GB
+  0.2000-DC  0.1000-RC  0.0200-BC  0.0000-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.1000-DD  0.0500-RD  0.0000-BD  0.0100-SD  0.0000-CD  0.0000-AD  1.5000-GD
+
+File: sp78F.prm    (Figure 7.8)
+                   Enhancement reaction: parallel lines
+ 455-KT    5-KP   1-KX 120-KY   9-KD   5-KI 712-KE   5-KR   4-KN   0-KG 
+  0-K1   0-K2 180-K3  13-K4        4.0000-DX  0.0000-DY  5.0000-DZ  ca-DW     
+  0.0100-DA  0.0500-RA  0.0000-BA  0.0100-SA  0.0000-CA  1.5000-AA  0.0000-GA
+  0.0000-DB  0.0045-RB  0.0600-BB  0.5000-SB  0.0000-CB  0.0000-AB  5.0000-GB
+  0.0100-DC  0.0200-RC  0.0200-BC  0.0000-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.4000-DD  0.0130-RD  0.0000-BD  0.0100-SD  0.0000-CD  0.0000-AD  1.5000-GD
+
+File: sp78M.prm    (Figure 7.8)
+           Branching by elongation: a movie of the growing edge
+ 600-KT    5-KP   1-KX 180-KY  19-KD   5-KI 712-KE   5-KR   4-KN   0-KG 
+  0-K1   0-K2   0-K3  13-K4        3.0000-DX  0.0000-DY  0.0000-DZ  cab-DW    
+  0.0100-DA  0.0500-RA  0.0000-BA  0.0100-SA  0.0000-CA  1.5000-AA  0.0000-GA
+  0.0000-DB  0.0045-RB  0.0350-BB  0.0000-SB  0.2000-CB  0.0000-AB  5.0000-GB
+  0.0100-DC  0.0500-RC  0.0100-BC  0.0000-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.4000-DD  0.0130-RD  0.0000-BD  0.0100-SD  0.0000-CD  0.0000-AD  1.5000-GD
+
+
+________________________________________________________________________________
+
+CASE 72 '---  A, B = PIGMENTATION, C, D = ENHANCEMENT, E = POOL
+     aq = s * b * (a * a / (1! + sA * a * a) + ba * C)
+     a(1, i) = olddecaydiffA + aq
+     frompool = bb * se * e / (1 + se * e + ce * b) * (1 + sc * C)
+     IF frompool > e THEN frompool = e
+     a(2, i) = olddecaydiffB - aq + frompool
+     cq = rc * a(9, i) * a * (C * C + bc)
+     a(3, i) = olddecaydiffC + cq / (sd + D)
+     a(4, i) = olddecaydiffD + cq
+     a(5, i) = olddecaydiffE + be * a(8, i) - frompool
+     IF a(2, i) < 0 THEN a(2, i) = 0
+     IF a(5, i) < 0 THEN a(5, i) = 0
+
+File: sp710.prm    (Figure 7.10)
+  Conus auratus, change BE to.035 for transition to netlike structures
+ 440-KT    8-KP   1-KX 305-KY   9-KD   5-KI  72-KE   5-KR   6-KN   0-KG 
+  0-K1   0-K2  50-K3  14-K4        2.0000-DX  0.0000-DY  0.0350-DZ  ac-DW     
+  0.0100-DA  0.0500-RA  0.0000-BA  0.0500-SA  0.0000-CA  1.5000-AA  1.0000-GA
+  0.0000-DB  0.0030-RB  0.0600-BB  0.0000-SB  0.0000-CB  0.0000-AB  5.0000-GB
+  0.0100-DC  0.0100-RC  0.0100-BC  0.5000-SC  0.0000-CC  1.0000-AC  0.0000-GC
+  0.4000-DD  0.0130-RD  0.0000-BD  0.0100-SD  0.0000-CD  0.0000-AD  0.4000-GD
+  0.0000-DE  0.0000-RE  0.0600-BE  1.0000-SE  1.0000-CE  0.0000-AE 10.0000-GE
+  0.0000-DF  0.0000-RF  0.0000-BF  0.0000-SF  0.0000-CF  0.0000-AF  0.0000-GF
+
+
+________________________________________________________________________________
+
+CASE 77 '---------TWO ACTIVATOR-DEPLETION MECHANISMS, C KILLS A
+       'plus a stagered dot system that enhances a
+       'for Cymbiolacca wisemani
+     aq = s * b * (a * a / (1! + sA * a * a) + ba)
+     a(1, i) = olddecaydiffA + aq - cc * a * C
+     a(2, i) = olddecaydiffB - aq + bb * (1 + ce * e)
+     IF a(2, i) < 0 THEN a(2, i) = 0
+' killing reaction
+     cqf = C * C
+     cq = a(9, i) * D * (cqf / (1! + sc * cqf) + bc)
+     a(3, i) = olddecaydiffC + cq + sd * a
+     a(4, i) = olddecaydiffD - cq + bd * a + cd * e
+     IF a(4, i) < 0 THEN a(4, i) = 0
+'enhancing reaction
+     a(5, i) = olddecaydiffE + re * a * a(9, i) / g * (e * e / f + be)
+     a(6, i) = olddecaydiffF + rf * e * e / g
+     a(7, i) = olddecaydiffG + rg * e
+
+File: sp712.prm    (Figure 7.12)
+          Unpigmented patches with an i-dot: Cymbiolacca wisemani
+ 455-KT    8-KP   4-KX 150-KY   9-KD   1-KI  77-KE  10-KR   7-KN   0-KG 
+  0-K1   0-K2 150-K3  13-K4        4.0000-DX100.0000-DY  4.0000-DZ  a-DW      
+  0.0050-DA  0.0100-RA  0.0600-BA  0.0500-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.0000-DB  0.0030-RB  0.0120-BB  0.0000-SB  0.0000-CB  0.0000-AB  1.0000-GB
+  0.1000-DC  0.1000-RC  0.0020-BC  0.0500-SC  0.1000-CC  0.0000-AC  0.0001-GC
+  0.1000-DD  0.0080-RD  0.0150-BD  0.0000-SD  0.0000-CD  0.0000-AD  0.0000-GD
+  0.0040-DE  0.0200-RE  0.0500-BE  0.0000-SE  0.2000-CE  0.0000-AE  1.0000-GE
+  0.0080-DF  0.0020-RF  0.0000-BF  0.0000-SF  0.0000-CF  0.0000-AF  1.0000-GF
+  0.4000-DG  0.0100-RG  0.0000-BG  0.0000-SG  0.0000-CG  0.0000-AG  1.0000-GG
+
+
+________________________________________________________________________________
+
+CASE 714 '-- SHARP DOTS (D, E) ALONG INVISIBLE LINES (C)
+     'and waves (a, b)
+     aq = s * b * (a * a / (1! + sA * a * a) + ba)
+     a(1, i) = olddecaydiffA + aq
+     a(2, i) = olddecaydiffB - aq + bb * (1 + ce * e)
+     eq = re * a * C * (e * e + be)
+     a(5, i) = olddecaydiffE + eq / (sf + f)
+     a(6, i) = olddecaydiffF + eq
+
+File: sp713.prm    (Figure 7.13)
+                     Sharp dots along invisible lines
+ 440-KT    6-KP   1-KX 111-KY   9-KD   5-KI 714-KE   4-KR   6-KN   0-KG 
+305-K1   1-K2   0-K3 100-K4        3.0000-DX  1.0000-DY  4.0000-DZ  ea-DW     
+  0.0150-DA  0.0300-RA  0.0200-BA  0.5000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.0010-RB  0.0200-BB  0.0000-SB  0.0000-CB  0.0000-AB  4.0000-GB
+  0.0000-DC  0.1000-RC  0.0000-BC  0.0000-SC  0.0000-CC  1.0000-AC  0.0000-GC
+  0.0000-DD  0.0000-RD  0.0000-BD  0.0000-SD  0.0000-CD  0.0000-AD  2.0000-GD
+  0.0000-DE  0.1000-RE  0.0150-BE  0.0000-SE 10.0000-CE  1.0000-AE  0.0001-GE
+  0.0000-DF  0.0400-RF  0.0000-BF  0.0500-SF  0.0000-CF  0.0000-AF  2.0000-GF
+
+
+________________________________________________________________________________
+
+CASE 81 '- ACTIVATOR-DEPLETION MECHANISMS, HOMOGENEOUS OSCILLATION
+'oscillation blocks substrate production or enhances activator destruction
+     aq = s * b * (a * a / (1! + sA * a * a) + ba)
+     a(1, i) = olddecaydiffA + aq - cc * a * C
+     a(2, i) = olddecaydiffB - aq + bb / (1 + sb * C)
+IF i = js THEN CALL oscillation(3, C, D, olddecaydiffC, olddecaydiffD, ja, js)
+
+File: sp82A.prm    (Figure 8.2A)
+             Triangles via inhibition of substrate production
+ 455-KT    6-KP   1-KX 150-KY   9-KD   5-KI  81-KE   5-KR   4-KN   0-KG 
+  3-K1   2-K2   0-K3   0-K4        3.0000-DX  0.0000-DY  4.0000-DZ  ac-DW     
+  0.0030-DA  0.0800-RA  0.0001-BA  5.0000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.0000-RB  0.2500-BB 48.0000-SB  0.0000-CB  1.0000-AB 12.0000-GB
+  0.0000-DC  0.1000-RC  0.0150-BC  0.1000-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.0000-DD  0.0000-RD  0.0500-BD  0.0000-SD  0.0000-CD  0.0000-AD  2.0000-GD
+
+File: sp82B.prm    (Figure 8.2B)
+                        Triangles, Sierpinsky-like
+ 455-KT    8-KP   1-KX  90-KY   9-KD   5-KI  81-KE   5-KR   4-KN   0-KG 
+  3-K1   2-K2   0-K3   0-K4        5.0000-DX  0.0000-DY  4.0000-DZ  ac-DW     
+  0.0020-DA  0.0400-RA  0.0001-BA  0.5000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.0100-RB  0.1000-BB  0.0000-SB  0.0000-CB  1.0000-AB  7.0000-GB
+  0.0000-DC  0.1000-RC  0.0300-BC  0.2000-SC  0.0500-CC  0.0000-AC  0.0000-GC
+  0.0000-DD  0.0000-RD  0.0300-BD  0.0000-SD  0.0000-CD  0.0000-AD  2.0000-GD
+
+File: sp82C.prm    (Figure 8.2C)
+          Triangles by shortening of activator life time (strong)
+ 455-KT    8-KP   1-KX  90-KY   9-KD   5-KI  81-KE   5-KR   4-KN   0-KG
+  3-K1   2-K2   0-K3   0-K4        5.0000-DX  0.0000-DY  4.0000-DZ  ac-DW     
+  0.0020-DA  0.0400-RA  0.0001-BA  0.5000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.0100-RB  0.1000-BB  0.0000-SB  0.0000-CB  1.0000-AB  7.0000-GB
+  0.0000-DC  0.1000-RC  0.0300-BC  0.2000-SC  0.0570-CC  0.0000-AC  0.0000-GC
+  0.0000-DD  0.0000-RD  0.0300-BD  0.0000-SD  0.0000-CD  0.0000-AD  2.0000-GD
+
+File: sp83.prm    (Figure 8.3)
+                 Sierpinsky-triangles with fine structure
+ 440-KT   20-KP   1-KX 180-KY   9-KD   5-KI  81-KE   5-KR   4-KN   0-KG 
+  3-K1   2-K2 100-K3  13-K4        3.0000-DX  0.0000-DY  4.0000-DZ  ac-DW     
+  0.0100-DA  0.0800-RA  0.0010-BA  1.0000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0100-DB  0.0200-RB  0.2000-BB  2.4000-SB  0.0000-CB  1.0000-AB  4.0000-GB
+  0.0000-DC  0.1000-RC  0.0800-BC  0.0100-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.0000-DD  0.0000-RD  0.0500-BD  0.0000-SD  0.0000-CD  0.0000-AD  2.0000-GD
+
+
+________________________________________________________________________________
+
+CASE 83 '----- CROSSING SOLUTION PLUS OSCILLATIONS
+     aq = s * b * (a * a + ba) / (1! + sA * a * a) / (sb + sc * C)
+     a(1, i) = olddecaydiffA + aq - cc * D * a
+     a(2, i) = olddecaydiffB - aq + bb
+     a(3, i) = olddecaydiffC + rc * a
+IF i = js THEN CALL oscillation(4, D, e, olddecaydiffD, olddecaydiffE, ja, js)
+
+File: sp85A.prm    (Figure 8.5)
+                Lyoconcha castrensis - connected triangles
+ 440-KT    6-KP   1-KX 110-KY   9-KD   5-KI  83-KE   8-KR   5-KN   0-KG
+  3-K1   2-K2 100-K3  13-K4        4.0000-DX  0.0000-DY  0.0050-DZ  ad-DW
+  0.0100-DA  0.0800-RA  0.0005-BA  3.0000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.0050-RB  0.1000-BB  0.7000-SB  0.0000-CB  0.0000-AB 15.0000-GB
+  0.4000-DC  0.0400-RC  0.0000-BC  4.0000-SC  0.0400-CC  0.0000-AC  0.1000-GC
+  0.0000-DD  0.1000-RD  0.0150-BD  0.0000-SD  0.0000-CD  0.0000-AD  0.1000-GD
+  0.0000-DE  0.0000-RE  0.0500-BE  0.0000-SE  0.0000-CE  0.0000-AE  0.0000-GE
+
+File: sp85B.prm    (Figure 8.5)
+                    Crossings-solution plus oscillation
+ 440-KT    8-KP   1-KX 110-KY   9-KD   5-KI  83-KE   5-KR   5-KN   0-KG
+  3-K1   2-K2  60-K3  13-K4        4.0000-DX  0.0000-DY  0.0050-DZ  ad-DW
+  0.0100-DA  0.0800-RA  0.0002-BA  3.0000-SA  0.0800-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.0050-RB  0.1200-BB  0.3000-SB  0.0000-CB  0.0000-AB  9.0000-GB
+  0.4000-DC  0.0100-RC  0.0000-BC 10.0000-SC  0.0450-CC  0.1000-AC  0.1000-GC
+  0.0000-DD  0.1000-RD  0.0500-BD  0.0000-SD  0.0000-CD  0.0000-AD  0.1000-GD
+  0.0000-DE  0.0000-RE  0.0500-BE  0.0000-SE  0.0000-CE  0.0000-AE  0.0000-GE
+
+
+________________________________________________________________________________
+
+CASE 832 ' CROSSING SOLUTION PLUS OSCILLATIONS (DE -> AI-SYSTEM)
+     aq = s * b * (a * a + ba) / (1! + sA * a * a) / (sb + sc * C)
+     a(1, i) = olddecaydiffA + aq - cc * D * a
+     a(2, i) = olddecaydiffB - aq + bb * (1 + cB * D)
+     a(3, i) = olddecaydiffC + rc * a
+     dq = rd * a(9, i) * (D * D + bd)
+     a(4, i) = olddecaydiffD + dq / e
+     a(5, i) = olddecaydiffE + dq
+
+File: sp85C.prm    (Figure 8.5)
+ Broad triangles and oscillations, enhancement and extinguishing reaction
+ 440-KT    5-KP   1-KX 110-KY   9-KD   5-KI 832-KE   5-KR   5-KN   0-KG
+  3-K1   2-K2 140-K3  13-K4        3.0000-DX  0.0000-DY  3.0000-DZ  ade-DW
+  0.0100-DA  0.0500-RA  0.0060-BA  1.0000-SA  0.0500-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.0000-RB  0.0200-BB  1.0000-SB  2.0000-CB  0.0500-AB 10.0000-GB
+  0.4000-DC  0.0300-RC  0.0000-BC  2.0000-SC  0.0300-CC  1.0000-AC  1.0000-GC
+  0.0000-DD  0.1000-RD  0.0100-BD  0.0000-SD  0.0000-CD  0.0000-AD  1.0000-GD
+  0.0000-DE  0.0400-RE  0.0000-BE  0.0000-SE  0.0000-CE  1.0000-AE  1.0000-GE
+
+File: sp85D.prm    (Figure 8.5)
+        Triangles, calculated from initially homogenious conditions
+ 440-KT    8-KP   1-KX 110-KY   9-KD   5-KI  83-KE   5-KR   5-KN   0-KG
+  3-K1   2-K2   0-K3   6-K4        4.0000-DX  0.0000-DY  0.2000-DZ  a-DW
+  0.0100-DA  0.0800-RA  0.0010-BA  1.0000-SA  0.0000-CA  0.0000-AA  0.0000-GA
+  0.0000-DB  0.0040-RB  0.1000-BB  1.0000-SB  0.0000-CB  0.0000-AB 15.0000-GB
+  0.4000-DC  0.1000-RC  0.0000-BC  7.0000-SC  0.0300-CC  0.1000-AC  0.0000-GC
+  0.0000-DD  0.1000-RD  0.0200-BD  0.1000-SD  0.0000-CD  0.0000-AD  0.1000-GD
+  0.0000-DE  0.0000-RE  0.0500-BE  0.0000-SE  0.0000-CE  0.0000-AE  0.0000-GE
+
+
+________________________________________________________________________________
+
+CASE 85 '-- BRANCHES VERSUS TRIANGLES: ANTAGONISTIC ACTION OF THE
+     'c-d oscillation
+   drb = (1 - rbb - 2 * db)
+   GOSUB olddecay
+      rbb = rB * (1 + cB * D) / (1 + cc * C)' effective inhibitor decay rate
+      drb = 1! - 2! * db - rbb
+     aq = s * (a * a / (1! + sA * a * a) + ba)
+     a(1, i) = olddecaydiffA + aq / (sb + se * e + b)
+     a(2, i) = b * (1 - rbb - 2 * db) + db * (bl + a(2, i + 1)) + aq
+     cq = rc * a(8, i) * (C * C + bc)
+     a(3, i) = olddecaydiffC + cq / (sd + D)
+     a(4, i) = olddecaydiffD + cq
+     a(5, i) = olddecaydiffE + re * a
+
+File: sp87A.prm    (Figure 8.7)
+        Triangles (versus branches): antagonistic action of c and d
+ 440-KT    5-KP   1-KX 200-KY   9-KD   5-KI  85-KE   5-KR   5-KN   0-KG
+  1-K1   0-K2   0-K3  13-K4        3.0000-DX  0.0000-DY  5.0000-DZ  acd-DW
+  0.0100-DA  0.1000-RA  0.0000-BA  0.2500-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.1200-RB  0.0000-BB  0.1000-SB  0.0000-CB  0.0000-AB  0.0000-GB
+  0.2000-DC  0.1000-RC  0.0100-BC  0.0000-SC  2.0000-CC  0.0000-AC  0.0000-GC
+  0.2000-DD  0.0300-RD  0.0000-BD  0.0400-SD  0.0000-CD  0.0000-AD  1.5000-GD
+  0.0000-DE  0.0100-RE  0.0000-BE  0.2300-SE  0.0000-CE  0.0000-AE  0.0000-GE
+
+File: sp87B.prm    (Figure 8.7)
+        Branches (versus triangles): c and d acts antagonistically
+ 440-KT    5-KP   1-KX 150-KY   9-KD   5-KI  85-KE   5-KR   5-KN   0-KG
+  1-K1   0-K2   0-K3  13-K4        4.0000-DX  0.0000-DY  5.0000-DZ  acd-DW
+  0.0050-DA  0.1000-RA  0.0000-BA  0.2500-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.0600-RB  0.0000-BB  0.0800-SB  1.0000-CB  0.0000-AB  0.0000-GB
+  0.2000-DC  0.1000-RC  0.0200-BC  3.0000-SC  4.0000-CC  0.0000-AC  0.0000-GC
+  0.2000-DD  0.0500-RD  0.0000-BD  0.0400-SD  0.0000-CD  0.0000-AD  1.5000-GD
+  0.4000-DE  0.0040-RE  0.0000-BE  0.0500-SE  3.0000-CE  0.0000-AE  0.0000-GE
+
+
+________________________________________________________________________________
+
+CASE 86 'THREE INHIBITORS (B,E,F) AND OSCILLATION - L. HIEROGLYPHICA
+      C = a(3, i): D = a(4, i)
+      rbb = rB * (1 + cB * D + cd * C) / (1 + cc * C)'---- effective Inhibitor
+      drb = 1! - 2! * db - rbb           '     Zerfallsrate
+   GOSUB olddecay
+     aq = s * (a * a / (1! + sA * a * a) + ba)
+     a(1, i) = olddecaydiffA + aq / (sb + sf * f + se * e + b)
+     a(2, i) = b * (1 - rbb - 2 * db) + db * (bl + a(2, i + 1)) + aq + bb
+     cq = rc * a(8, i) * (C * C + bc)         'c and d - > oscillation
+     a(3, i) = olddecaydiffC + cq / (sd + D)  '= A-I system
+     a(4, i) = olddecaydiffD + cq
+     a(5, i) = olddecaydiffE + re * a
+     a(6, i) = olddecaydiffF + rf * a
+
+File: sp88.prm    (Figure 8.8)
+        Interrupted lines with branches: Liochoncha hieroglyphica
+ 440-KT   12-KP   1-KX 200-KY   9-KD   5-KI  86-KE   5-KR   6-KN   0-KG
+  1-K1   0-K2   0-K3  13-K4        3.0000-DX  0.0000-DY  5.0000-DZ  aef-DW
+  0.0025-DA  0.1000-RA  0.0001-BA  0.2500-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.0600-RB  0.0000-BB  0.0000-SB  1.0000-CB  0.0000-AB  0.0000-GB
+  0.2000-DC  0.1000-RC  0.0200-BC  3.0000-SC  1.0000-CC  0.0000-AC  0.0000-GC
+  0.2000-DD  0.0500-RD  0.0000-BD  0.0400-SD  0.0000-CD  0.0000-AD  1.5000-GD
+  0.4000-DE  0.0050-RE  0.0000-BE  0.4000-SE  3.0000-CE  0.0000-AE  0.0500-GE
+  0.0000-DF  0.0010-RF  0.0000-BF  0.2000-SF  0.0000-CF  0.0000-AF  0.0500-GF
+
+
+________________________________________________________________________________
+
+CASE 87 'ACTIVATOR-SUBSTRATE PLUS TWO ADDITIONAL INHIBITORS
+     '=> three inhibitory actions
+     aq = s * b * ((a * a + ba) / (1! + sA * a * a)) / (D + sb * C)
+     a(1, i) = olddecaydiffA + aq
+     a(2, i) = olddecaydiffB - aq + bb
+     a(3, i) = olddecaydiffC + rc * a
+     a(4, i) = olddecaydiffD + bd * a
+
+File: sp89A.prm    (Figure 8.9)
+ Activator-substrate model and two inhibitors:crossings and spontaneous trigger
+ 440-KT   12-KP   1-KX 100-KY   9-KD   5-KI  87-KE   5-KR   4-KN   0-KG
+  3-K1   2-K2   0-K3   6-K4        4.0000-DX  0.0000-DY  0.2000-DZ  a-DW
+  0.0060-DA  0.0800-RA  0.0005-BA  1.0000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.0060-RB  0.1000-BB  6.0000-SB  0.0000-CB  0.0000-AB 15.0000-GB
+  0.4000-DC  0.1000-RC  0.0000-BC  0.0000-SC  0.0000-CC  0.1000-AC  0.0000-GC
+  0.0100-DD  0.0007-RD  0.0030-BD  0.0000-SD  0.0000-CD  0.0000-AD  0.8000-GD
+
+File: sp89B.prm    (Figure 8.9)
+          Pigmentation fading away, A-S system + two inhibitors
+ 440-KT   12-KP   1-KX  55-KY   9-KD   5-KI  87-KE   5-KR   4-KN   0-KG
+  3-K1   2-K2   0-K3   6-K4        5.0000-DX  0.0000-DY  0.2000-DZ  a-DW
+  0.0040-DA  0.0800-RA  0.0004-BA  1.0000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0000-DB  0.0080-RB  0.1000-BB  4.0000-SB  0.0000-CB  0.0000-AB 15.0000-GB
+  0.0400-DC  0.1000-RC  0.0000-BC  0.0300-SC  0.0000-CC  0.1000-AC  0.0000-GC
+  0.0000-DD  0.0005-RD  0.0030-BD  0.0000-SD  0.0000-CD  0.0000-AD  0.8000-GD
+
+
+________________________________________________________________________________
+
+CASE 84 'TRIANGLES WITH GLOBAL STOP, TWO INHIBITORS, HORMONE AND OSCILLATION
+     'a=activator, b,c inhibitors; cd = oscillation, e=hormone
+     a(1, i) = olddecaydiffA + s * (a * a / ((1 + sA * a * a) * (b + sc * C + sf * f)) + ba) - cc * a * D
+     a(2, i) = olddecaydiffB + s * a * a + bb'rb in 54
+     a(3, i) = olddecaydiffC + rc * a
+     ahorm = ahorm + rf * a '------ AD gets hormone input
+     IF i = js THEN
+     CALL oscillation(4, D, e, olddecaydiffD, olddecaydiffE, ja, js)
+     CALL hormone(6, ahorm, ja, js)
+     END IF
+
+File: sp810.prm    (Figure 8.10)
+                  Triangles with global stop and restart
+ 440-KT   10-KP   1-KX 203-KY   9-KD   5-KI  84-KE   0-KR   6-KN   0-KG
+  3-K1   2-K2   0-K3   1-K4        3.0000-DX  0.0000-DY  0.3000-DZ  a-DW
+  0.0200-DA  0.0500-RA  0.0040-BA  1.0000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.0050-DB  0.1000-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  0.1000-GB
+  0.1000-DC  0.0070-RC  0.0500-BC  0.1000-SC  0.0420-CC  1.0000-AC  0.3000-GC
+  0.0000-DD  0.1000-RD  0.0500-BD  0.1000-SD  0.0000-CD  0.0000-AD  0.1000-GD
+  0.0000-DE  0.0000-RE  0.0500-BE  0.0000-SE  0.0000-CE  0.0000-AE  2.0000-GE
+  0.0000-DF  0.0200-RF  0.0000-BF  0.4000-SF  0.0000-CF  0.0000-AF  0.3000-GF
+
+File: sp811E.prm    (Figure 8.11)
+              Cymbiola verpertilio, larger pigmented regions
+ 395-KT   16-KP   1-KX 305-KY  11-KD  15-KI 712-KE   5-KR   4-KN   0-KG 
+162-K1  40-K2   0-K3 100-K4        2.0000-DX  0.4000-DY120.0000-DZ  a-DW      
+  0.0100-DA  0.0500-RA  0.0000-BA  1.0000-SA  0.0000-CA  1.5000-AA  0.0000-GA
+  0.0000-DB  0.0045-RB  0.0250-BB  3.0000-SB  0.0000-CB  0.0000-AB  5.0000-GB
+  0.2000-DC  0.1000-RC  0.0200-BC  0.0000-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.1000-DD  0.0500-RD  0.0000-BD  0.0100-SD  0.0000-CD  0.0000-AD  1.5000-GD
+
+File: sp811F.prm    (Figure 8.11)
+         Cymbiola verspertilio: pigmented areas and oblique lines
+ 395-KT   16-KP   1-KX 305-KY  11-KD  15-KI 712-KE   5-KR   4-KN   0-KG 
+162-K1  45-K2   0-K3  95-K4        2.0000-DX  0.1000-DY 80.0000-DZ  a-DW      
+  0.0100-DA  0.0500-RA  0.0000-BA  1.0000-SA  0.0000-CA  1.5000-AA  0.0000-GA
+  0.0000-DB  0.0045-RB  0.0200-BB  3.0000-SB  0.0000-CB  0.0000-AB  5.0000-GB
+  0.2000-DC  0.1000-RC  0.0200-BC  0.0000-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.1000-DD  0.0500-RD  0.0000-BD  0.0100-SD  0.0000-CD  0.0000-AD  1.5000-GD
+
+
+________________________________________________________________________________
+
+CASE 92 ' A,B -> PIGMENTATION (AS-SYSTEM)
+     ' c,d -> precondition/background (AI-system)
+     aq = s * b * (a * a / (1! + sA * a * a) + ba)
+     a(1, i) = olddecaydiffA + aq
+     a(2, i) = olddecaydiffB - aq + bb * C
+     cq = rc * a(9, i) * (C * C / (1! + sc * C * C) + bc)
+     a(3, i) = olddecaydiffC + cq / (bd + D)
+     a(4, i) = olddecaydiffD + cq
+
+File: sp93A.prm    (Figure 9.3A)
+        Precondition via substrate production of the (c,d) system
+ 440-KT   11-KP   1-KX  80-KY   9-KD   3-KI  92-KE   5-KR   4-KN   0-KG
+  3-K1   2-K2 180-K3  12-K4        3.0000-DX  0.0000-DY  0.0000-DZ  ac-DW
+  0.0100-DA  0.0800-RA  0.0100-BA  0.2000-SA  0.0000-CA  0.0000-AA  0.0000-GA
+  0.0300-DB  0.0000-RB  0.0200-BB  0.0000-SB  0.0000-CB  3.0000-AB  0.1000-GB
+  0.0010-DC  0.0100-RC  0.0000-BC  0.4000-SC  0.0000-CC 10.0000-AC  0.0000-GC
+  0.0000-DD  0.0200-RD  0.0200-BD  0.0000-SD  0.0000-CD  0.0000-AD  0.0000-GD
+
+
+________________________________________________________________________________
+
+CASE 93 ' A,B -> PIGMENTATION (AS-SYSTEM)
+     ' c,d -> precondition/background (AI-system)
+     ' e,f -> Extinguishing system (AS-system)
+     aq = s * C * b * (a * a / (1! + sA * a * a) + ba)
+     a(1, i) = olddecaydiffA + aq
+     a(2, i) = olddecaydiffB - aq + bb
+     cqf = C * C
+     cq = rc * a(9, i) * D * (cqf / (1! + sc * cqf) + bc * a)
+     a(3, i) = olddecaydiffC + cq - cc * C * e
+     a(4, i) = olddecaydiffD - cq + bd
+     'extinguishing reaction
+     eqf = e ^ 2
+     eq = re * f * (eqf / (1! + se * eqf) + be + ce * C)
+     a(5, i) = olddecaydiffE + eq
+     a(6, i) = olddecaydiffF - eq + bf * C
+
+
+File: sp93C.prm    (Figure 9.3C)
+      Precondition, oscillation and extinguishing (cc=0 -> no kill)
+ 440-KT   20-KP   1-KX 155-KY   9-KD   5-KI  93-KE   5-KR   6-KN   0-KG
+  0-K1   0-K2   0-K3   0-K4        3.0000-DX  0.0000-DY  5.0000-DZ  aec-DW    
+  0.0300-DA  0.0800-RA  0.0100-BA  0.2000-SA  0.0000-CA  0.0000-AA  0.0000-GA
+  0.0200-DB  0.0010-RB  0.0350-BB  0.0000-SB  0.0000-CB  3.0000-AB  8.0000-GB
+  0.0000-DC  0.0100-RC  0.0500-BC  0.4000-SC  0.0200-CC  1.0000-AC  0.0000-GC
+  0.0000-DD  0.0030-RD  0.0200-BD  0.0000-SD  0.0000-CD  0.0000-AD  8.0000-GD
+  0.0500-DE  0.1000-RE  0.0040-BE  0.0500-SE  0.0000-CE  0.0000-AE  0.0000-GE
+  0.1000-DF  0.0000-RF  0.0090-BF  0.0000-SF  0.0000-CF  0.0000-AF  0.0000-GF
+
+
+________________________________________________________________________________
+
+CASE 91 '---  CLITHON
+     ' a,b -> pigmentation (AS-system)
+     ' c,d -> precondition/background (AI-system)
+     aq = s * b * C * (a * a / (1! + sA * a * a) + ba)
+     a(1, i) = olddecaydiffA + aq
+     a(2, i) = olddecaydiffB - aq + bb
+     cqf = C ^ 2
+     REM a(9,i) = 1 ñ random fluctuations (given by KR in %)
+     cq = rc * a(9, i) * (cqf / (1! + sc * cqf) + bc * a)
+     a(3, i) = olddecaydiffC + cq / (D + cd * b + se * e)
+     a(4, i) = olddecaydiffD + cq + bd * a(8, i)
+     a(5, i) = olddecaydiffE + be * a(8, i) * C'the long term poison
+
+File: sp94.prm    (Figure 9.4)
+      Clithon; parallel lines and tongues (set also se to.05 or.12)
+ 440-KT   20-KP   1-KX 150-KY   9-KD   5-KI  91-KE   0-KR   5-KN   0-KG
+  3-K1   2-K2   0-K3  10-K4        3.0000-DX  0.0000-DY  5.0000-DZ  ac-DW
+  0.0500-DA  0.1200-RA  0.0100-BA  1.0000-SA  0.0000-CA  1.0000-AA  0.0000-GA
+  0.1000-DB  0.0030-RB  0.0600-BB  0.0000-SB  0.0000-CB  0.0000-AB  8.0000-GB
+  0.0100-DC  0.0400-RC  0.0000-BC  0.4000-SC  0.0000-CC  1.0000-AC  0.0000-GC
+  0.0000-DD  0.0500-RD  0.0000-BD  0.0000-SD  0.0300-CD  0.0000-AD  0.1000-GD
+  0.0000-DE  0.0020-RE  0.0020-BE  0.0800-SE  0.0000-CE  0.0000-AE  0.0000-GE
+
+File: sp95.prm    (Figure 9.5)
+          Clithon: parallel lines and isolated travelling waves
+ 395-KT   10-KP   1-KX 205-KY  11-KD   7-KI  91-KE   5-KR   5-KN   0-KG 
+150-K1  75-K2   0-K3  10-K4        3.0000-DX  1.3000-DY  5.0000-DZ  ac-DW     
+  0.1000-DA  0.1200-RA  0.0100-BA  1.0000-SA  0.0000-CA  0.0000-AA  0.0000-GA
+  0.0500-DB  0.0030-RB  0.0600-BB  0.0000-SB  0.0000-CB  0.0000-AB  4.0000-GB
+  0.0100-DC  0.0400-RC  0.0000-BC  0.4000-SC  0.0000-CC  1.0000-AC  1.0000-GC
+  0.0000-DD  0.0500-RD  0.0000-BD  0.0000-SD  0.0200-CD  0.0000-AD  0.1000-GD
+  0.0000-DE  0.0050-RE  0.0050-BE  0.3000-SE  0.0000-CE  0.0000-AE  0.0000-GE
+
+File: sp96.prm    (Figure 9.6)
+       Neritina virginea: continue with N to see the traveling gaps
+ 395-KT   10-KP   1-KX 100-KY  11-KD   7-KI  91-KE   5-KR   5-KN   0-KG
+100-K1  50-K2   0-K3  10-K4        3.0000-DX  1.0000-DY  5.0000-DZ  ac-DW
+  0.1000-DA  0.1200-RA  0.0100-BA  1.0000-SA  0.0000-CA  0.0000-AA  0.0000-GA
+  0.0500-DB  0.0030-RB  0.0600-BB  0.0000-SB  0.0000-CB  0.0000-AB  4.0000-GB
+  0.0100-DC  0.0400-RC  0.0000-BC  0.4000-SC  0.0000-CC  1.0000-AC  1.0000-GC
+  0.0000-DD  0.0500-RD  0.0000-BD  0.0000-SD  0.0200-CD  0.0000-AD  0.1000-GD
+  0.0000-DE  0.0020-RE  0.0020-BE  0.2200-SE  0.0000-CE  0.0000-AE  0.0000-GE
+
+File: sp98.prm    (Figure 9.8)
+                              Conus textile
+ 440-KT   12-KP   1-KX 300-KY  11-KD  15-KI 712-KE   5-KR   4-KN   0-KG
+200-K1   1-K2   0-K3  80-K4        2.0000-DX  1.0000-DY100.0000-DZ  ac-DW
+  0.0100-DA  0.0500-RA  0.0000-BA  2.0000-SA  0.0000-CA  1.5000-AA  1.0000-GA
+  0.0000-DB  0.0045-RB  0.0600-BB  0.0000-SB  1.0000-CB  0.0000-AB  5.0000-GB
+  0.1000-DC  0.0500-RC  0.0050-BC  0.0000-SC  0.0000-CC  0.0000-AC  0.0000-GC
+  0.4000-DD  0.0100-RD  0.0000-BD  0.0100-SD  0.0200-CD  0.0000-AD  0.1000-GD
+
+
+=======================================================================
+
+         Equations and parameters used in the new chapter 12
+
+=======================================================================
+
+CASE 53 'SHIFTED DOTS = C HAS NEGATIVE FEEDBACK ON A AND B
+     a(1, i) = olddecaydiffA + s / C * (a * a / b + ba)
+     a(2, i) = olddecaydiffB + rB * a * a / C + bb
+     a(3, i) = olddecaydiffC + rc * a
+
+File: sp12-4.prm    (Figure 12-4)
+        Helical arrangement of leaf initiation signals; small field
+ 450-KT   18-KP   1-KX  18-KY  22-KD   5-KI  53-KE   5-KR   3-KN   0-KG
+ 11-K1   2-K2   0-K3   1-K4        8.0000-DX  0.0000-DY  0.3000-DZ  acb-DW
+  0.0100-DA  0.0200-RA  0.0500-BA  0.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.0025-DB  0.0015-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  1.0000-GB
+  0.4000-DC  0.0100-RC  0.0000-BC  0.0000-SC  0.0000-CC  1.0000-AC  1.0000-GC
+
+File: sp12-4A.prm    (Figure 12-4)
+              Phyllotaxis: 90 degree (decussate) arrangement
+ 450-KT   12-KP   1-KX  36-KY  22-KD   5-KI  53-KE   5-KR   3-KN   0-KG
+ 11-K1   2-K2   0-K3   1-K4        6.0000-DX  0.0000-DY  0.3000-DZ  abc-DW
+  0.0050-DA  0.0200-RA  0.1000-BA  0.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.0200-DB  0.0020-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  1.0000-GB
+  0.4000-DC  0.0100-RC  0.0000-BC  0.0000-SC  0.0000-CC  1.0000-AC  1.0000-GC
+
+File: sp12-4B.prm    (Figure 12-4)
+     Opposite (distichous) arrangement of signals for leaf initiation
+ 450-KT   12-KP   1-KX  20-KY  22-KD   5-KI  53-KE   5-KR   3-KN   0-KG
+ 11-K1   2-K2   0-K3   1-K4       10.0000-DX  0.0000-DY  0.3000-DZ  acb-DW
+  0.0050-DA  0.0200-RA  0.0500-BA  0.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.0300-DB  0.0015-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  1.0000-GB
+  0.1600-DC  0.0100-RC  0.0000-BC  0.0000-SC  0.0000-CC  1.0000-AC  1.0000-GC
+
+File: sp12-4C.prm    (Figure 12-4)
+        Helical arrangement of leaf initiation signals; small field
+ 450-KT   18-KP   1-KX  18-KY  22-KD   5-KI  53-KE   5-KR   3-KN   0-KG
+ 11-K1   2-K2   0-K3   1-K4        8.0000-DX  0.0000-DY  0.3000-DZ  acb-DW
+  0.0100-DA  0.0200-RA  0.0500-BA  0.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.0025-DB  0.0015-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  1.0000-GB
+  0.4000-DC  0.0100-RC  0.0000-BC  0.0000-SC  0.0000-CC  1.0000-AC  1.0000-GC
+
+File: sp12-4D.prm    (Figure 12-4)
+ Helical arrangement of leaf initiation signals; large field, counter waves
+ 450-KT   18-KP   1-KX  32-KY  22-KD   5-KI  53-KE   5-KR   3-KN   0-KG
+ 11-K1   2-K2   0-K3   1-K4        7.0000-DX  0.0000-DY  0.3000-DZ  acb-DW
+  0.0100-DA  0.0200-RA  0.0500-BA  0.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.0025-DB  0.0015-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  1.0000-GB
+  0.4000-DC  0.0100-RC  0.0000-BC  0.0000-SC  0.0000-CC  1.0000-AC  1.0000-GC
+
+File: sp12-4E.prm    (Figure 12-4)
+               Helical phyllotaxis, polar coordinate system
+ 450-KT   18-KP   1-KX  18-KY  16-KD   5-KI  53-KE   5-KR   3-KN   0-KG
+ 11-K1   0-K2   0-K3   1-K4        8.0000-DX  0.0000-DY  0.3000-DZ  acb-DW
+  0.0100-DA  0.0200-RA  0.0500-BA  0.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.0025-DB  0.0015-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  1.0000-GB
+  0.4000-DC  0.0100-RC  0.0000-BC  0.0000-SC  0.0000-CC  1.0000-AC  1.0000-GC
+
+
+________________________________________________________________________________
+
+CASE 121 'ACTIVATION OF SEVERAL GENES BY A GRADED MORPHOGEN DISTRIBUTION
+    'e = Repressor, f = positional information
+    'sa, sb, sc.. = Efficiency of the genes in the autokatalyse
+    ' a(i,iy)= ra+(1 +- Fluctuations)
+    ' cb slope of the gradient
+    ' e = a measure for the antagonistic reaction, competition
+    ' f = positionnal information
+    ' ba absolute influence of the morphogen
+    e = sA * a * a + sb * b * b + sc * C * C + sd * D * D
+    dq = sd * a(0, 4) * D * D: a(4, i) = olddecaydiffD + (dq + f * a(3, i)) / e
+    cq = sc * a(0, 3) * C * C: a(3, i) = olddecaydiffC + (cq + f * a(2, i)) / e
+    bq = sb * a(0, 2) * b * b: a(2, i) = olddecaydiffB + (bq + f * a(1, i)) / e
+    aq = sA * a(0, 1) * a * a: a(1, i) = olddecaydiffA + aq / e
+    a(5, i) = olddecaydiffE + aq + bq + cq + dq
+    a(6, i) = ba * a(8, i)
+
+File: sp12-5.prm    (Figure 12-5)
+          Four genes under the influence of a morphogen gradient
+ 130-KT   50-KP   1-KX  32-KY  18-KD 121-KI 121-KE   2-KR   6-KN   0-KG
+ 11-K1   2-K2   0-K3   0-K4       16.0000-DX  0.0000-DY 12.0000-DZ  fabcd-DW
+  0.0000-DA  0.0100-RA  0.0010-BA  1.0000-SA  0.3500-CA  0.5000-AA  0.9000-GA
+  0.0000-DB  0.0100-RB  0.0000-BB  1.4200-SB  0.0480-CB  1.0000-AB  0.0000-GB
+  0.0000-DC  0.0100-RC  0.0000-BC  2.0000-SC  0.0000-CC  1.0000-AC  0.0000-GC
+  0.0000-DD  0.0100-RD  0.0000-BD  2.8000-SD  0.0000-CD  0.0000-AD  0.0000-GD
+  0.0000-DE  0.0150-RE  0.0000-BE  0.0000-SE  0.0000-CE  0.0000-AE  0.7000-GE
+  0.0000-DF  0.0000-RF  0.0000-BF  0.0000-SF  0.0000-CF  0.0000-AF  0.0000-GF
+
+
+________________________________________________________________________________
+
+  CASE 123 'ACTIVATION OF SEVERAL GENES IN A SINGLE CELL
+'  i=Gene Nr., not, as usual, the position
+	aq = a * a / (1! + sA * a * a)
+	a(2, i) = a(8, i) * ba
+	a(1, i) = olddecaydiffA + s * (aq / C + b)
+	ahorm = ahorm + rc * aq
+	IF i = js THEN
+	a(3, 1) = a(3, 1) * (1! - rc) + ahorm
+	FOR iic = ja TO js
+	  a(3, iic) = a(3, 1)
+	ahorm = 0
+	END IF
+   NEXT i
+
+File: sp12-5A.prm    (Figure 12-5)
+  5 autoregulatory and competing genes in a single cell; switch -> ba=.3
+ 100-KT    4-KP   1-KX   5-KY  21-KD 123-KI 123-KE   2-KR   3-KN   0-KG
+ 11-K1   2-K2   0-K3   0-K4       80.0000-DX  0.0000-DY 12.0000-DZ  abc-DW
+  0.0000-DA  0.0300-RA  0.0000-BA  0.0000-SA  0.0000-CA  0.5000-AA  0.4000-GA
+  0.0000-DB  0.0000-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.0000-AB  0.0000-GB
+  0.0000-DC  0.1000-RC  0.0000-BC  0.0000-SC  0.0000-CC  1.0000-AC  0.5000-GC
+
+
+________________________________________________________________________________
+
+CASE 124 'ONLY ONE GENE, WITH THRESHOLD
+	a(1, i) = olddecaydiffA + ra * a * a / (1! + sA * a * a) + b
+	a(2, i) = ba * a(8, i) ' Morphogen concentration, for display
+
+File: sp12-5C.prm    (Figure 12-5)
+              A gene with threshold under morphogen control
+  60-KT   40-KP   1-KX  30-KY   3-KD 124-KI 124-KE   0-KR   2-KN   0-KG
+  2-K1   2-K2   0-K3   0-K4       18.0000-DX  0.0001-DY 12.0000-DZ  ab-DW
+  0.0000-DA  0.0500-RA  0.0200-BA  0.2000-SA  0.0000-CA  0.0000-AA  0.0000-GA
+  0.4000-DB  0.0800-RB  0.0000-BB  0.0000-SB  0.0000-CB -0.7000-AB  1.0000-GB
+
+
+________________________________________________________________________________
+
+CASE 126 'HY- - HYDRA HYPOSTOME, TENTACLES AND FOOT
+	aq = C * s * (a * a + ba)
+	a(1, i) = olddecaydiffA + aq / b
+	a(2, i) = olddecaydiffB + aq + bb
+	'Source
+	IF rc > 0 THEN a(3, i) = olddecaydiffC + rc * a + bc - rc * C * f
+	dfq = D * D + bd
+	dq = C * cd * dfq / (1 + sd * dfq) / (1 + ce * a)
+	a(4, i) = olddecaydiffD + dq / e
+	a(5, i) = olddecaydiffE + dq + be
+	'Foot
+	fq = rf * (f * f + bf) / C
+	a(6, i) = olddecaydiffF + fq / g
+	a(7, i) = olddecaydiffG + fq + bg * C
+
+
+File: sp12-6.prm    (Figure 12-6)
+ Hydra: hypostome (blue), tentacles (red), foot (black), source density (green)
+  40-KT  250-KP   1-KX   7-KY  19-KD 126-KI 126-KE   3-KR   7-KN   4-KG
+  1-K1   3-K2   0-K3   0-K4       14.0000-DX  0.0000-DY 12.0000-DZ  adcf-DW
+  0.0015-DA  0.0030-RA  0.0500-BA  0.0000-SA  0.0000-CA  1.3000-AA  1.0000-GA
+  0.2000-DB  0.0060-RB  0.0000-BB  0.0000-SB  0.0000-CB  0.0000-AB  1.8000-GB
+  0.0020-DC  0.0001-RC  0.0001-BC  0.0001-SC  0.0002-CC  0.0500-AC  0.2000-GC
+  0.0050-DD  0.0200-RD  0.0050-BD  0.0100-SD  0.0200-CD  0.0000-AD  0.0000-GD
+  0.2000-DE  0.0300-RE  0.0040-BE  0.0000-SE  0.2000-CE  0.0000-AE  0.1000-GE
+  0.0030-DF  0.0020-RF  0.0100-BF  0.0000-SF  0.0000-CF  0.0000-AF  1.3000-GF
+  0.2000-DG  0.0030-RG  0.0001-BG  0.0000-SG  0.0000-CG  0.0000-AG  2.0000-GG
+
+File: sp12-6A.prm    (Figure 12-6)
+    Head (blue) and foot (black) appear at opposite ends of the field
+ 120-KT  100-KP   1-KX  16-KY  19-KD 126-KI 126-KE   1-KR   7-KN   0-KG
+  1-K1   3-K2   0-K3   0-K4       24.0000-DX  0.0000-DY 12.0000-DZ  afc-DW
+  0.0015-DA  0.0030-RA  0.0500-BA  0.0000-SA  0.0000-CA  1.3000-AA  1.0000-GA
+  0.2000-DB  0.0050-RB  0.0000-BB  0.0000-SB  0.0000-CB  0.0000-AB  1.8000-GB
+  0.0020-DC  0.0001-RC  0.0001-BC  0.0001-SC  0.0002-CC  0.0100-AC  1.0000-GC
+  0.0050-DD  0.0200-RD  0.0050-BD  0.0100-SD  0.0200-CD  0.0000-AD  0.0000-GD
+  0.2000-DE  0.0300-RE  0.0040-BE  0.0000-SE  0.2000-CE  0.0000-AE  0.1000-GE
+  0.0030-DF  0.0020-RF  0.0100-BF  0.0000-SF  0.0000-CF  0.0000-AF  1.3000-GF
+  0.2000-DG  0.0030-RG  0.0001-BG  0.0000-SG  0.0000-CG  0.0000-AG  2.0000-GG
+
+File: sp12-6C.prm    (Figure 12-6)
+ For demonstration that regeneration may be connected with polarity reversal
+  40-KT   50-KP   1-KX  25-KY   3-KD   1-KI  21-KE   0-KR   2-KN   0-KG
+  2-K1   2-K2   0-K3   0-K4       25.0000-DX  0.0000-DY 12.0000-DZ  ab-DW
+  0.0030-DA  0.0030-RA  0.0200-BA  0.0000-SA  0.0000-CA  3.0000-AA  0.0000-GA
+  0.4000-DB  0.0070-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.4000-AB  1.0000-GB
+
+
+________________________________________________________________________________
+
+CASE 127 ' ACTIVATOR-INHIBITOR-SYSTEM FEEDBACK ON THE SOURCE
+'   if sc>0: Activator has the influence
+'   if cc>0: Inhibitor has the influence, must become slower at higher
+'      source density otherwhise numerically instable
+	aq = C * s * (a * a + ba)
+	a(1, i) = olddecaydiffA + aq / b
+	a(2, i) = olddecaydiffB + aq + bb
+	'Source
+	a(3, i) = olddecaydiffC + sc * a + cc * b / C + bc
+
+File: sp12-6D.prm    (Figure 12-6)
+     The inhibitor (red) has a feedback on the source density (green)
+  72-KT  200-KP  10-KX  18-KY   3-KD   1-KI 127-KE   3-KR   3-KN   3-KG
+  1-K1   3-K2   0-K3   0-K4       12.0000-DX  0.0000-DY 12.0000-DZ  acb-DW
+  0.0015-DA  0.0030-RA  0.0500-BA  0.0000-SA  0.0000-CA  2.0000-AA  1.0000-GA
+  0.3000-DB  0.0060-RB  0.0000-BB  0.0000-SB  0.0000-CB  0.0500-AB  1.0000-GB
+  0.0000-DC  0.0005-RC  0.0000-BC  0.0000-SC  0.0020-CC  6.0000-AC  6.0000-GC
+
+File: sp12-6E.prm    (Figure 12-6)
+      Activator (blue) has a feedback on the source density (green)
+  56-KT  200-KP  10-KX  18-KY   3-KD 126-KI 127-KE   0-KR   3-KN   3-KG
+  1-K1   3-K2   0-K3   0-K4       14.0000-DX  0.0000-DY 12.0000-DZ  acb-DW
+  0.0030-DA  0.0030-RA  0.0700-BA  0.0000-SA  0.0000-CA  1.3000-AA  1.0000-GA
+  0.3000-DB  0.0060-RB  0.0000-BB  0.0000-SB  0.0000-CB  0.0500-AB  1.0000-GB
+  0.0100-DC  0.0005-RC  0.0000-BC  0.0005-SC  0.0000-CC  0.0100-AC  1.0000-GC
+
+
+
+CASE 23 '- ACTIVATOR - INHIBITOR MECHANISM: B IS INHIBITOR --------------
+     'with saturation and Michaelis-Menten-cinetics
+     a(1, i) = olddecaydiffA + s * (a * a / (sb + b) / (1 + sA * a * a) + ba)
+     a(2, i) = olddecaydiffB + s * a * a + bb
+
+File: sp12-6G.prm    (Figure 12-6G)
+                          Split due to saturation
+  80-KT  500-KP  15-KX  19-KY  19-KD   3-KI  23-KE   1-KR   2-KN   6-KG
+  0-K1   0-K2   0-K3   0-K4       20.0000-DX 30.0000-DY  0.0000-DZ  ab-DW
+  0.0020-DA  0.0100-RA  0.1000-BA  0.2000-SA  0.0000-CA  1.5000-AA  1.0000-GA
+  0.4000-DB  0.0150-RB  0.0000-BB  0.1000-SB  0.0000-CB  0.0000-AB  0.5000-GB
+
+
+
+________________________________________________________________________________
+
+CASE 128 'A SET OF EACH OTHER ON LONG RANGE ACTIVATING BUT LOCALLY EXCLUSIVE
+' activator-inhibitor-Systems: an alternative way to generate polarity
+       rep = a * a + C * C + e * e + g * g
+
+       a(1, i) = olddecaydiffA + s * (a + ba * C) ^ 2 / b / rep
+       a(2, i) = olddecaydiffB + rB * a * a
+
+       a(3, i) = olddecaydiffC + a(9, i) * rc * (C + ba * (a + e)) ^ 2 / D / rep
+       a(4, i) = olddecaydiffD + rd * C ^ 2
+
+       a(5, i) = olddecaydiffE + a(9, i + js) * re * (e + ba * (C + g)) ^ 2 / f / rep
+       a(6, i) = olddecaydiffF + rf * e ^ 2
+
+       a(7, i) = olddecaydiffG + a(9, 2 * i) * rg * (g + ba * e) ^ 2 / zh / rep
+       a(8, i) = olddecaydiffH + rh * (g + ba * e) ^ 2
+
+
+  1-K1   0-K2   0-K3   0-K4       24.0000-DX 30.0000-DY  0.0000-DZ  abcdefgh-D
+  0.0020-DA  0.0100-RA  0.1000-BA  0.1000-SA  0.0000-CA  1.5000-AA  1.0000-GA
+  0.4000-DB  0.0150-RB  0.0000-BB  0.1000-SB  0.0000-CB  0.0000-AB  0.5000-GB
+  0.0020-DC  0.0100-RC  0.1000-BC  0.1000-SC  0.0000-CC  1.0000-AC  1.0000-GC
+  0.4000-DD  0.0150-RD  0.0000-BD  0.1000-SD  0.0000-CD  0.0000-AD  1.0000-GD
+  0.0020-DE  0.0100-RE  0.0500-BE  0.1000-SE  0.0000-CE  0.5000-AE  0.5000-GE
+  0.4000-DF  0.0150-RF  0.0005-BF  0.1000-SF  0.0000-CF  0.0000-AF  0.5000-GF
+  0.0020-DG  0.0100-RG  0.1000-BG  0.1000-SG  0.0000-CG  0.0000-AG  1.0000-GG
+  0.4000-DH  0.0150-RH  0.0000-BH  0.1000-SH  0.0000-CH  0.0000-AH  0.5000-GH
+
+
+=======================================================================
+
+
+=======================================================================
+=======================================================================
+
+      Equations and parameters used in the two-dimensional simulation
+                       (for program XY only)
+
+=======================================================================
+
+CASE 21 ' ACTIVATOR-INHIBITOR SYSTEM, SA=SATURATION
+	aq = s * (a * a + ba)
+	ax(1, ix, iy) = olddecaydiffA + aq / B
+	ax(2, ix, iy) = olddecaydiffB + aq
+
+
+File: xy1.prm
+           Separated maxima; initiation by a local perturbation
+ 150-KT    8-KP  13-KX  13-KY   4-KD   1-KI  21-KE   0-KR   2-KN   0-KG
+  2-K1   2-K2   0-K3   0-K4       32.0000-DX  0.0000-DY  0.0000-DZ  ab-DW
+  0.0100-DA  0.0500-RA  0.0000-BA  0.0000-SA  0.0000-CA  1.8000-AA  1.5000-GA
+  0.2000-DB  0.0800-RB  0.0000-BB  0.0000-SB  0.0000-CB  0.0000-AB  1.5000-GB
+
+
+________________________________________________________________________________
+
+CASE 24 ' ACTIVATOR-DEPLETED SUBSTANCE
+	aq = s * B * (a * a + ba)
+	ax(1, ix, iy) = olddecaydiffA + aq / (1 + sa * a * a)
+	ax(2, ix, iy) = olddecaydiffB + bb - aq
+	IF ax(2, ix, iy) < 0 THEN ax(2, ix, iy) = 0
+	
+
+File: xy3.prm
+                        Activator-Substrate-Model
+ 100-KT  100-KP  12-KX  12-KY   3-KD   2-KI  24-KE   3-KR   2-KN   0-KG
+  0-K1   0-K2   0-K3   0-K4       35.0000-DX  0.2000-DY  0.0000-DZ  ab-DW
+  0.0020-DA  0.0100-RA  0.0300-BA  0.0000-SA  0.0070-CA  1.0000-AA  1.5000-GA
+  0.2000-DB  0.0000-RB  0.0150-BB  0.0000-SB  0.0000-CB  0.0000-AB  0.6500-GB
+
+File: xy5.prm
+                  Initiation of new maxima during growth
+ 149-KT    3-KP   9-KX   9-KY   4-KD  14-KI  21-KE   0-KR   2-KN  30-KG 
+  5-K1   3-K2   0-K3   0-K4       32.0000-DX  0.0000-DY  0.0000-DZ  ab-DW     
+  0.0050-DA  0.0500-RA  0.0500-BA  0.0000-SA  0.0000-CA  1.8000-AA  1.5000-GA
+  0.2000-DB  0.0800-RB  0.0000-BB  0.0000-SB  0.0000-CB  0.0000-AB  1.5000-GB
+
+
+________________________________________________________________________________
+
+CASE 28 ' INHIBITION IF AN INHIBITION
+	ax(1, ix, iy) = olddecaydiffA + s / (sa + C * C) + ba
+	ax(2, ix, iy) = olddecaydiffB + rB * a
+	ax(3, ix, iy) = olddecaydiffC + rc / (sc + a * a / (sb + B * B))
+	
+
+File: xy7.prm
+            Pattern formation by an inhibition of an inhibition
+   5-KT 1000-KP  10-KX  10-KY  11-KD   2-KI  28-KE   3-KR   3-KN   0-KG
+  0-K1   0-K2   0-K3   0-K4       16.0000-DX  0.0000-DY  0.0000-DZ  ac-DW
+  0.0050-DA  0.0300-RA  0.0100-BA  0.1000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.2000-DB  0.0500-RB  0.0000-BB  0.0000-SB  0.0000-CB  0.0000-AB  1.0000-GB
+  0.0050-DC  0.0300-RC  0.0100-BC  0.1000-SC  0.0000-CC  0.0000-AC  1.0000-GC
+
+File: xy12-4.prm    (Figure 12-4)
+                Initiation of leaves at opposite positions
+  60-KT  100-KP   1-KX  12-KY   7-KD   2-KI  21-KE   1-KR   2-KN   2-KG 
+  0-K1   0-K2   2-K3   0-K4       12.0000-DX  0.2000-DY  0.0000-DZ  ab-DW     
+  0.0050-DA  0.0180-RA  0.0300-BA  0.0000-SA  0.0000-CA  1.0500-AA  1.0000-GA
+  0.2000-DB  0.0230-RB  0.0000-BB  0.0000-SB  0.0000-CB  0.0000-AB  1.0000-GB
+
+
+________________________________________________________________________________
+
+CASE 126 'HYDRA HEAD (A, B); SOURCE DENSITY (C), TENTACLES (D, E)
+          ' Foot (f,g)
+	aq = C * s * (a * a + ba)
+	ax(1, ix, iy) = olddecaydiffA + aq / B
+	ax(2, ix, iy) = olddecaydiffB + aq
+	'Quelldichte
+	ax(3, ix, iy) = olddecaydiffC + rc * a + bc - sc * C * f
+	'Tentakeln
+	dfq = D * D + bd
+	dq = rd * C * ax(9, ix, iy) * dfq / (1 + sd * dfq) / (1 + cE * a)
+	ax(4, ix, iy) = olddecaydiffD + dq / e
+	ax(5, ix, iy) = olddecaydiffE + dq + be
+	
+
+File: xy12-6.prm    (Figure 12-6)
+ Head- (top), tentacles- (centre) and source density during hydra regeneration
+  60-KT   50-KP  19-KX  19-KY   3-KD  12-KI 126-KE   1-KR   5-KN   0-KG
+  0-K1   0-K2   0-K3   0-K4       20.0000-DX  0.5000-DY 12.0000-DZ  acd-DW    
+  0.0020-DA  0.0030-RA  0.0500-BA  0.0000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.2000-DB  0.0060-RB  0.0000-BB  0.0000-SB  0.0000-CB  1.4000-AB  0.2000-GB
+  0.0070-DC  0.0003-RC  0.0000-BC  0.0003-SC  0.0000-CC  0.0150-AC  1.5000-GC
+  0.0050-DD  0.0200-RD  0.0050-BD  0.0100-SD  0.0200-CD  0.0000-AD  0.0001-GD
+  0.2000-DE  0.0300-RE  0.0020-BE  0.0000-SE  0.2000-CE  0.0000-AE  0.1000-GE
+
+
+________________________________________________________________________________
+
+CASE 122 'LI NET-LIKE STRUCTURE    (A,B) ACTIVATOR-INHIBITOR
+	aq = s * C * a * a
+	dq = D * D
+	ax(1, ix, iy) = olddecaydiffA + aq / B + ba * D
+	ax(2, ix, iy) = olddecaydiffB + aq + bb * D
+	ax(3, ix, iy) = olddecaydiffC + bc - cC * C * D
+	ax(4, ix, iy) = olddecaydiffD + rd * dq / (1 + sd * dq) + bd * a
+
+
+File: xy12-8A.prm    (Figure 12-8)
+          Generation of a net-like structure, separate 3D plots
+ 130-KT   20-KP  12-KX  12-KY   0-KD  21-KI 122-KE   3-KR   4-KN   0-KG
+  0-K1   3-K2   0-K3  22-K4       20.0000-DX  0.0000-DY  0.0000-DZ  abcd-DW
+  0.0150-DA  0.1000-RA  0.0100-BA  1.5000-SA  0.0000-CA  0.0000-AA  0.0010-GA
+  0.2000-DB  0.0400-RB  0.0040-BB  0.0000-SB  0.0000-CB  0.0000-AB  0.3000-GB
+  0.0600-DC  0.0200-RC  0.0200-BC  0.0000-SC  0.0600-CC  1.0000-AC  1.0000-GC
+  0.0000-DD  0.1000-RD  0.0120-BD  0.2300-SD  0.0000-CD  4.0000-AD  0.0000-GD
+
+File: xy12-8B.prm    (Figure 12-8)
+            Generation of a net-like structure, view from above
+  70-KT  100-KP  16-KX  16-KY  10-KD  21-KI 122-KE   3-KR   4-KN   0-KG
+  0-K1   3-K2   0-K3  22-K4       20.0000-DX  0.0000-DY  0.0000-DZ  abcd-DW
+  0.0150-DA  0.1000-RA  0.0100-BA  1.5000-SA  0.0000-CA  4.0000-AA  0.0010-GA
+  0.2000-DB  0.0400-RB  0.0040-BB  0.0000-SB  0.0000-CB  0.0000-AB  0.3000-GB
+  0.0600-DC  0.0200-RC  0.0200-BC  0.0000-SC  0.0600-CC  0.0000-AC  1.0000-GC
+  0.0000-DD  0.1000-RD  0.0120-BD  0.2300-SD  0.0000-CD  4.0000-AD  0.0000-GD
+
+File: xy28A.prm    (Figure 2.8)
+            Pattern formation by an inhibition of an inhibition
+   5-KT 1000-KP  10-KX  10-KY  11-KD   2-KI  28-KE   3-KR   3-KN   0-KG
+  0-K1   0-K2   0-K3   0-K4       16.0000-DX  0.0000-DY  0.0000-DZ  ac-DW
+  0.0050-DA  0.0300-RA  0.0100-BA  0.1000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.2000-DB  0.0500-RB  0.0000-BB  0.0000-SB  0.0000-CB  0.0000-AB  1.0000-GB
+  0.0050-DC  0.0300-RC  0.0100-BC  0.1000-SC  0.0000-CC  0.0000-AC  1.0000-GC
+
+File: xy211.prm    (Figure 2.11)
+        Nearly-periodic pattern, Initiation by random fluctuations
+ 150-KT   20-KP  15-KX  15-KY   4-KD   1-KI  21-KE   3-KR   2-KN   0-KG
+  2-K1   2-K2   0-K3   0-K4       28.0000-DX  0.0000-DY  0.0000-DZ  ab-DW
+  0.0100-DA  0.0400-RA  0.0000-BA  0.0000-SA  0.0000-CA  1.5000-AA  1.5000-GA
+  0.2000-DB  0.0600-RB  0.0000-BB  0.0000-SB  0.0000-CB  0.0000-AB  1.5000-GB
+
+
+________________________________________________________________________________
+
+CASE 23 ' ACTIVATOR-INHIBITOR SYSTEM, SA=SATURATION
+'bb is Michaelis-Menten constant
+	ax(1, ix, iy) = olddecaydiffA + s * (a * a / ((sb + B) * (1 + sa * a * a)) + ba)
+	ax(2, ix, iy) = olddecaydiffB + s * a * a + bb
+
+
+File: xy212.prm    (Figure 2.12)
+     Stripe-like pattern in two dimensions (simulation requires time)
+  12-KT 1000-KP  16-KX  16-KY  11-KD   2-KI  23-KE   3-KR   2-KN   0-KG
+  0-K1   0-K2   0-K3   0-K4       16.0000-DX  0.2000-DY  0.0000-DZ  a-DW
+  0.0020-DA  0.0100-RA  0.0000-BA  0.3000-SA  0.0000-CA  1.0000-AA  1.0000-GA
+  0.2000-DB  0.0150-RB  0.0000-BB  0.0000-SB  0.0000-CB  0.0000-AB  1.0000-GB
+
+

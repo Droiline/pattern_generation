@@ -1,0 +1,19 @@
+Rates of diffusion, decay, basic production; coupling of systems.....
+D..   Diffusion constants for substance A, B, ...
+R..   Removal (decay) rates for substance A, B, ..
+B..   Basic (activator independent) production of A, B...,
+S..   Saturation or Michaelis-Menten constants (and other use)
+C..   Coupling between systems and other use
+A..   Initial concentrations for particular cells (selectable by KI)
+G..   Initial concentrations for all cells
+   ---------------------------------------------------
+DX    Unit length in pixels for graphic display (see special help menu)
+DY    Used for some initial conditions (KI=7 and KI=9, see special help menu)
+DZ    Used for the modifications of some parameters during the simulation
+CA=0 !
+CA  Usually the general production strength (source density S)
+     is set to the decay rate RA. If CA is set to a value >0 , S
+     is set to this value rather than to the decay rate. Thus,
+     with CA=0, a change in the decay rate automatically leads to a
+     corresponding change in the production rate to obtain steady
+     state concentration around 1

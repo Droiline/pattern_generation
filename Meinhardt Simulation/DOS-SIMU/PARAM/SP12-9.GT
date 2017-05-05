@@ -1,0 +1,165 @@
+Chemotactic orientation of cells and growth cones
+fdelay
+.8
+vga
+cls
+igtdelay
+2
+#
+The first set of simulations shows that an activator-inhibitor system can
+generate a cell-internal signal that can be reliable oriented by a minute
+external asymmetry. However, after it is once established, it cannot be
+reoriented. External signal = blue; activator = green, inhibitor = red
+r12-9a
+i
++ Initial condition; external signal=blue; activator=green, inhibitor=red
+n
+#
+Due to the random fluctuations, the peak may point not exactly in the
+direction of the maximum. The orientation of the pattern works with very
+different concentrations. In the following simulation the external signal
+is much lower:
+ca=.0012
+i
+<1
+n
+#
+However, even a much stronger signal with a much stronger asymmetry
+cannot reorient a once established cell-internal pattern (note that
+the cell copes with the higher external signal by increasing level of
+the antagonist).
+kt=1
+kp=1
+k3=1
+ca=0
+dy=.3
+n
++ Situation after change of the external signal
+kt=80
+kp=50
+k3=0
+c
++
+#
+Thus, the problem is not the sensitivity against the external signal
+but the maintenance of the sensitivity once the cell-internal pattern is
+formed. One possible solution is an oscillation: the cell cycles through
+sensitive phases that are followed by the amplification step....
+s12-9
++
+#
+Thus, oscillations allow an adaptation in certain time interval.
+Experimentally it was observed, however, that the cells remain permanently
+sensitive and that usually more than one protrusion forms at the time..
+
+#
+.
+.
+Formation of multiple protrusions: several maxima for can be formed if
+the range of the inhibitor is smaller than the total area...
+r12-9b
+i
+<1
+s
++
+#
+.
+However, in such a mode, the detection of a gradient is no longer possible.
+In the following simulation, a maximum appears also at the side opposite to
+the highest signal concentration, abolishing any chemotactic orientation.
+r12-9c
+i
+<1
+n
++
+#
+Therefore, multiple protrusions cannot result from a limited range of
+the antagonist; the mutual competition has to cover the whole cell
+cortex, leading only to a single maximum. Without activator diffusion and
+saturation of the autcatalysis, this maximum is very sharp...
+r12-9d
+i
+<1
+s
+<1
+#
+A saturation of the autocatalysis leads to a larger activated region.
+Its character depend on the strength of the signal, on activator diffusion,
+influences of random fluctuations and the degree of saturation. Without
+random fluctuations a large coherent region emerges...
+r12-9e
+i
+<1
+kr
+0
+s
++
+#
+In the absence of random fluctuations, only a single coherent and extendet
+activated region appears. With fluctuations, however, those regions that
+have due to the combined action of the signal and of the fluctuations the
+best condition, will win. Several maxima can appear ...
+kr
+1
+s
++
+#
+.
+.
+With a stronger asymmetry of the signal (2% -> 10%), the maximum will
+be more localized ...
+dy
+.1
+s
++
+#
+.
+.
+...while without asymmetry of the signal, maxima will appear more or less
+randomly and with irregular spacings ....
+dy
+0
+s
++
+#
+Permanent adaptation: a second antagonistic reaction of short range and with
+a long time constant leads to a permanent destabilization of once formed
+maxima. Since the total activated area is constant, any local maximum that
+disappears makes place for a new one, possible at a more optimal position...
+r12-9g
+i
+<1
+s
++
+#
+.
+.
+If no external signal is present, the internal signals for protrusion
+formation form and disappear at more or less random positions...
+dy=0
+kt=400
+k3=0
+s
++
+#
+The following simulations account for the observation that in Dictyostelium,
+in the absence of signals originating from nearby cells, protrusions are
+formed in a non-random fashion. Either oscillations out of phase or
+travelling waves around the cell do occur (Killich et al., 1993; 1994).
+#
+In the absence of an external asymmetry, the long range antagonistic reaction
+(depleted substrate, grey) can be insufficient to repress a second maximum.
+Two maxima appear at opposite positions. These becomes poisoned by a long
+lasting inhibitor (red). After a while, oscillation in counter phase emerge..
+s12-9v
++ a somewhat higher substrate production parameter leads to travelling waves
+bb
+.0045
+c
++
+#
+This was a guided tour through the chemotactic orientation of a cell
+      (Hans Meinhardt, MPI Entwicklungsbiologie, Tbingen)
+
+qq
+

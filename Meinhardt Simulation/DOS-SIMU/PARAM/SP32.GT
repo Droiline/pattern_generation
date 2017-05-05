@@ -1,0 +1,81 @@
+Oscillation of an A-I system in a single cell
+igtdelay
+100
+&
+1,1,6,1
+In this simulation, the dependence of an oscillating activator-inhibitor
+system on some parameters are shown. At the begin, by an elongation of the
+activator life time (i.e., reduction of the decay rate RA), a transition
+from an oscillatory to a steady state activation occurs.
+r32
+-
+s
+&
+0,1,6,0
+Changing activator lifetime via ra (Removal Activator)
+
+ra
+.03
+kt
+280
+c
+&
+0,1,6,0
+Oscillations will occur again after increase of activator removal rate
+
+ra
+.08
+kt=200
+c
++
+&
+1,1,6,0
+The next demonstration shows that a reduction of the basic production can
+cause an arrest of the oscillation (if either the Michaelis-Menten constant
+SB or the basic inhibitor production BB is non-zero). The system remains at
+an excited state.
+r32
+-
+s
+&
+0,1,6,0
+.
+.
+.
+Decrease of the basic activator production causes stop of oscillations
+ba
+.01
+kt=280
+c
+&
+0,1,6,0
+An elevation of the basic activator production (BA) for a short time
+interval causes a single pulse.
+
+kt
+30
+ba
+.04
+c
+kt
+170
+ba
+.01
+c
++
+&
+1,1,3,0
+The elevation of the basic activator causes lower maxima at a more rapid
+succession
+
+r32
+-
+s
+ba
+.08
+kt
+480
+c
++
+EOF-GT
+

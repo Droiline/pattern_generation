@@ -1,0 +1,156 @@
+Oscillation of an activator-substrate system in a single cell
+igtdelay
+100
+&
+1,1,6,1
+Simulations to demonstrate parameter dependence in an activator-depletion
+system. The first simulation shows that a decay of the substrate independent
+of the autocatalysis can cause an arrest in an excited state. A temporary
+addition of activator can cause a single burst.
+r33
+-
+s
+&
+0,1,6,0
+Normal oscillation, decay of the substrate is introduced...
+
+rb
+.008
+&
+0,1,6,0
+...causing a transition into an excited state
+
+c
+&
+0,1,6,0
+Increased baseline activator production simulates an external supply of
+activator. Used is a short time interval of 15 iteration
+
+ba
+.06
+kt
+15
+c
+&
+0,1,6,0
+.
+Continuation with normal baseline activator production
+
+ba
+.02
+kt
+200
+c
+&
+0,1,6,1
+Conclusion: if the substrate concentration becomes limited by a spontaneous
+decay, a minimum activator concentration may required for a trigger.
+The system switches from sustained oscillations to and excited system
+in which a small trigger can release a burst
+&
+1,1,6,1
+The next simulation shows that the effect of a temporary influx
+of the activator depends on the phase in which this happens.
+
+r33
+-
+s
+#
+At two instances, basic activator production changed for 15 iterations to an
+elevated level (ba 0.02 -> 0.1) to simulate an external pulse
+
+ba
+.1
+kt
+15
+c
+ba
+.02
+kt
+175
+c
+ba
+.1
+kt
+15
+c
+ba
+.02
+kt
+190
+-
+c
+#
+Conclusion: The effect of external supply of activator depends of the phase
+in which the system is hit by the pulse. Here, the first addition leads to a
+delay of the subsequent pulse, the second causes a smaller pulse after a
+shorter time interval.
+&
+1,1,6,1
+The next simulation shows a bistable system. The substrate production
+is high enough to maintain a steady state activation but the loss of substrate
+is so high that the maximum substrate concentration is insufficient for a
+spontaneous activation. First selecting the appropriate parameters...
+r33
+-
+i
+kt
+290
+ra
+.04
+rb
+.012
+ba
+.01
+bb
+.06
+-
+s
+&
+0,1,6,0
+Arrest of the system in an excited state since substrate concentration is
+too low for a spontaneous trigger
+
+&
+0,1,6,0
+.
+A temporary increase of the baseline activator production causes the switch
+
+ba
+.02
+kt
+20
+c
+ba
+.01
+kt
+290
+c
+#
+Conclusion: a bistable system can be shifted from low to high activator
+concentration by a short activator pulse. The system remains permanently
+in this state.
+
+&
+1,1,6,1
+The next simulation shows that a saturation of the autocatalysis of the
+activator leads to wider pulses with a reduced concentration
+
+r33
+-
+s
+#
+Introducing the saturation via SA
+
+sa
+1
+kt
+400
+c
+#
+Conclusion: Saturation causes broader pulses and less extreme
+concentrations. Note that also the depletion of the substrate during
+the pulse is less severe.
+
+EOF-GT
+

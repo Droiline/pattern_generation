@@ -1,0 +1,19 @@
+  The Algorithmic Beauty of Sea Shells (c) H. Meinhardt and Springer Verlag
+   -------      PROGRAM FOR THE SIMULATION OF SEA SHELL PATTERNS    ------
+ S = Start,  Q=Quit; C = Continuation, N = Continuation with a New screen
+ Simulations can be interrupted any time using <ESC>; F1: Menu and help
+ a single <RETURN> displays parameter list again, a second <RETURN>
+ brings back the initial screen. A parameter can be changed by typing its name
+
+  FUNCTION KEYS:
+  F1:  MENU                       F6 Print equation on screen or lpt1:
+  F2:  Read parameter from disk   F7 Print parameters on lpt1:
+  F3:  Read next parameter set    F8 Store parameters in file SP0.prm
+  F4:  Show distributions         F9 Read parameters temporary stored with F8
+  F5:  Print distributions        F10 Simulation with next parameter set
+
+ GT  = GUIDED TOURS
+ Rxx = Read the pre-recorded parameter file xx, xx=0-999; e.g. r1
+ Sxx = Start directly with the pre-recorded parameter file xx, xx=0-999
+ Wxx = Write present parameters as file SPxx.PRM   WW = update current set
+

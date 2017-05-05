@@ -1,0 +1,196 @@
+Examples of graphic capabilities
+&
+1,1,6,1
+This is a GUIDED TOUR to illustrate the graphic capabilities of the
+program and its handling. Press <RETURN> for each next step. The TOUR
+can be interrupted by pressing q (Quit); the simulations can be
+terminated by <ESC>
+#
+.
+The TOUR is initiated by reading the parameter file sp1.prm by the command
+R1 and the simulation is started by the command S (the commands are given
+there in capital letters but the case does not play a role)
+r1
+s
+#
+A change of the unit length is possible via DX
+
+dx
+10
+s
+#
+A change of the position of the graphs can be performed via the command X
+and Y. A new value for each substance to be plotted must be introduced. After
+the following change both plots are formed side by side instead on top of
+each other.
+x
+10
+300
+y
+270
+270
+s
+#
+The different modes of displays can be selected by the parameter KD.
+The present mode results from KD=1. A reversal of the time axis occurs
+with KD=2. This has the advantage that the result of the computation
+appears in the foreground.
+KD
+2
+s
+#
+The perspective of the 3-D plots can be changed via PER, 0 is horizontal,
+1 is a 45ø view. Within certain limits, the lateral viewing angle
+can be changed via KROT, 1 is a 45 degree view, higher numbers are more
+frontal (but require more time and memory) a maximum value of 6 is fine
+per
+.1
+krot
+1
+s
+#
+This a more lateral view with a low perspective, note the different
+appearance in the next simulation
+
+per
+.4
+krot
+5
+s
+#
+The normalization factors of the plots are changed via F. For each array
+to be plotted a new value has to be introduced. The existing value can
+be kept by typing <ESC>. In the following, the height of the
+inhibitor plot is increased by a factor three.
+f
+x
+1.5
+s
+#
+Which distribution is plotted can be controlled via DW (DisplayWhat).
+Input a string with the letters of the arrays to be plotted, presently
+AB was in use, typing A instead leads to a plot of the activator
+concentration only.
+dw
+a
+s
+#
+Often it is convenient to have a schematic representation of the
+concentration profiles with the absolute concentrations. This can be
+achieved via KD=4. With dw=sab source density, the activator and the
+inhibitor are plotted
+kd
+4
+dw
+sab
+s
+#
+With KD=5 it is possible to get a corresponding printout on a printer
+connected to LPT1: (not demonstrated there)
+
+#
+For the shell patterns it is desirable to use a pixel plot with coloured dots
+on white background. The background and the foreground colour (e.g. frames)
+can be changed via BCOL, the colours of the curves or pixels by ICOL.
+The pixel pattern is obtained with KD=9
+dw
+a
+KD
+9
+icol
+4
+s
+#
+For the pixel display usually more intermediate time steps are desirable.
+This can be changed via KP (number of iterations between the Printouts). To
+calculate a similar time interval, the total number printed distributions
+must be increased (KT). The next simulation shows an example:
+kp
+5
+kt
+300
+s
+#
+With kd=3 one can display separate curves. Since the screen is erased before
+a new display, this leads to some flickering.
+
+kt=80
+kp=10
+dw
+ab
+f
+.5
+.5
+kd
+3
+dx
+20
+s
++
+#
+This flickering can be avoided by switching to the EGA-display by the
+command EGA. In this mode, two screens are available. While one is
+displayed, on the other a new pattern is drawn. After completion, the
+latter will become the display screen
+EGA
+S
+#
+The line width of this plot can be changed via the command iwi
+
+iwi
+6
+6
+S
++
+#
+A somewhat related display (kd=19) provides the concentrations as
+solid areas
+
+kd
+19
+krot
+0
+icol
+2
+12
+s
+#
+The sequence of letters given by the command DW determines the priority
+of plotting. In the example above, "ab" leads to the plot of the
+activator (a) on top of the inhibitor (b). Setting DW to "ba"
+reverses that order
+DW
+ba
+S
+#
+The simplified display can be called anytime either by F4 or by m4.
+This is helpful, for instance, in the case that extreme concentrations
+occurred
+
+m4
++
+vga
+&
+1,1,3,0
+With kd=20 the concentration in the leftmost cell can be shown as
+function of time. Reasonable to see oscillations in a single cell
+
+r32
+-
+kt
+600
+s
++
+#
+Pressing the <RETURN> key twice brings the initiation screen back
+
+
+
+#
+That it the end of this Guided tour. Now you get again full control
+over the program
+
+
+EOF-GT
+
+

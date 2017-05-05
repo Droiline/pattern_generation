@@ -1,0 +1,48 @@
+Integer parameters to control program flow (Field size, iterations...)
+KT  Total number of plots per simulation  (KT * KP = total iterations)
+KP  Number of iterations (time steps) between two plots
+KX  Left-most cell of the field, usually =1 (or X-field size in XY-simul.)
+KY  Right-most cell of the field (or Y-field size in XY-simulations)
+KD  Type of display      (see special Help menu)
+KI  Initial conditions   (see special Help menu)
+KE  Equation: selects the equation to be used (e.g. 21 => 2.1 in the book)
+KE  .... e.g. 21 for equation 2.1
+KR  Random fluctuation superimposed (e.g. 2 => ñ 1% in source density S)
+KN  Number of substances, 2 <= KN <= 7
+KG  Growth. Insertion of new cells after each KG displays,  0= no growth
+K1  ... K1-K4 have diverse use. e.g. if KG>=0 Mode of growth
+  ----   The subsequent commands apply to the program SP ---
+K1=0 Insertion at one or both margins
+K1=1 Two insertions at random positions, one in the left and right half
+K1=2 Insertion in the centre
+K1=3 Insertion at the right third
+K1=4 Insertion at a random position
+  ----   The subsequent commands apply to the program XY  ----
+K1=0 Insertion of a new column(iy=1 to KY) at the right-most position (ix=kx)
+K1=1 Insertion of a new column(iy=1 to KY) at the right-most position (ix=1)
+K1=2 Insertion of a new column(iy=1 to KY) at the center of the field
+K1=3 Insertion of a new column(iy=1 to KY) at right third of the field
+K1=4 Insertion of a new row at right and at the top border
+K1=5 Insertion of a new row in X and Y in the center
+     the new cells obtain the concentration of one of their neighbours
+      -------------------------------------------------------------
+  ----   The subsequent commands apply to the program  SP
+K1=11 another use: K1=11 causes cyclic boundary conditions
+K2  Used for some initial condition (KI=7 and KI=9)
+K3  After K3 plots, particular manipulations are possible, see K4
+K4  Change of parameters after K3 printouts, new value is given by DZ
+K4=1   Basic a (activator) production  (BA)
+K4=2   Decay rate (RB) of B (inhibitor  or substrate)
+K4=3   Basic B production (BB)
+K4=4   Decay range of A (RA)
+K4=5   activator (a) concentration is modified in a part of the field
+K4=6   activator (a) concentration is modified in the entire field
+K4=7   Production and decay rate of C (RC)
+K4=8   Saturation of the Activator (SA)
+K4=9   Coupling constant CB is changed to DZ
+K4=10  Concentration of a selected substance is modified
+K4=11  Both activator and inhibitor diffusion is set to zero
+K4=13  DW=DisplayWhat set to "a" (only a-distribution are shown afterwards)
+K4=14  be (influx into the pool) is changed
+K4=15  a-concentration is changed between cell 10 and cell ky-10
+K4=16  for chemotactic reorientation of a cell (Fig. 12.9)

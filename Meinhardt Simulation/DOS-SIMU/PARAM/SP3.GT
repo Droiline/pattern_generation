@@ -1,0 +1,257 @@
+Simulation of the major pigment patterns on the shell of mollusks
+fdelay
+.8
+&
+1,2,3,1
+This GUIDED TOUR shows simulation of the major pigment patterns
+(terminate with "Q")
+
+&
+1,2,3,0
+Stable pattern formation is possible by an autocatalytic substance
+and a long ranging inhibitory reaction
+
+r23a
+-
+s
+<2
+&
+1,7,3,0
+On the shell this leads to stripes perpendicular to the growing edge
+
+r23b
+-
+s
+<2
+&
+1,7,3,0
+If the antagonist equilibrates too slowly, oscillations occur
+
+r34
+s
+<2
+s
+<2
+&
+1,7,3,0
+.... causing stripes parallel to the growing edge
+
+r35b
+-
+s
+<2
+&
+1,6,3,0
+Travelling waves are possible if the activator diffuses
+slowly and the inhibitor is non-diffusible
+
+r37
+-
+s
+<2
+&
+1,7,3,0
+.... causing oblique lines on the shell
+
+<1
+n
+<2
+&
+1,2,3,1
+The next simulation shows what happens in the mantle gland
+(you can interrupt with <ESC>)
+
+s37a
+<3
+vga
+&
+1,6,2,0
+Many shell patterns are characterized by a stable pattern that
+influences oscillations
+
+r42
+s
+<2
+&
+1,7,1,0
+The famous Nautilus-Shell has this base
+
+r48c
+-
+s
+<2
+&
+1,7,2,0
+Some regions remain in a stable state: Fish-bone pattern
+
+r410
+-
+kt=440
+s
+<3
+&
+1,6,3,0
+Superposition of a stable inhibiting (red) and an oscillating reaction:
+Rows of dots
+
+r413b
+ The shell Voluta junonia has such a pattern
+s
+<2
+&
+1,6,3,0
+A central oscillator (green) may cause synchronization:
+
+r414c
+ Different oscillation frequencies cause abrupt line termination and fusion
+s
+&
+1,1,4,1
+Superposition of one activator and two antagonists can cause meshwork,
+crossings and staggered dots
+
+<3
+&
+1,8,3,0
+Spontaneous generation of a meshwork
+
+s53
+<3
+rc
+.033
+&
+1,6,3,0
+The change in a single time constant causes transition to oblique lines
+(travelling waves)
+
+s
+<3
+&
+1,8,3,0
+Somewhat different parameters lead to crossings
+
+r57
+ ....even  pattern regulation is correctly described
+s
+r57a
+ Crossings: survival of colliding waves
+s
+vga
+<2
+&
+1,6,3,0
+The combined action of a slowly and a rapidly diffusing inhibitor leads
+to oblique rows of dots
+
+r510
+-
+s
+<3
+&
+1,7,3,0
+Branch formation by global control via a hormone (green)
+
+s61
+<3
+&
+1,1,3,1
+Complex patterns result from the superposition of two
+time-dependent patterns
+
+<3
+&
+1,6,1,0
+An extinguishing pattern kills pigmentation after a certain interval of
+pigment production
+
+r72c
+ Conus marmoreus
+s
+<3
+&
+1,6,2,0
+An enhancing reaction, spaced by lateral inhibition,
+causes an irregular meshwork
+
+s78b
+<3
+&
+1,6,2,0
+The same mechanism can cause pigmented region of irregular size
+connected by oblique lines
+
+S811e
+<3
+&
+1,1,3,1
+Triangles result from a spreading steady state in connection with a global
+extinguishing reaction
+
+<3
+&
+1,7,3,0
+The triangle may be a dominant pattern element ...
+
+S85a
+<2
+&
+1,6,3,0
+...or just a roughness of the oblique lines
+
+S85b
+<2
+&
+1,7,1,0
+"Sierpinsky"-triangles can be formed in this way
+
+r83
+kt
+340
+-
+s
+<2
+&
+1,7,3,0
+The model accounts for the ambiguity of TRIANGLES and branches
+
+r87a
+ .....TRIANGLES
+s
+<1
+r87b
+ ... and BRANCHES
+s
+<2
+&
+1,8,3,0
+ .. and waves that do not meet
+
+r88
+kt=340
+s
+<2
+&
+1,1,3,1
+Several shell patterns (Clithon, Neritina) result from a precondition
+pattern (green) that enables oscillation
+
+<3
+&
+1,6,1,0
+The oscillation causes a refreshing. When too late, a "tongue" is formed
+
+s94
+<3
+&
+1,6,3,0
+The resulting gaps may be closing on one side but enlarging on the other
+
+s96
+<3
+&
+1,2,4,1
+... from: Hans Meinhardt/The algorithmic beauty of sea shells/Springer Verlag
+
+EOF-GT
+
+

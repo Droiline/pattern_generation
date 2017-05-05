@@ -1,0 +1,23 @@
+Program SP and XY: Variables used for the graphic display
+DX      Unit length of a cell in pixels
+PER     Perspective in 3D-display mode (KD=1,2), 0=lateral, 1 = 45ø view
+KROT    angle in the display mode (KD=1, 2), 1... is reasonable
+KROT    in false color-mode KD=6-8: threshold; 1...5 is reasonable
+BCOL    Background and foreground color, 0=black, 15 white
+DW      DisplayWhat => e.g. ab causes display of substances A and B
+EGA     Switches to EGA modus, reasonable for display with frequent refresh
+VGA     Switches to VGA modus (if available)
+FDELAY  Delay between display refresh in EGA modus, default = .5
+        (used to the movie-like simulations slower)
+%-----------------------------------------------------------------------
+        For the following parameters you can input a value for each
+        substance that is displayed according DW (DisplayWhat) (sab...).
+        The input can be terminated by <q>, input of <ESC> leads a
+        particular parameter unchanged, a preceding <G> allows global
+        definition, e.g. <g50> puts all X-values to 50, <RETURN> sets to zero
+%-----------------------------------------------------------------------
+X      X - position of the plots (in pixel-units)
+Y      Y - position of the plots (in pixel-units)
+F      factors of the plot
+ICOL   color of the plot
+IWI    line width (for KD=3)

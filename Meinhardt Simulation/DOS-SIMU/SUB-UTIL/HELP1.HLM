@@ -1,0 +1,26 @@
+List of Commands
+Q   Termination of the program
+QQ  Termination of the program without confirmation
+S   Start of the simulation
+C   Continuation of simulation, same screen
+CS  New simulation, same screen to show influence initial continuation
+N   Continuation with refresh of the screen
+I   Initiation of the arrays and graphics, no calculation
+II  Initiation of the arrays, uses the previous random fluctuation
+R   Shows a list of prerecorded parameter files and offers a selection (F2)
+RR  Reads the present parameter file again
+WW  Writes back the changed parameter to the actual file
+Wxx Writes changed parameter to file PARAM\SPxx.PRM (or PXY\XYxx.prm)
+PE  Print Equation, shows the source code of the equation selected by KE
+PE    .....  as well as the actual parameters (F6)
+PR  sends a message to the printer
+MS  Manipulation: Stores present distribution
+MR  Manipulation: Restores a stored distribution
+MA  Manipulation: Array: Concentration change in a portion of the field
+MC  Manipulation: Change of field size
+EGA Switch to EGA screen (lower resolution, fast refresh of the screen)
+VGA Switch to VGA screen (higher resolution, slower refresh)
+FF  Eject a page from printer (LPT1:)
+GT  Displays a list of available GUIDED TOURS
+IGTDELAY Delay in the GUIDED TOURS in tenth of a second
+IGTDELAY .... when > 50, an explicit RETURN is required after each step

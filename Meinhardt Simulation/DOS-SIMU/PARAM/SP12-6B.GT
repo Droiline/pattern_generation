@@ -1,0 +1,154 @@
+Pattern formation and pattern regulation in Hydra
+igtdelay
+1
+#
+In this GUIDED TOUR a model for pattern formation in Hydra is given. Assumed
+are three pattern forming systems, for the head (blue), tentacles (red) and
+foot (black). They are coupled with each other by the source density (green).
+The three signalling systems emerge spontaneously at the correct place.
+r12-6
+ Initial conditions
+i
+<1
+ Head (blue), foot (black), source density (green); later: tentacles (rot)
+c
+ ... then the animal grows, but not very much happens (as in reality)
+c
+#
+The next simulation shows the regeneration. Head and foot are removed.
+In a near-head piece first the tentacles regenerate at the tip. When the
+head system (blue) triggers, the tentacle signal becomes shifted to the
+correct place, as shown in an experiment of Bode et al.
+ Near head system: tentacles regenerating first
+d
+<1
+mc
+s
+7
+17
+kp
+50
+kt
+100
+kg
+0
+d
+<1
+c
++
+#
+  once again. Note the shift of the "red" tentacle signal
+
+mc
+r
+7
+17
+d
+<1
+c
++
+#
+In a piece closer to the foot the source density is too low to trigger
+the tentacle system directly. First the head activator has to regenerate.
+This leads to an increase of the source density. If sufficiently high,
+the tentacle system triggers at the correct position.
+mr
+d
+<1
+mc
+
+12
+22
+#
+A piece distant to the head: situation after removal of head and foot
+
+ A piece distant to the head: head signal first, tentacle signal comes later
+c
++
+#
+This result corresponds to the observation of Technau and Holstein, 1995.
+.
+If a Hydra grows further, bud formation occurs. According to the model,
+this corresponds to a new activation in a region of low source density.
+mr
+ Budding
+kg
+2
+kp
+500
+kt
+10
+c
+ms
+kt
+16
+c
++
+#
+After head removal, premature bud formation is possible. According to
+the model, after head removal the inhibitor concentration declines and
+a secondary maximum can trigger. First the head-less animal is produced .....
+
+mr
+kg
+0
+<1
+mc
+
+7
+
+#
+ .....  removal of the head.....
+
+<1
+kp=100
+kt=34
+ ... bud formation in a small but head-less animal
+c
++
+#
+If a near-head piece is transplanted into the gastric column, isolated
+tentacles or a second head may be formed. Model: the high source density
+in the transplant may trigger either only the tentacle system (if the
+original head is close and thus the head inhibition is high) or ....
+ .. first: only the tentacle system triggers
+mt
+r
+1
+19
+7
+10
+24
+
+d
+#
+  ..  distributions after the operation...
+
+<1
+c
++
+#
+ .. or a full head after implantation at a more distant position....
+
+ .. or a full head
+mt
+r
+1
+24
+7
+10
+25
+
+kp=500
+d
+#
+  ..  distributions after the operation...
+
+<2
+c
++
+#
+Conclusion: the relative simple model accounts for many basic
+observations with Hydra
+
+EOF-GT

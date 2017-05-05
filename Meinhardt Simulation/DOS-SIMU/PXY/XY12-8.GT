@@ -1,0 +1,69 @@
+Formation of net-like structures
+igtdelay
+1
+cls
+#
+The subsequent simulations shall show the essential steps in the formation
+of net-like structures. At the beginning an activator signal is formed
+(green, top) that leads to a differentiation of the exposed cell (blue, bottom):
+
+r12-8a
+ega
+dw
+abd
+ki
+3
+aa
+1
+ga
+.001
+ad
+0
+cc
+
+kt=15
+kp=20
+i
++
+s
++
+#
+In order to form a filament of differentiated cells, the signal has to
+become shifted into a neighbouring cell. Assumption: differentiated
+cells remove a substrate (green) that is required for the autocatalysis.
+This leads to the destabilization and shift of the maximum.
+d
+cc
+.06
+dw
+abcd
+c
++ ... activation shifted into a neighbouring cell....
+
+n
++ The neighbouring cell has differentiated too, signal shifts again.....
+kt
+60
+c
++
+#
+At this stage usually a branch has been formed. In the next simulation a
+longer sequence will be shown. Again the activation along a "vein" is
+visible: the initiation of a branch.
+r12-8a
+i
+<2
+c
++ Usually a branch is formed at this stage...
+n
++  ...and now the same process in a top view:
+s12-8b
++
+#
+Conclusion: relatively simple mechanisms are able to generate complex
+patterns that have indeed similarities with their natural counterparts
+
+igtdelay
+0
+EOF-GT
+

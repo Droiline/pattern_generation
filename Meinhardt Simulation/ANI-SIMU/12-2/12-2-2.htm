@@ -1,0 +1,186 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Hans Meinhardt">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (Win98; I) [Netscape]">
+   <title>Activation of several genes</title>
+</head>
+<body>
+
+<center><font face="Arial,Helvetica"><font size=+3>The activation of several
+genes under the influence of a morphogen gradient</font></font></center>
+
+<p><font face="Arial,Helvetica">Frequently several genes are activated
+by a singe morphogen in a space-dependent manner. To find molecularly feasible
+mechanisms, the insight was essential that that gene activation and pattern
+formation in space share formal features. In spatial pattern formation,
+typically cells in a small region become activated, while the remaining
+cells at other positions are inhibited. Analogously for gene activation,
+imagine that in a particular situation the genes <i>A, B, C </i>or <i>D
+</i>can
+be activated. To elicit a particular cell differentiation gene <i>C,</i>
+for instance, has to become activated and the alternative genes
+<i>A, B</i>
+and <i>D</i> should be repressed (their activation is required at different
+positions). Thus, the selection of a particular gene can be regarded as
+a pattern formation among alternative genes. Based on this formal analogy,
+gene activation was expected to be based on autoregulation - as the self-enhancement
+is usually called in gene activation - and mutual competition. Space-dependent
+gene activation results from a coupling between a pattern formation in
+space and a pattern formation among alternative genes. By molecular-genetic
+observations meanwhile many autoregulatory genes have been found.</font>
+<p><b><font face="Arial,Helvetica">Cells become ‘promoted':</font></b>
+<br><font face="Arial,Helvetica">For position-dependent gene activation
+under the influence of a graded signal, a particular concentration range
+has to lead to the activation of a particular gene. An analysis of experiments
+with early insect development has suggested that measuring the concentration
+is not a single and instantaneous event, but instead proceeds step by step
+until a state is achieved that corresponds to the local morphogen concentration.
+An analogy will provide some intuition as to how unidirectional promotion
+works:</font>
+<center>
+<p><img SRC="stairc.gif" height=169 width=587></center>
+
+<p><font face="Arial,Helvetica">Let us assume a barrel at the base of a
+staircase. A flood can lift it up to a higher level, where it will remain
+even when the flood recedes. The position of the barrel is a measure for
+the highest level the flood has attained. A higher flood at later times
+can lift the barrel to an even higher level. In contrast, a second lower
+flood has no influence. The barrel remains where it came to rest before.
+Although the flood can vary continuously, the barrel comes to rest only
+at very particular level. After a near miss of one level, only the next
+lower level is possible.</font>
+<p><font face="Arial,Helvetica">Starting with a default activation of,
+for instance, the gene <i>A</i>, gene <i>B </i>becomes activated in the
+region in which the morphogen concentration surpasses a particular threshold
+level. In this process, gene <i>A </i>can be switched off due to a mutual
+competition. In a still smaller region, gene <i>C </i>will become active,
+and so on. Each of these steps is essentially irreversible. The simulation
+below shows such stepwise gene activation. Although only small concentration
+differences exist in neighboring cells, sharp borders are formed in which
+either one or another gene becomes active.</font>
+<center>
+<p><img SRC="gene1.gif" height=251 width=248></center>
+
+<p><font face="Arial,Helvetica">The switching from one gene to the next
+occurs more rapidly in regions of higher morphogen concentrations. This
+leads to a wave-like time course of gene activation as it is observed in
+many systems. This is, however, not a real wave based on a sequential triggering
+of neighboring cells but cells exposed to a higher morphogen concentration
+switch more rapidly. In the simulation below several snapshots are given.
+Gene activation is indicated by pixel densities. The movement of the activities
+and the sharpening of the borders over time are easily seen.</font>
+<center>
+<p><img SRC="gen-xt-p.gif" height=377 width=269></center>
+
+<p><font face="Arial,Helvetica">The actual implementation of the mechanism
+has to cope with an apparent paradox. Imagine gene <i>A </i>is the default
+gene and that the genes <i>B</i>, <i>C</i>.. should become activated at
+higher and higher morphogen concentrations. Gene <i>C</i> requires, therefore,
+a higher signal than gene <i>B</i>. Thus, the activation of gene <i>C</i>
+is less sensitive in respect to the signal than gene <i>B</i>. Why then
+is gene <i>C</i> activated at all? And why it is able to switch off gene
+<i>B</i>
+that responds more sensitively to the signal? During the modeling it has
+turned out that this problem requires quantitative differences in the ability
+of the genes for autoregulation: Gene <i>C, </i>although it is less sensitive
+to the signal than gene B, can take over since it is more efficient in
+its autoregulation. This will occur whenever the signal is high enough.</font>
+<br>&nbsp;
+<table BORDER COLS=2 WIDTH="78%" >
+<tr>
+<td>
+<center><img SRC="eq-abcd.gif" height=145 width=292></center>
+</td>
+
+<td><font face="Arial,Helvetica">All genes involved are assumed to follow
+the same rules. Only the equations for the gene product <i>b</i> and <i>c</i>
+are given as examples. Each gene product a<i>, b, c,..</i> has an autocatalytic
+feedback on its own gene and an inhibitory action on the activation of
+alternative genes. This has the consequence that within a particular cell
+only one of the alternative genes can remain active. The self-inhibition
+of a gene has the character of a saturation and leads to an upper limit
+of the activation that a gene can obtain. The morphogen
+<i>m
+</i>has an
+additional activating influence on the genes. In this example it is assumed
+that the activation of the gene b requires the presence of the gene product
+of the gene a. sa, sb, sc... are the coupling constants for the self-amplification.
+For a position-dependent gene activation it is required that 'higher' genes
+are less sensitive to the morphogen but better in the mutual competition,
+i.e., the relation sc>sb>sa must be satisfied ra, rb...= 0.01, sa = 1;
+sb = 1.42; sc = 2,..</font>
+<br><font face="Arial,Helvetica">m &lt; 4.7 as plotted, ba = 0.0019 (in
+the shift-simulation below; ba is increased later to 0.0022.</font></td>
+</tr>
+</table>
+
+<p><font face="Arial,Helvetica">The biological significance of this unidirectional
+promotion is easy to understand. If a graded distribution is generated
+by a local source in conjunction with diffusion, any growth enlarges the
+distance between a given cell and the source. The morphogen concentration
+will generally decrease in the course of time. And yet, if activated genes
+remain activated upon a lowering of the morphogen concentration, an existing
+subdivision will be maintained even in the face of growth or stretching
+of the tissue domain: After the interpretation is complete, the signal
+is no longer necessary and can be turned off. Several biological systems
+are known that show this type of regulation (references are in the book).
+The simulation below shows three snapshots of a gene system as described
+above in a uniformly growing tissue. The space-dependent activation of
+particular genes is controlled by the inhibitor (red) of an activator-inhibitor
+system. In the center (marked by arrows) the signal becomes lower and lower.
+Nevertheless, the regions of different gene activities are maintained (the
+trigger of a new activator maximum is suppressed by a small baseline inhibitor
+production).</font>
+<center>
+<p><img SRC="ge-grow.gif" height=471 width=359></center>
+
+<p><font face="Arial,Helvetica">Also clearly visible in this simulation
+is that as long as the signal is about to promote the transition, a cross-activation
+with the next ‘higher’ gene exists (upper figure). This cross-activation
+disappears when the signal becomes anyway too low to accomplish the next
+transition.</font>
+<p><font face="Arial,Helvetica">Two types of regulatory behavior reported
+in the literature are described by the model in a straightforward manner.
+First, an increase in the morphogen concentration after the final determination
+is already obtained leads to a distal or posterior transformation. In contrast,
+as mentioned above, a lowering remains without effect. Experimentally realized
+are such changes in the morphogen concentration by transplantations either
+towards or away from the source or by implantation of morphogen-releasing
+tissue. The following simulation shows first a steady state after the promotion
+is completed. After an increase in the signal all structures shift according
+to the new concentrations. In contrast, no shift occurs after removal of
+the signal:</font>
+<center>
+<p><img SRC="ge-pro-0.gif" height=249 width=235></center>
+
+<p><br>
+<br>
+<br>
+<br>
+<p><font face="Arial,Helvetica">The following simulation shows the behavior
+if the signal is prematurely removed. The gene normally activated last
+and at the highest concentration (brown) in the step-wise promotion is
+not reached:</font>
+<center>
+<p><img SRC="ge-nuik.gif" height=238 width=235></center>
+
+<p><font face="Arial,Helvetica">A biological example for that behavior
+can be found in Nieuwkoop's experiment with early amphibian embryos. In
+<i>Xenopus </i>he removed organizing regions very early and found less
+posterior structures. He concluded, that posterior transformation depends
+on the duration that the organizing tissue is in contact with the tissue
+to be specified. In terms of the model, time plays a role, but the promotion
+comes to rest at a concentration-specific level that is not exceed even
+when the cells are exposed to the transforming signal for an extended period.</font>
+<br>&nbsp;
+<p><font face="Arial,Helvetica">Previous:</font>
+<p><font face="Arial,Helvetica"><a href="12-2-1.htm">Gene activation by
+morphogenetic signaling</a></font>
+<p><font face="Arial,Helvetica"><a href="../../Shellsim.htm">Back to the
+index page</a></font>
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

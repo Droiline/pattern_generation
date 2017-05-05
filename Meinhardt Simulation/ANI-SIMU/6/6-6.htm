@@ -1,0 +1,187 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Hans Meinhardt">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (Win98; I) [Netscape]">
+   <title>A short Basic-Program</title>
+</head>
+<body>
+&nbsp;
+<center>
+<p><font face="Arial,Helvetica"><font size=+3>A simple program for Oliva
+porphyria</font></font></center>
+
+<p><font face="Arial,Helvetica">The figure below shows two shells; the
+background is a plot generated with a short program 'OLIVA.BAS' listed
+further below that uses only the essential components. An executable program
+(oliva.exe) can be found in the directory DOS-SIMU.</font>
+<br>&nbsp;
+<br>&nbsp;
+<br>
+<br>
+<center>
+<p><img SRC="6-olico.gif" height=307 width=409></center>
+
+<p><font face="Arial,Helvetica">Previous in chapter 6:</font>
+<br><font face="Arial,Helvetica"><a href="6-1.htm">Branch initiation by
+global control&nbsp; (entrance page chapter 6)</a></font>
+<br><font face="Arial,Helvetica"><a href="6-2.htm">No two Oliva shells
+have the same pattern</a></font>
+<br><font face="Arial,Helvetica"><a href="6-3.htm">Pattern elements that
+are correctly described details</a></font>
+<br><font face="Arial,Helvetica"><a href="6-4.htm">Open questions</a></font>
+<br><font face="Arial,Helvetica"><a href="6-5.htm">The same interaction
+- a completely different pattern</a></font>
+<br><font face="Arial,Helvetica"><a href="6-6.htm">A simple program for
+Oliva porphyria</a></font>
+<p><font face="Arial,Helvetica"><a href="../../Shellsim.htm">Back to the
+index page</a></font>
+<br>&nbsp;
+<blockquote>DEFINT H-N
+<br>' Models for the simulations of the color pattern on the shells of
+mollusks
+<br>' see also: Meinhardt,H. and Klingler,M. (1987) J. theor. Biol 126,
+63-69
+<br>' see also: H.Meinhardt: "Algorithmic beauty of sea shells"
+<br>' (Springer Verlag) (c) H.Meinhardt, T&uuml;bingen
+<p>'This is a short version of a program for the simulations of the color
+<br>'patterns on tropical sea shells, here 'Oliva porphyria'.
+<br>'An autocatalytic activator a(i) leads to a burst-like activation
+<br>'that is regulated back by the action of an inhibitor b(i). The life
+<br>'time of the inhibitor is regulated via a hormone c, that is
+<br>'homogeneously distributed along the growing edge. Whenever the number
+<br>'of activated cells cells become too small, active cells remain activated
+<br>'until backwards waves are triggered
+<p>'The program runs with the interpreter QBASIC, but this is very slow.
+<br>'Better are the following compiler: Power Basic, Microsoft QB 4.5,
+Microsoft Professional
+<br>'Basic 7.1, and Visual Basic for DOS. A compiled version is included
+<p>' i = 1...kx &lt; imax = cells at the growing edge
+<p>imax = 640: DIM a(imax), b(imax), z(imax)
+<br>RANDOMIZE TIMER ' By different fluctuations,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+'simulation will be slightly different
+<br>KT = 455&nbsp; 'Number of displays
+<br>'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; it*ip = number
+of iterations in total
+<br>KP = 12&nbsp;&nbsp; 'number of iterations between the displays ( =
+lines on the screen)
+<br>dx = 1&nbsp;&nbsp;&nbsp; 'width of a cell in pixel;&nbsp;&nbsp; with
+kp=6 ; kx=315 and dx=2 =>
+<br>kx = 630&nbsp; 'Number of cells&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+simulation in a smaller field
+<br>kx = 630&nbsp; 'number of cells
+<br>DA = .015 'Diffusion of the activator
+<br>RA = .1&nbsp;&nbsp; 'Decay rate of the inhibitor
+<br>BA = .1&nbsp;&nbsp; 'Basic production of the activator
+<br>SA = .25&nbsp; 'Saturation of the autocatalysis
+<br>DB = 0&nbsp;&nbsp;&nbsp; 'Diffusion of the inhibitor
+<br>RB = .014 'Decay rate of the inhibitor
+<br>SB = .1&nbsp;&nbsp; 'Michaelis-Menten constant of the inhibition
+<br>RC = .1&nbsp;&nbsp; 'Decay rate of the hormone
+<p>start:
+<br>REM ----------- Initial condition&nbsp; --------------------------
+<br>FOR i = 1 TO kx
+<br>&nbsp;&nbsp; a(i) = 0&nbsp;&nbsp;&nbsp; 'Activator, general initial
+concentration
+<br>&nbsp;&nbsp; b(i) = .1&nbsp;&nbsp; 'Inhibitor, general initial concentration
+<br>&nbsp;&nbsp; z(i) = RA * (.96 + .08 * RND)'Fluctuation of the autocatalysis
+<br>NEXT i
+<br>C = .5 'Hormone-concentration, homogeneous in all cells
+<br>i = 10: FOR j = 1 TO 20&nbsp; 'initially active cells
+<br>a(i) = 1: i = i + 50 * RND + 10: IF i > imax THEN EXIT FOR
+<br>NEXT
+<br>DAC = 1! - RA - 2! * DA ' These constant factors are used again and
+again
+<br>DBC = 1! - RB - 2! * DB ' therefore, they are calculated only once
+<br>DBCC = DBC'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+' at the begin of the calculation
+<br>SCREEN 12
+<br>WINDOW (1, 1)-(640, 480)
+<br>continuo:
+<br>v1 = TIMER
+<br>LINE (1, 1)-(640, 480), 1, BF 'background blue
+<br>x0 = 5: y1 = 477&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'Initial position
+of the first line
+<br>itot = 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+'Number of iteration calculated so far
+<br>FOR itot = 0 TO KT
+<br>FOR iprint% = 1 TO KP&nbsp; ' Begin of the iteration
+<br>REM -----&nbsp; --- Boundary impermeable
+<br>A1 = a(1) '&nbsp;&nbsp;&nbsp; a1 is the concentration&nbsp; of the
+actual cell. since this
+<br>B1 = b(1) '&nbsp;&nbsp;&nbsp; concentration is identical, no diffusion
+through the border.
+<br>a(kx + 1) = a(kx) '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Concentration in a virtual right cell
+<br>b(kx + 1) = b(kx)
+<br>BSA = 0!&nbsp; '&nbsp;&nbsp;&nbsp; This will carry the sum of all activations
+of all cells
+<br>REM ---------- Reactions&nbsp; ------
+<br>FOR i = 1 TO kx' i = actual cell, kx = right cell
+<br>&nbsp;&nbsp; AF = a(i) 'local activator concentration
+<br>&nbsp;&nbsp; BF = b(i) 'local inhibitor concentration
+<br>&nbsp;&nbsp; AQ = z(i) * AF * AF / (1! + SA * AF * AF)&nbsp; 'Saturating
+autocatalysis
+<br>' Calculation of the new activator and inhibitor concentration in cell
+i:
+<br>&nbsp;&nbsp; a(i) = AF * DAC + DA * (A1 + a(i + 1)) + AQ / (SB + BF)
+<br>&nbsp;&nbsp; ' 1/BF => Action of the inhibitor; SB = Michaelis-Menten
+constant
+<br>&nbsp;&nbsp; b(i) = BF * DBCC + DB * (B1 + b(i + 1)) + AQ 'new inhibitor
+conc.
+<br>&nbsp;&nbsp; BSA = BSA + RC * AF 'Hormone production -> Sum of activations
+<br>&nbsp;&nbsp; A1 = AF '&nbsp;&nbsp;&nbsp; actual concentration will
+be concentration in left cell
+<br>&nbsp;&nbsp; B1 = BF '&nbsp;&nbsp;&nbsp; in the concentration change
+of the next cell
+<br>&nbsp;&nbsp; NEXT i
+<br>&nbsp;&nbsp; C = C * (1! - RC) + BSA / kx ' New hormone concentration
+, 1/kx=normalization
+<br>&nbsp;&nbsp; RBB = RB / C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+' on total number of cells
+<br>&nbsp;&nbsp; 'RBB => Effective life time of the inhibitor
+<br>&nbsp;&nbsp; DBCC = 1! - 2! * DB - RBB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+' Change in a cell by diffusion
+<br>&nbsp;&nbsp; NEXT iprint%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+' and decay. Must be recalculated since
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+' lifetime of the inhibitor changes
+<br>&nbsp;&nbsp; REM ----------------Plot -------------
+<br>&nbsp;&nbsp; y1 = y1 - 1 'Next plot, one line below
+<br>&nbsp;&nbsp; LINE (x0, y1)-(x0 + dx * kx, y1), 15 'Background white
+<br>&nbsp;&nbsp; FOR ix% = 1 TO kx&nbsp;&nbsp; 'Pigment is drawn when a
+is higher than a threshold
+<br>&nbsp;&nbsp; IF a(ix%) > .5 THEN LINE (x0 + dx * (ix% - 1), y1)-(x0
++ dx * ix%, y1), 6
+<br>&nbsp;&nbsp; NEXT ix%
+<br>&nbsp;&nbsp; IF INKEY$ > "" THEN EXIT FOR
+<br>&nbsp;NEXT itot
+<br>&nbsp;&nbsp;&nbsp;&nbsp; v2 = v1 - TIMER
+<br>LOCATE 30, 1:&nbsp; PRINT "c = continue; s = a new start, all other
+keys = End (c) H.Meinhardt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ";
+<br>PRINT USING "##.##"; TIMER - v1;
+<br>DO: a$ = INKEY$: IF a$ > "" THEN EXIT DO
+<br>LOOP
+<br>IF a$ = "c" GOTO continuo
+<br>IF a$ = "s" GOTO start
+<br>END
+<br>&nbsp;
+<p><font face="Arial,Helvetica">Previous:</font>
+<br><font face="Arial,Helvetica"><a href="6-1.htm">Branch initiation by
+global control</a><a href="6-1.html">&nbsp;</a> (entrance page chapter
+6)</font>
+<br><font face="Arial,Helvetica"><a href="6-2.htm">No two Oliva shells
+have the same pattern</a></font>
+<br><font face="Arial,Helvetica"><a href="6-3.htm">Pattern elements that
+are correctly described details</a></font>
+<br><font face="Arial,Helvetica"><a href="6-4.htm">Open questions</a></font>
+<br><font face="Arial,Helvetica"><a href="6-5.htm">The same interaction
+- a completely different pattern</a></font>
+<p><font face="Arial,Helvetica"><a href="../../Shellsim.htm">Back to the
+index page</a></font>
+<br>&nbsp;</blockquote>
+
+</body>
+</html>
