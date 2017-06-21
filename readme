@@ -1,1 +1,4 @@
 When running the code make sure you are running from within the code/ directory, otherwise the results wont be saved in the correct location.
+
+Code should be run with python3 using the run_ah_system.py file.
+You can access the different types of model by using the test_key variable on line 9 of run_ah_system.py. See set_params.py for the available test keys.
