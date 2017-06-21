@@ -4,5 +4,11 @@
 *.toc
 *~
 
-images/meinhardt_img
-images/meinhardt2
+images/rmeinhardt2
+images/1rmeinhardt_chap2
+images/1rmeinhardt2
+code/archive
+code/__pycache__
+research_ramblings
+viva_notes
+

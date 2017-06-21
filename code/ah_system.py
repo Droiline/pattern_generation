@@ -8,7 +8,7 @@ import os
 def save_result(results, params, reaction_f):
     plt.close('all')
     titles = ['Activator levels','Inhibitor levels','Second Inhibitor levels']
-    fig, axes = plt.subplots(1, len(results))
+    fig, axes = plt.subplots(1, len(results), sharey=True)
 
     for i, axis in enumerate(axes):
         axis.set_title(titles[i])
@@ -21,6 +21,10 @@ def save_result(results, params, reaction_f):
     # the filename is the parameters used
     filename = ''
     params.pop('sdens') # sdens is random, so not needed in filename.
+
+    if 'R' in params:
+        params.pop('R') # R is also non-deterministic,
+
     for k,v in params.items():
         filename = filename + k + str(v) + '_'
 
@@ -30,15 +34,18 @@ def save_result(results, params, reaction_f):
     if not os.path.exists(dirpath):
         os.makedirs(dirpath)
 
+    plt.tight_layout()
     filepath = os.path.join(dirpath, filename)
     plt.savefig(filepath, bbox_inches='tight')
 
-def ah_model(reaction_f, p, size, timesteps, debug=False):
+def ah_model(reaction_f, p, size, timesteps, model_type='basic', debug=False):
     #create the model space
     activ = [[0]*size for _ in range(timesteps)]
     inhib = [[0]*size for _ in range(timesteps)]
-    working_row = [[0,0]]*size
+    #working_row = [[0,0]]*size
     sdens = p['sdens_0'] + np.random.rand(size)*p['sdens_var']
+    if model_type is 'globali':
+        R = [0] * (timesteps)
 
     stability = (p['dx']*p['dx']) / (2*p['dt'])
 
@@ -54,8 +61,16 @@ def ah_model(reaction_f, p, size, timesteps, debug=False):
         return False
     else:
         #set initial values
-        activ[0] = [p['innita']] * size
-        inhib[0] = [p['inniti']] * size
+        if model_type is 'globali':
+            for c in range(size):
+                activ[0][c] = 0.5 if np.random.rand() > 0.25 else 0
+
+            inhib[0] = [p['inniti']] * size
+            R[0] = p['R']
+        else:
+            activ[0] = [p['innita']] * size
+            inhib[0] = [p['inniti']] * size
+
 
         #start iterating from after initial conditions
         for t in range(1,timesteps):
@@ -80,14 +95,23 @@ def ah_model(reaction_f, p, size, timesteps, debug=False):
                 diffused_i = p['diffi'] * ((old_inhib_l + old_inhib_r - 2*inhib[t-1][c]) / (p['dx']*p['dx']))
 
                 #find the change in activator and inhibitor due to reaction
-                p['sdens'] = sdens[c]
                 reacted_a = reaction_f[0](activ[t-1][c], inhib[t-1][c], p)
                 reacted_i = reaction_f[1](activ[t-1][c], inhib[t-1][c], p)
+
+                if model_type is 'globali':
+                    #remember this is dR, not total!
+                    R[t] = R[t-1] + reaction_f[2](sum(activ[t-1]), R[t-1], size)
+                    p['R'] = R[t]
+
+                p['sdens'] = sdens[c]
                 #find new activator value
                 activ[t][c] = activ[t-1][c] + p['dt'] * (diffused_a + reacted_a)
                 inhib[t][c] = inhib[t-1][c] + p['dt'] * (diffused_i + reacted_i)
 
-        save_result([activ, inhib], p, reaction_f)
+        if model_type is 'globali':
+            save_result([activ, inhib, [[x]*5 for x in R]],p, reaction_f)
+        else:
+            save_result([activ, inhib], p, reaction_f)
         return True
 
 #two inhibitor model

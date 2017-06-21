@@ -29,6 +29,21 @@ def meinhardt_paper2_i(oldA, oldI, p):
     dI = p['sdens'] * aStar2 - p['remi'] * oldI + p['prodi'];
     return dI
 
+#second equation from the paper adapted for branching patterns
+def meinhardt_branch_a(oldA, oldI, p):
+    aStar2 = (oldA*oldA)/(1 + p['sata'] * oldA*oldA)
+    dA = (p['sdens'] * (aStar2 + p['sdens_0']))/(0.1 + oldI) - p['rema'] * oldA
+    return dA
+
+def meinhardt_branch_i(oldA, oldI, p):
+    aStar2 = (oldA*oldA)/(1 + p['sata'] * oldA*oldA);
+    dI = p['sdens'] * aStar2 - p['prodi']/p['R'] * oldI + p['remi'];
+    return dI
+
+def meinhardt_branch_r(sumA, oldR, size):
+    dR = 0.1 * (sumA / size - oldR)
+    return dR
+
 # a dual inhibitor system
 def meinhardt5_2_a(oldA, oldI, oldI2, p):
     aStar2 = (oldA*oldA + p['proda']) / (1 + p['sata'])

@@ -6,10 +6,9 @@ import itertools as it
 import numpy as np
 
 debug = True
-test_key = 'meinhardt5_2'
-full_run = True
-size = 500
-time_steps = 700
+test_key = 'meinhardt2_1'
+size = 260
+time_steps = 400
 
 param_ranges, reaction_f, model_type = set_params(test_key)
 
@@ -58,22 +57,23 @@ empty_p = OrderedDict(zip(param_ranges.keys(),[0]*len(param_ranges.keys())))
 start = time.time()
 
 runs = 0
-for params in product(list(param_ranges.items()), empty_p):
-    try:
-        runs = runs + 1
-        if model_type is 'basic':
+try:
+    runs += 1
+    if model_type is 'basic' or model_type is 'globali':
+        for params in product(list(param_ranges.items()), empty_p):
             if 'dx' not in param_ranges:
                 params['dx'], params['dt'] = set_steps([params['diffa'],params['diffi']], params['dt'])
-            ah_model(reaction_f, params, size, time_steps, debug)
-        elif model_type is 'duali':
+            ah_model(reaction_f, params, size, time_steps, model_type)
+    elif model_type is 'duali':
+        for params in product(list(param_ranges.items()), empty_p):
             if 'dx' not in param_ranges:
                 params['dx'], params['dt'] = set_steps([params['diffa'],params['diffi'],params['diffi2']], params['dt'])
-            ah2_model(reaction_f, params, size, time_steps, debug)
-        else:
-            raise ValueError("Invalid model_type")
-    except ValueError as e:
-        runs = runs - 1
-        print("ERROR: ", e)
+            ah2_model(reaction_f, params, size, time_steps)
+    else:
+        raise ValueError("Invalid model_type")
+except ValueError as e:
+    runs = runs - 1
+    print("ERROR: ", e)
 
 end = time.time()
 print('number of runs: ', runs)
